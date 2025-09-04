@@ -28,15 +28,17 @@ class _WalletHomePageState extends State<WalletHomePage> {
         centerTitle: true,
         backgroundColor: Colors.blue,
         elevation: 0,
-        actions: [
-          IconButton(
-            icon: Image.asset(
-              "assets/Menu/Hamburger_LG.png",
-              width: 28,
-              color: Colors.white,
-            ),
-            onPressed: () {},
+
+        leading: IconButton(
+          icon: Image.asset(
+            "assets/Menu/Hamburger_LG.png",
+            width: 28,
+            color: Colors.white,
           ),
+          onPressed: () {},
+        ),
+
+        actions: [
           IconButton(
             icon: Image.asset(
               "assets/Menu/User.png",
@@ -47,6 +49,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
           ),
         ],
       ),
+
       body: Column(
         children: [
           // Balance Card
@@ -120,13 +123,13 @@ class _WalletHomePageState extends State<WalletHomePage> {
           ),
           const SizedBox(height: 16),
 
-          // Transaction History Card
+          // Riwayat Transaksi Card Container
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black12,
@@ -135,45 +138,74 @@ class _WalletHomePageState extends State<WalletHomePage> {
                 ),
               ],
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      "assets/Environment/Water_Drop.png",
-                      width: 28,
-                      color: Colors.blue,
+            child: Column( crossAxisAlignment: CrossAxisAlignment.start,
+             children: [
+                // Header
+                Row( mainAxisAlignment: MainAxisAlignment.center, 
+                children: const [ 
+                  Text( 
+                    "Riwayat Transaksi", 
+                    style: TextStyle( 
+                      fontWeight: FontWeight.bold, 
+                      fontSize: 16,
+                      ),
                     ),
-                    const SizedBox(width: 12),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
-                          "Tagihan Air",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 14),
+                    Icon(Icons.fullscreen, size: 18, color: Colors.black54),
+                  ],
+                ),
+                const SizedBox(height: 12),
+
+                // Isi transaksi
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 18,
+                          backgroundColor: Colors.grey[200],
+                          child: Image.asset(
+                            "assets/Environment/Water_Drop.png",
+                            width: 20,
+                            color: Colors.blue,
+                          ),
                         ),
+                        const SizedBox(width: 12),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              "Tagihan Air",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                            Text(
+                              "Hari ini 13.00",
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: const [
+                        Icon(Icons.arrow_circle_left,
+                            color: Colors.red, size: 20),
+                        SizedBox(width: 4),
                         Text(
-                          "Hari ini 13.00",
-                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                          "Rp100.000",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
                         ),
                       ],
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    const Icon(Icons.arrow_circle_left,
-                        color: Colors.red, size: 20),
-                    const SizedBox(width: 4),
-                    const Text(
-                      "Rp100.000",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                    ),
-                  ],
-                )
               ],
             ),
           ),

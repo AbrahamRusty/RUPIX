@@ -110,7 +110,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
             children: [
               _actionButton(
                 "TOP UP",
-                "assets/Environment/Transfer.png",
+                "assets/Menu/Arrow_Up_SM.png",
                 Colors.blue,
               ),
               _actionButton(
@@ -221,15 +221,14 @@ class _WalletHomePageState extends State<WalletHomePage> {
               children: [
                 _serviceCard(
                   "Split Bill",
-                  "assets/Menu/Arrow_Circle_Down_Left.png",
+                  "assets/Environment/Transfer.png",
                 ),
                 _serviceCard(
                   "E-Banking",
                   "assets/Environment/Financial Institution.png",
                 ),
                 _serviceCard("Tarik Dana", "assets/Environment/Down Arrow.png"),
-                _serviceCard(
-                    "E-Wallet", "assets/Environment/Additional Card.png"),
+                _serviceCard("E-Wallet", "assets/Environment/Additional Card.png"),
                 _serviceCard("Promo", "assets/Environment/Reciept.png"),
                 _serviceCard("Tabungan", "assets/Environment/Card.png"),
                 _serviceCard("Air", "assets/Environment/Water_Drop.png"),

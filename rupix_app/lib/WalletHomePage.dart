@@ -24,7 +24,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
     return Scaffold(
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
-        title: const Text('Rupiah Wallet'),
+        title: const Text('Dompet Rupiah'),
         centerTitle: true,
         backgroundColor: Colors.blue,
         elevation: 0,

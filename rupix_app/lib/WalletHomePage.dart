@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'RiwayatTransaksi.dart'; // import halaman Riwayat Transaksi
 
 class WalletHomePage extends StatefulWidget {
   const WalletHomePage({super.key});
@@ -209,7 +210,13 @@ class _WalletHomePageState extends State<WalletHomePage> {
                 // Isi transaksi
                 InkWell(
                   onTap: () {
-                    debugPrint("Riwayat Transaksi tapped");
+                    // Navigasi ke halaman Riwayat Transaksi
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RiwayatTransaksiPage(),
+                      ),
+                    );
                   },
                   borderRadius: BorderRadius.circular(12),
                   child: Row(

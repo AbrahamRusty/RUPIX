@@ -81,6 +81,9 @@ flutter:
     - assets/Menu/Vector.png
     - assets/Menu/Vector2.png
 
+    - assets/rupix.png
+    - assets/walletbtc.png
+
     # File PNG di root assets
     - assets/tree.png
 

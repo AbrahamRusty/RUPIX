@@ -34,6 +34,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  simple_icons: ^14.6.1
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +66,10 @@ flutter:
     - assets/Environment/Reciept.png
     - assets/Environment/Transfer.png
     - assets/Environment/Water_Drop.png
+    - assets/Environment/dana.png
+    - assets/Environment/ovo.png
+    - assets/Environment/shopeepay.png
+    - assets/Environment/linkaja.png
 
     # Folder Menu
     - assets/Menu/Arrow_Circle_Down_Left.png

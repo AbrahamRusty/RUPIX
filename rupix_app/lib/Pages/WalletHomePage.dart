@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rupix_app/Pages/TopUp/TopUp.dart';
 import 'RiwayatTransaksi/RiwayatTransaksi.dart';
 
 class WalletHomePage extends StatefulWidget {
@@ -62,9 +63,30 @@ class _WalletHomePageState extends State<WalletHomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _actionButton("TOP UP", "assets/Menu/Arrow_Up_SM.png", Colors.blue),
-                    _actionButton("TRANSFER", "assets/Menu/Vector2.png", Colors.green),
-                    _actionButton("MORE", "assets/Menu/More.png", Colors.orange),
+                    // Navigasi ke TopUpPage ketika tombol TOP UP ditekan
+                    _actionButton(
+                      "TOP UP",
+                      "assets/Menu/Arrow_Up_SM.png",
+                      Colors.blue,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TopUpPage(),
+                          ),
+                        );
+                      },
+                    ),
+                    _actionButton(
+                      "TRANSFER",
+                      "assets/Menu/Vector2.png",
+                      Colors.green,
+                    ),
+                    _actionButton(
+                      "MORE",
+                      "assets/Menu/More.png",
+                      Colors.orange,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -90,9 +112,15 @@ class _WalletHomePageState extends State<WalletHomePage> {
           });
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet), label: "Dompet"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_wallet),
+            label: "Dompet",
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.history), label: "Riwayat"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Settings",
+          ),
         ],
       ),
     );
@@ -107,7 +135,11 @@ class _WalletHomePageState extends State<WalletHomePage> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 8, offset: const Offset(0, 4)),
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
         ],
       ),
       child: Column(
@@ -115,7 +147,11 @@ class _WalletHomePageState extends State<WalletHomePage> {
         children: [
           const Text(
             'SALDO',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87),
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
           ),
           const SizedBox(height: 8),
           Row(
@@ -124,7 +160,10 @@ class _WalletHomePageState extends State<WalletHomePage> {
                 child: Center(
                   child: Text(
                     balance,
-                    style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -151,15 +190,29 @@ class _WalletHomePageState extends State<WalletHomePage> {
         children: [
           Row(
             children: [
-              Image.asset("assets/Menu/Chart_Line.png", width: 18, height: 18, color: Colors.white),
+              Image.asset(
+                "assets/Menu/Chart_Line.png",
+                width: 18,
+                height: 18,
+                color: Colors.white,
+              ),
               const SizedBox(width: 6),
               Text(
                 '$used udah terpakai di Agustus',
-                style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ],
           ),
-          Image.asset("assets/Menu/Vector.png", width: 18, height: 18, color: Colors.green),
+          Image.asset(
+            "assets/Menu/Vector.png",
+            width: 18,
+            height: 18,
+            color: Colors.green,
+          ),
         ],
       ),
     );
@@ -174,7 +227,11 @@ class _WalletHomePageState extends State<WalletHomePage> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 6, offset: const Offset(0, 3)),
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
         ],
       ),
       child: Column(
@@ -190,7 +247,12 @@ class _WalletHomePageState extends State<WalletHomePage> {
                   ),
                 ),
               ),
-              Image.asset("assets/Menu/Expand.png", width: 20, height: 20, color: Colors.black54),
+              Image.asset(
+                "assets/Menu/Expand.png",
+                width: 20,
+                height: 20,
+                color: Colors.black54,
+              ),
             ],
           ),
           const SizedBox(height: 12),
@@ -200,7 +262,9 @@ class _WalletHomePageState extends State<WalletHomePage> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const RiwayatTransaksiPage()),
+                MaterialPageRoute(
+                  builder: (context) => const RiwayatTransaksiPage(),
+                ),
               );
             },
             borderRadius: BorderRadius.circular(12),
@@ -223,9 +287,17 @@ class _WalletHomePageState extends State<WalletHomePage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
-                        Text("Tagihan Air",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                        Text("Hari ini 13.00", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                        Text(
+                          "Tagihan Air",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
+                        Text(
+                          "Hari ini 13.00",
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
                       ],
                     ),
                   ],
@@ -234,11 +306,18 @@ class _WalletHomePageState extends State<WalletHomePage> {
                 // Kanan (amount)
                 Row(
                   children: [
-                    Image.asset("assets/Menu/Arrow_Circle_Down_Left.png", width: 20, height: 20),
+                    Image.asset(
+                      "assets/Menu/Arrow_Circle_Down_Left.png",
+                      width: 20,
+                      height: 20,
+                    ),
                     const SizedBox(width: 4),
                     const Text(
                       "Rp100.000",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
                     ),
                   ],
                 ),
@@ -250,18 +329,28 @@ class _WalletHomePageState extends State<WalletHomePage> {
     );
   }
 
-  // Action Button
-  Widget _actionButton(String label, String iconPath, Color bgColor) {
+  // Action Button with optional onPressed callback
+  Widget _actionButton(
+    String label,
+    String iconPath,
+    Color bgColor, {
+    VoidCallback? onPressed,
+  }) {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
         backgroundColor: bgColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       ),
-      onPressed: () => debugPrint("Action button $label tapped"),
+      onPressed: onPressed ?? () => debugPrint("Action button $label tapped"),
       icon: Image.asset(iconPath, width: 20, color: Colors.white),
-      label: Text(label,
-          style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+      label: Text(
+        label,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 
@@ -274,7 +363,10 @@ class _WalletHomePageState extends State<WalletHomePage> {
       mainAxisSpacing: 16,
       children: [
         _serviceCard("Split Bill", "assets/Environment/Transfer.png"),
-        _serviceCard("E-Banking", "assets/Environment/Financial Institution.png"),
+        _serviceCard(
+          "E-Banking",
+          "assets/Environment/Financial Institution.png",
+        ),
         _serviceCard("Tarik Dana", "assets/Environment/Down Arrow.png"),
         _serviceCard("E-Wallet", "assets/Environment/Additional Card.png"),
         _serviceCard("Promo", "assets/Environment/Reciept.png"),
@@ -300,8 +392,13 @@ class _WalletHomePageState extends State<WalletHomePage> {
             children: [
               Image.asset(iconPath, width: 28),
               const SizedBox(height: 8),
-              Text(title,
-                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ],
           ),
         ),

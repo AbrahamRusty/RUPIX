@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rupix_app/Pages/TopUp/TopUp.dart';
+import 'package:rupix_app/QrCode/scan_qr_page.dart';
 import 'RiwayatTransaksi/RiwayatTransaksi.dart';
 
 class WalletHomePage extends StatefulWidget {
@@ -14,98 +15,144 @@ class _WalletHomePageState extends State<WalletHomePage> {
   final String used = 'Rp50.000.000';
 
   int _selectedIndex = 0;
+  bool _isHidden = false;
 
-  final List<Widget> _pages = [
-    const Placeholder(), // Page 1 (Dashboard/Home Wallet)
-    const Placeholder(), // Page 2 (Transaction History)
-    const Placeholder(), // Page 3 (Profile/Other)
+  final List<Widget> _pages = const [
+    Placeholder(),
+    Placeholder(),
+    Placeholder(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[50],
-
-      // AppBar
-      appBar: AppBar(
-        title: const Text('Dompet Rupiah'),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
-        elevation: 0,
-        leading: IconButton(
-          icon: Image.asset(
-            "assets/Menu/Hamburger_LG.png",
-            width: 28,
-            color: Colors.white,
+      body: Stack(
+        children: [
+          // Background split 50:50
+          Column(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(color: const Color(0xFF3C8DFF)), // biru
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(color: const Color(0xFFF1F0F0)), // abu
+              ),
+            ],
           ),
-          onPressed: () => debugPrint("Hamburger menu tapped"),
-        ),
-        actions: [
-          IconButton(
-            icon: Image.asset(
-              "assets/Menu/User.png",
-              width: 28,
-              color: Colors.white,
+
+          // Konten halaman
+          SafeArea(
+            child: Column(
+              children: [
+                // Custom AppBar
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        icon: Image.asset(
+                          "assets/Menu/Hamburger_LG.png",
+                          width: 28,
+                          color: Colors.black,
+                        ),
+                        onPressed: () => debugPrint("Hamburger tapped"),
+                      ),
+                      const Text(
+                        "RupiX Wallet",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.black,
+                        ),
+                      ),
+                      IconButton(
+                        icon: Image.asset(
+                          "assets/Menu/User.png",
+                          width: 28,
+                          color: Colors.black,
+                        ),
+                        onPressed: () => debugPrint("User tapped"),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Body sesuai bottom nav index
+                Expanded(
+                  child: _selectedIndex == 0
+                      ? Column(
+                          children: [
+                            _buildBalanceCard(context),
+
+                            // Action Buttons
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                // TOP UP
+                                _actionButton(
+                                  "TOP UP",
+                                  "assets/Menu/Arrow_Up_SM.png",
+                                  const Color.fromARGB(255, 151, 212, 255),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const TopUpPage(),
+                                      ),
+                                    );
+                                  },
+                                ),
+
+                                // TRANSFER
+                                _actionButton(
+                                  "TRANSFER",
+                                  "assets/Menu/Vector2.png",
+                                  const Color.fromARGB(255, 185, 255, 105),
+                                ),
+
+                                // MORE
+                                Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.yellow,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () => debugPrint("MORE tapped"),
+                                    icon: Image.asset(
+                                      "assets/Menu/More.png",
+                                      width: 22,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+
+                            _buildRiwayatTransaksi(context),
+                            const SizedBox(height: 20),
+
+                            Expanded(child: _buildServiceGrid()),
+                          ],
+                        )
+                      : _pages[_selectedIndex],
+                ),
+              ],
             ),
-            onPressed: () => debugPrint("User profile tapped"),
           ),
         ],
       ),
-
-      // Body sesuai bottom nav index
-      body: _selectedIndex == 0
-          ? Column(
-              children: [
-                // Balance Card
-                _buildBalanceCard(),
-
-                // Action Buttons
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    // Navigasi ke TopUpPage ketika tombol TOP UP ditekan
-                    _actionButton(
-                      "TOP UP",
-                      "assets/Menu/Arrow_Up_SM.png",
-                      Colors.blue,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const TopUpPage(),
-                          ),
-                        );
-                      },
-                    ),
-                    _actionButton(
-                      "TRANSFER",
-                      "assets/Menu/Vector2.png",
-                      Colors.green,
-                    ),
-                    _actionButton(
-                      "MORE",
-                      "assets/Menu/More.png",
-                      Colors.orange,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-
-                // Riwayat Transaksi Card
-                _buildRiwayatTransaksi(context),
-                const SizedBox(height: 20),
-
-                // Service Grid
-                Expanded(child: _buildServiceGrid()),
-              ],
-            )
-          : _pages[_selectedIndex],
 
       // Bottom Navigation
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
+        unselectedItemColor: const Color.fromARGB(255, 200, 200, 200),
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
@@ -116,7 +163,10 @@ class _WalletHomePageState extends State<WalletHomePage> {
             icon: Icon(Icons.account_balance_wallet),
             label: "Dompet",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: "Riwayat"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: "Aktivitas",
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: "Settings",
@@ -127,7 +177,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
   }
 
   // Balance Card
-  Widget _buildBalanceCard() {
+  Widget _buildBalanceCard(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(20),
@@ -156,10 +206,22 @@ class _WalletHomePageState extends State<WalletHomePage> {
           const SizedBox(height: 8),
           Row(
             children: [
+              // Icon mata di kiri
+              IconButton(
+                icon: Icon(
+                  _isHidden ? Icons.visibility_off : Icons.visibility,
+                  color: Colors.grey[700],
+                ),
+                onPressed: () {
+                  setState(() {
+                    _isHidden = !_isHidden;
+                  });
+                },
+              ),
               Expanded(
                 child: Center(
                   child: Text(
-                    balance,
+                    _isHidden ? "••••••••••" : balance,
                     style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -167,7 +229,21 @@ class _WalletHomePageState extends State<WalletHomePage> {
                   ),
                 ),
               ),
-              Image.asset("assets/Menu/Group 10.png", width: 28),
+              // Icon QR di kanan
+              IconButton(
+                icon: const Icon(
+                  Icons.qr_code_scanner,
+                  color: Colors.black87,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ScanQRPage(),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
           const SizedBox(height: 8),
@@ -177,7 +253,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
     );
   }
 
-  // Usage info (Rp50.000 terpakai di Agustus)
+  // Usage info
   Widget _buildUsageInfo() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -271,7 +347,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Kiri (icon + title)
+                // Kiri
                 Row(
                   children: [
                     CircleAvatar(
@@ -302,8 +378,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
                     ),
                   ],
                 ),
-
-                // Kanan (amount)
+                // Kanan
                 Row(
                   children: [
                     Image.asset(
@@ -329,26 +404,49 @@ class _WalletHomePageState extends State<WalletHomePage> {
     );
   }
 
-  // Action Button with optional onPressed callback
+  // Action Button
   Widget _actionButton(
     String label,
     String iconPath,
-    Color bgColor, {
+    Color circleColor, {
     VoidCallback? onPressed,
   }) {
-    return ElevatedButton.icon(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: bgColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+    return Container(
+      height: 50,
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(30),
       ),
-      onPressed: onPressed ?? () => debugPrint("Action button $label tapped"),
-      icon: Image.asset(iconPath, width: 20, color: Colors.white),
-      label: Text(
-        label,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
+      child: InkWell(
+        onTap: onPressed ?? () => debugPrint("Action $label tapped"),
+        borderRadius: BorderRadius.circular(30),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 42,
+              height: 42,
+              margin: const EdgeInsets.only(left: 6),
+              decoration: BoxDecoration(
+                color: circleColor,
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Image.asset(iconPath, width: 18, height: 18),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: Text(
+                label,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -363,10 +461,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
       mainAxisSpacing: 16,
       children: [
         _serviceCard("Split Bill", "assets/Environment/Transfer.png"),
-        _serviceCard(
-          "E-Banking",
-          "assets/Environment/Financial Institution.png",
-        ),
+        _serviceCard("E-Banking", "assets/Environment/Financial Institution.png"),
         _serviceCard("Tarik Dana", "assets/Environment/Down Arrow.png"),
         _serviceCard("E-Wallet", "assets/Environment/Additional Card.png"),
         _serviceCard("Promo", "assets/Environment/Reciept.png"),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../WalletHomePage.dart';
+import 'buat_dompet_page.dart'; // pastikan file ini ada
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -7,64 +7,91 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[50],
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Logo atau ilustrasi
+              // ===== Logo di atas =====
               Image.asset(
-                "assets/logo.png", // ganti sesuai aset figma
-                height: 120,
+                "assets/rupix.png",
+                height: 300,
               ),
-              const SizedBox(height: 40),
 
+              const SizedBox(height: 32),
+
+              // ===== Teks Welcome =====
               const Text(
-                "Dompet Rupiah",
+                "WELCOME TO",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+                  color: Colors.white,
+                  letterSpacing: 1.2,
                 ),
               ),
               const SizedBox(height: 8),
               const Text(
-                "Kelola keuanganmu dengan mudah",
+                "RupiX",
                 style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black54,
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 65, 100, 252), // biru sesuai style
+                  letterSpacing: 1.5,
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                "Kontrol Manajemen Keuanganmu",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey,
                 ),
                 textAlign: TextAlign.center,
               ),
 
-              const SizedBox(height: 60),
+              const SizedBox(height: 100),
 
-              // Tombol login (langsung masuk tanpa password)
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+              // ===== Row Mulai Disini =====
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "MULAI DISINI",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 1.2,
                     ),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const WalletHomePage(),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BuatDompetPage(),
+                        ),
+                      );
+                    },
+                    borderRadius: BorderRadius.circular(40),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF6BFF5A), // hijau neon sesuai figma
+                        shape: BoxShape.circle,
                       ),
-                    );
-                  },
-                  child: const Text(
-                    "Mulai",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      padding: const EdgeInsets.all(16),
+                      child: const Icon(
+                        Icons.login_rounded,
+                        color: Colors.black,
+                        size: 28,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),

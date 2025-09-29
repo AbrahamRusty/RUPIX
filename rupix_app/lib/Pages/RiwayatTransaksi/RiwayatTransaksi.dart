@@ -44,9 +44,9 @@ class RiwayatTransaksiPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[50],
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromARGB(255, 146, 206, 255),
         title: const Text("Riwayat Transaksi"),
         centerTitle: true,
         leading: IconButton(

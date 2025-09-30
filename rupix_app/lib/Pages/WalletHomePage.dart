@@ -4,7 +4,7 @@ import 'package:rupix_app/Pages/settings/setting_home_screen.dart';
 import 'package:rupix_app/QrCode/scan_qr_page.dart';
 import 'package:rupix_app/Pages/RiwayatTransaksi/RiwayatTransaksi.dart';
 import 'package:rupix_app/Pages/Login/welcomecrypto.dart';
-import 'package:rupix_app/Pages/aktivitas.dart'; 
+import 'package:rupix_app/Pages/aktivitas.dart';
 
 class WalletHomePage extends StatefulWidget {
   const WalletHomePage({super.key});
@@ -15,28 +15,26 @@ class WalletHomePage extends StatefulWidget {
 
 class _WalletHomePageState extends State<WalletHomePage> {
   final String balance = 'Rp100.000.000';
-  final String used = 'Rp50.000.000';
-
-  int _selectedIndex = 0;
   bool _isHidden = false;
 
+  int _selectedIndex = 0;
   String _selectedWallet = "Rupiah Wallet";
   final List<String> _walletOptions = ["Rupiah Wallet", "Crypto Wallet"];
 
-  late final List<Widget> _pages = [
-    _buildMainWalletPage(),
-    const AktivitasPage(), 
-    SettingsHomeScreen(onMenuTap: () {
-      debugPrint("Menu tapped in SettingsHomeScreen");
-    }),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      _buildMainWalletPage(context),
+      const AktivitasPage(),
+      SettingsHomeScreen(onMenuTap: () {
+        debugPrint("Menu tapped in SettingsHomeScreen");
+      }),
+    ];
+
     return Scaffold(
       body: Stack(
         children: [
-          // Background split 50:50
+          // Background 50:50
           Column(
             children: [
               Expanded(flex: 1, child: Container(color: const Color(0xFF3C8DFF))),
@@ -44,7 +42,6 @@ class _WalletHomePageState extends State<WalletHomePage> {
             ],
           ),
 
-          // Konten halaman
           SafeArea(
             child: Column(
               children: [
@@ -55,24 +52,19 @@ class _WalletHomePageState extends State<WalletHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        icon: Image.asset(
-                          "assets/Menu/Hamburger_LG.png",
-                          width: 28,
-                          color: Colors.black,
-                        ),
+                        icon: const Icon(Icons.menu, size: 28, color: Colors.black),
                         onPressed: () => debugPrint("Hamburger tapped"),
                       ),
 
-                      // 🔹 Dropdown Wallet
+                      // Dropdown wallet switch
                       DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
                           value: _selectedWallet,
                           dropdownColor: Colors.white,
                           style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: Colors.black,
-                          ),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Colors.black),
                           icon: const Icon(Icons.arrow_drop_down, color: Colors.black),
                           items: _walletOptions.map((wallet) {
                             return DropdownMenuItem<String>(
@@ -86,16 +78,12 @@ class _WalletHomePageState extends State<WalletHomePage> {
                             if (value == "Crypto Wallet" && _selectedWallet != "Crypto Wallet") {
                               Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => const WelcomeCrypto(),
-                                ),
+                                MaterialPageRoute(builder: (_) => const WelcomeCrypto()),
                               );
                             } else if (value == "Rupiah Wallet" && _selectedWallet != "Rupiah Wallet") {
                               Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => const WalletHomePage(),
-                                ),
+                                MaterialPageRoute(builder: (_) => const WalletHomePage()),
                               );
                             }
 
@@ -107,51 +95,38 @@ class _WalletHomePageState extends State<WalletHomePage> {
                       ),
 
                       IconButton(
-                        icon: Image.asset(
-                          "assets/Menu/User.png",
-                          width: 28,
-                          color: Colors.black,
-                        ),
+                        icon: const Icon(Icons.person, size: 28, color: Colors.black),
                         onPressed: () => debugPrint("User tapped"),
                       ),
                     ],
                   ),
                 ),
 
-                // Body sesuai bottom nav index
-                Expanded(child: _pages[_selectedIndex]),
+                // Page content
+                Expanded(child: pages[_selectedIndex]),
               ],
             ),
           ),
         ],
       ),
 
-      // Bottom Navigation
+      // Bottom Nav
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
         unselectedItemColor: const Color.fromARGB(255, 200, 200, 200),
         onTap: (index) => setState(() => _selectedIndex = index),
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance_wallet),
-            label: "Dompet",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: "Aktivitas",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet), label: "Dompet"),
+          BottomNavigationBarItem(icon: Icon(Icons.history), label: "Aktivitas"),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
         ],
       ),
     );
   }
 
-  // 🔹 Page Dompet (index 0)
-  Widget _buildMainWalletPage() {
+  // 🔹 Main Wallet Page
+  Widget _buildMainWalletPage(BuildContext context) {
     return Column(
       children: [
         _buildBalanceCard(context),
@@ -175,17 +150,15 @@ class _WalletHomePageState extends State<WalletHomePage> {
         boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8, offset: const Offset(0, 4))],
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
-            'SALDO',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87),
-          ),
+          const Text('SALDO',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
           const SizedBox(height: 8),
           Row(
             children: [
               IconButton(
-                icon: Icon(_isHidden ? Icons.visibility_off : Icons.visibility, color: Colors.grey[700]),
+                icon: Icon(_isHidden ? Icons.visibility_off : Icons.visibility,
+                    color: Colors.grey[700]),
                 onPressed: () => setState(() => _isHidden = !_isHidden),
               ),
               Expanded(
@@ -199,14 +172,67 @@ class _WalletHomePageState extends State<WalletHomePage> {
               IconButton(
                 icon: const Icon(Icons.qr_code_scanner, color: Colors.black87),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ScanQRPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const ScanQRPage()));
                 },
               ),
             ],
           ),
           const SizedBox(height: 8),
-          _buildUsageInfo(),
+          _buildUsageInfo(context),
         ],
+      ),
+    );
+  }
+
+  // 🔹 Usage Info dengan chart + arrow
+  Widget _buildUsageInfo(BuildContext context) {
+    double percent = 0.5; // 50% usage dummy
+
+    return InkWell(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (_) => const RiwayatTransaksiPage()));
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(12)),
+        child: Row(
+          children: [
+            // Circular progress chart
+            SizedBox(
+              width: 32,
+              height: 32,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  CircularProgressIndicator(
+                    value: percent,
+                    backgroundColor: Colors.grey[700],
+                    color: Colors.green,
+                    strokeWidth: 4,
+                  ),
+                  Center(
+                    child: Text("${(percent * 100).toInt()}%",
+                        style: const TextStyle(color: Colors.white, fontSize: 10)),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(width: 12),
+
+            // Text usage
+            const Expanded(
+              child: Text(
+                'Rp50.000.000 terpakai di Agustus',
+                style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500),
+              ),
+            ),
+
+            // Arrow
+            const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
+          ],
+        ),
       ),
     );
   }
@@ -216,106 +242,25 @@ class _WalletHomePageState extends State<WalletHomePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _actionButton("TOP UP", "assets/Menu/Arrow_Up_SM.png",
-            const Color.fromARGB(255, 151, 212, 255), onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const TopUpPage()));
+        _actionButton("TOP UP", Icons.arrow_upward, Colors.lightBlueAccent,
+            onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const TopUpPage()));
         }),
-        _actionButton("TRANSFER", "assets/Menu/Vector2.png", const Color.fromARGB(255, 185, 255, 105)),
+        _actionButton("TRANSFER", Icons.send, Colors.lightGreen),
         Container(
           width: 50,
           height: 50,
           decoration: const BoxDecoration(color: Colors.yellow, shape: BoxShape.circle),
           child: IconButton(
             onPressed: () => debugPrint("MORE tapped"),
-            icon: Image.asset("assets/Menu/More.png", width: 22, color: Colors.black),
+            icon: const Icon(Icons.more_horiz, color: Colors.black),
           ),
         ),
       ],
     );
   }
 
-  // 🔹 Usage Info
-  Widget _buildUsageInfo() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(12)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(children: [
-            Image.asset("assets/Menu/Chart_Line.png", width: 18, height: 18, color: Colors.white),
-            const SizedBox(width: 6),
-            Text('$used udah terpakai di Agustus',
-                style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500)),
-          ]),
-          Image.asset("assets/Menu/Vector.png", width: 18, height: 18, color: Colors.green),
-        ],
-      ),
-    );
-  }
-
-  // 🔹 Riwayat Transaksi
-  Widget _buildRiwayatTransaksi(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6, offset: const Offset(0, 3))],
-      ),
-      child: Column(
-        children: [
-          Row(children: [
-            const Expanded(
-              child: Center(
-                child: Text("Riwayat Transaksi",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-              ),
-            ),
-            Image.asset("assets/Menu/Expand.png", width: 20, height: 20, color: Colors.black54),
-          ]),
-          const SizedBox(height: 12),
-          InkWell(
-            onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const RiwayatTransaksiPage())),
-            borderRadius: BorderRadius.circular(12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(children: [
-                  CircleAvatar(
-                    radius: 18,
-                    backgroundColor: Colors.grey[200],
-                    child: Image.asset("assets/Environment/Water_Drop.png", width: 20, color: Colors.blue),
-                  ),
-                  const SizedBox(width: 12),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text("Tagihan Air",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                      Text("Hari ini 13.00",
-                          style: TextStyle(color: Colors.grey, fontSize: 12)),
-                    ],
-                  ),
-                ]),
-                Row(children: [
-                  Image.asset("assets/Menu/Arrow_Circle_Down_Left.png", width: 20, height: 20),
-                  const SizedBox(width: 4),
-                  const Text("Rp100.000",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                ]),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  // 🔹 Action Button Helper
-  Widget _actionButton(String label, String iconPath, Color circleColor,
+  Widget _actionButton(String label, IconData icon, Color circleColor,
       {VoidCallback? onPressed}) {
     return Container(
       height: 50,
@@ -329,7 +274,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
             height: 42,
             margin: const EdgeInsets.only(left: 6),
             decoration: BoxDecoration(color: circleColor, shape: BoxShape.circle),
-            child: Center(child: Image.asset(iconPath, width: 18, height: 18)),
+            child: Center(child: Icon(icon, size: 18, color: Colors.black)),
           ),
           const SizedBox(width: 12),
           Padding(
@@ -342,6 +287,69 @@ class _WalletHomePageState extends State<WalletHomePage> {
     );
   }
 
+  // 🔹 Riwayat Transaksi (preview) → bisa di-tap
+  Widget _buildRiwayatTransaksi(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (_) => const RiwayatTransaksiPage()));
+      },
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6, offset: const Offset(0, 3))],
+        ),
+        child: Column(
+          children: [
+            Row(children: const [
+              Expanded(
+                child: Center(
+                  child: Text("Riwayat Transaksi",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                ),
+              ),
+              Icon(Icons.expand_more, color: Colors.black54),
+            ]),
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(children: [
+                  CircleAvatar(
+                    radius: 18,
+                    backgroundColor: Colors.grey[200],
+                    child: const Icon(Icons.flash_on, color: Colors.orange),
+                  ),
+                  const SizedBox(width: 12),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text("Listrik PLN",
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                      Text("Kemarin 19.00",
+                          style: TextStyle(color: Colors.grey, fontSize: 12)),
+                    ],
+                  ),
+                ]),
+                Row(children: const [
+                  Icon(Icons.arrow_downward, size: 20, color: Colors.red),
+                  SizedBox(width: 4),
+                  Text("Rp250.000",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 14, color: Colors.red)),
+                ]),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   // 🔹 Service Grid
   Widget _buildServiceGrid() {
     return GridView.count(
@@ -350,21 +358,20 @@ class _WalletHomePageState extends State<WalletHomePage> {
       crossAxisSpacing: 16,
       mainAxisSpacing: 16,
       children: [
-        _serviceCard("Split Bill", "assets/Environment/Transfer.png"),
-        _serviceCard("E-Banking", "assets/Environment/Financial Institution.png"),
-        _serviceCard("Tarik Dana", "assets/Environment/Down Arrow.png"),
-        _serviceCard("E-Wallet", "assets/Environment/Additional Card.png"),
-        _serviceCard("Promo", "assets/Environment/Reciept.png"),
-        _serviceCard("Tabungan", "assets/Environment/Card.png"),
-        _serviceCard("Air", "assets/Environment/Water_Drop.png"),
-        _serviceCard("Listrik", "assets/Environment/Lightning.png"),
-        _serviceCard("Kesehatan", "assets/Environment/First_Aid.png"),
+        _serviceCard("Split Bill", Icons.group),
+        _serviceCard("E-Banking", Icons.account_balance),
+        _serviceCard("Tarik Dana", Icons.download),
+        _serviceCard("E-Wallet", Icons.account_balance_wallet),
+        _serviceCard("Promo", Icons.local_offer),
+        _serviceCard("Tabungan", Icons.credit_card),
+        _serviceCard("Air", Icons.water_drop),
+        _serviceCard("Listrik", Icons.flash_on),
+        _serviceCard("Kesehatan", Icons.health_and_safety),
       ],
     );
   }
 
-  // 🔹 Service Card
-  Widget _serviceCard(String title, String iconPath) {
+  Widget _serviceCard(String title, IconData icon) {
     return InkWell(
       onTap: () => debugPrint("Service $title tapped"),
       borderRadius: BorderRadius.circular(12),
@@ -373,7 +380,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Center(
           child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Image.asset(iconPath, width: 28),
+            Icon(icon, size: 28, color: Colors.blueAccent),
             const SizedBox(height: 8),
             Text(title, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
           ]),

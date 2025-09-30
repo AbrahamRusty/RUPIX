@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:rupix_app/Pages/WalletHomePage.dart';
+import 'package:rupix_app/Pages/Login/welcome.dart'; // bumper Rupiah Wallet
+import 'package:rupix_app/Pages/Login/welcomecrypto.dart'; // bumper Crypto Wallet
 
 class CryptoHomePage extends StatefulWidget {
   const CryptoHomePage({super.key});
@@ -83,7 +84,8 @@ class _CryptoHomePageState extends State<CryptoHomePage> {
   Widget build(BuildContext context) {
     final currentData = chartData[selectedTimeFrame] ?? chartData["Live"]!;
     final double percentage = currentData["percentage"];
-    final Color changeColor = percentage >= 0 ? Colors.greenAccent : Colors.redAccent;
+    final Color changeColor =
+        percentage >= 0 ? Colors.greenAccent : Colors.redAccent;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -124,13 +126,18 @@ class _CryptoHomePageState extends State<CryptoHomePage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const WalletHomePage()),
+                                builder: (context) => const WelcomePage()),
                           );
-                        } else {
-                          setState(() {
-                            selectedWallet = value!;
-                          });
+                        } else if (value == "Crypto Wallet") {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const WelcomeCrypto()),
+                          );
                         }
+                        setState(() {
+                          selectedWallet = value!;
+                        });
                       },
                     ),
                   ),

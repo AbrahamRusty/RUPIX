@@ -44,7 +44,7 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
               const SizedBox(height: 8),
               const Text(
-                "Rupiah Wallet",
+                "RupiX Wallet",
                 style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,

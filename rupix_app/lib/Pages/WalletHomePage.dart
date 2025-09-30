@@ -20,14 +20,12 @@ class _WalletHomePageState extends State<WalletHomePage> {
   int _selectedIndex = 0;
   bool _isHidden = false;
 
-  // 🔹 Dropdown Wallet
   String _selectedWallet = "Rupiah Wallet";
   final List<String> _walletOptions = ["Rupiah Wallet", "Crypto Wallet"];
 
-  // ✅ Pages untuk BottomNav
   late final List<Widget> _pages = [
     _buildMainWalletPage(),
-    const AktivitasPage(), // ✅ FIX supaya muncul dummy Aktivitas
+    const AktivitasPage(), 
     SettingsHomeScreen(onMenuTap: () {
       debugPrint("Menu tapped in SettingsHomeScreen");
     }),

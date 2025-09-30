@@ -10,7 +10,8 @@ import 'Pages/settings/help_center_screen.dart';
 import 'Pages/settings/email_support_screen.dart';
 import 'Pages/settings/chat_bot_screen.dart';
 import 'Pages/settings/success_screen.dart';
-//import 'Pages/settings/setting_home_screen.dart';
+// ignore: unused_import
+import 'Pages/settings/setting_home_screen.dart';
 
 void main() {
   runApp(const RupiahWalletApp());
@@ -39,7 +40,6 @@ class RupiahWalletApp extends StatelessWidget {
         '/help_center': (context) => const HelpCenterScreen(),
         '/privacy_policy': (context) => const PrivacyPolicyScreen(),
 
-        // MENGGUNAKAN PREFIX (ALIAS) UNTUK MENGHINDARI KONFLIK
         '/change_email': (context) =>
             const change_email_screen.ChangeEmailScreen(),
         '/change_password': (context) =>

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rupix_app/CryptoHomePage.dart';
+import 'package:rupix_app/Pages/CryptoHomePage.dart';
 
 class WelcomeCrypto extends StatefulWidget {
   const WelcomeCrypto({super.key});

@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Text(
-                "Kontrol Manajemen Keuanganmu",
+                "Kontrol Manajemen Keuangan dan Aset Digitalmu",
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,

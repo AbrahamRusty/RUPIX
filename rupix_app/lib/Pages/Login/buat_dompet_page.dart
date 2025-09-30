@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'setup_keamanan_page.dart';
-import 'login.dart'; // tambahkan ini supaya bisa balik ke login kalau perlu
 
 class BuatDompetPage extends StatelessWidget {
   const BuatDompetPage({super.key});
@@ -15,37 +14,53 @@ class BuatDompetPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context); 
-            // otomatis balik ke login kalau sebelumnya pakai push
-            // kalau login pakai pushReplacement, ganti jadi:
-            // Navigator.pushReplacement(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const LoginPage()),
-            // );
+            Navigator.pop(context);
           },
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const SizedBox(height: 40),
+
+            // ===== Title 2 Baris =====
             const Text(
-              "BUAT DOMPET DIGITALMU",
+              "BUAT DOMPET",
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 12),
             const Text(
-              "Dompet Anda mendukung jaringan teratas seperti Ethereum, Bitcoin, Rupiah, dan Dogecoin. Jadi, Anda dapat mengelola crypto dan Rupiah Anda di satu tempat.",
-              style: TextStyle(color: Colors.grey),
+              "DIGITALMU",
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 32),
 
-            // Tombol Buat Wallet Baru
+            const SizedBox(height: 20),
+
+            // ===== Deskripsi =====
+            const Text(
+              "Dompet Anda mendukung jaringan teratas seperti Ethereum, Bitcoin, Rupiah, dan Dogecoin. Jadi, Anda dapat mengelola kripto dan Rupiah Anda di satu tempat.",
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 14,
+                height: 1.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+
+            const SizedBox(height: 60),
+
+            // ===== Opsi: Buat Wallet Baru =====
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -55,71 +70,86 @@ class BuatDompetPage extends StatelessWidget {
                   ),
                 );
               },
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                margin: const EdgeInsets.only(bottom: 16),
-                decoration: BoxDecoration(
-                  color: Colors.pinkAccent,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Row(
-                  children: [
-                    Icon(Icons.add_circle, color: Colors.white, size: 28),
-                    SizedBox(width: 12),
-                    Text(
-                      "Buat Wallet Baru",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            // Import Wallet (belum aktif)
-            Container(
-              padding: const EdgeInsets.all(16),
-              margin: const EdgeInsets.only(bottom: 16),
-              decoration: BoxDecoration(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Row(
+              borderRadius: BorderRadius.circular(50),
+              child: Row(
                 children: [
-                  Icon(Icons.login, color: Colors.white, size: 28),
-                  SizedBox(width: 12),
-                  Text(
-                    "Impor Dompet Yang Ada",
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFB86EFF), // ungu sesuai figma
+                      shape: BoxShape.circle,
+                    ),
+                    padding: const EdgeInsets.all(14),
+                    child: const Icon(Icons.add, color: Colors.black, size: 28),
+                  ),
+                  const SizedBox(width: 16),
+                  const Text(
+                    "BUAT WALLET BARU",
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
                 ],
               ),
             ),
 
-            // Pulihkan Dompet (belum aktif)
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.yellowAccent,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Row(
+            const SizedBox(height: 24),
+
+            // ===== Opsi: Impor Dompet =====
+            InkWell(
+              onTap: () {
+                // nanti logic impor wallet bisa diisi
+              },
+              borderRadius: BorderRadius.circular(50),
+              child: Row(
                 children: [
-                  Icon(Icons.restore, color: Colors.black, size: 28),
-                  SizedBox(width: 12),
-                  Text(
-                    "Pulihkan Dompet",
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFFF6EF2), // pink figma
+                      shape: BoxShape.circle,
+                    ),
+                    padding: const EdgeInsets.all(14),
+                    child: const Icon(Icons.download, color: Colors.black, size: 28),
+                  ),
+                  const SizedBox(width: 16),
+                  const Text(
+                    "IMPOR DOMPET YANG ADA",
                     style: TextStyle(
-                      color: Colors.black,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 24),
+
+            // ===== Opsi: Pulihkan Dompet =====
+            InkWell(
+              onTap: () {
+                // nanti logic pulihkan dompet bisa diisi
+              },
+              borderRadius: BorderRadius.circular(50),
+              child: Row(
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFFFFF6B), // kuning figma
+                      shape: BoxShape.circle,
+                    ),
+                    padding: const EdgeInsets.all(14),
+                    child: const Icon(Icons.upload, color: Colors.black, size: 28),
+                  ),
+                  const SizedBox(width: 16),
+                  const Text(
+                    "MEMULIHKAN DOMPET",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
                 ],

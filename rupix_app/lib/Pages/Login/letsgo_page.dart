@@ -1,48 +1,79 @@
 import 'package:flutter/material.dart';
-import '../WalletHomePage.dart';
+import 'welcome.dart';
 
-class LetsGoPage extends StatefulWidget {
+class LetsGoPage extends StatelessWidget {
   const LetsGoPage({super.key});
-
-  @override
-  State<LetsGoPage> createState() => _LetsGoPageState();
-}
-
-class _LetsGoPageState extends State<LetsGoPage> {
-  @override
-  void initState() {
-    super.initState();
-
-    // ⏳ delay 2 detik sebelum pindah ke homepage
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const WalletHomePage()),
-      );
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("assets/crypto.png", height: 150), // ilustrasi
-            const SizedBox(height: 24),
-            const Text(
-              "DOMPETMU SIAP DIGUNAKAN",
-              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+            const Spacer(),
+            Image.asset(
+              "assets/walletbtc.png",
+              height: 300,
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 32),
+
+            // Judul
             const Text(
-              "Sekarang kamu sudah punya dompet yang aman dan siap digunakan 🚀",
-              style: TextStyle(color: Colors.grey),
+              "DOMPETMU SIAP\nDIGUNAKAN",
               textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                height: 1.3,
+              ),
             ),
+            const SizedBox(height: 16),
+
+            // Deskripsi
+            const Text(
+              "Sekarang kamu telah memiliki kontrol penuh atas dompet\n"
+              "dan kunci privat dan dukunga jaringan ke Crypto serta Rupiah!",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 14,
+                height: 1.5,
+              ),
+            ),
+            const Spacer(),
+
+            // Tombol LET'S GO
+            SizedBox(
+              width: double.infinity,
+              height: 55,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const WelcomePage()),
+                  );
+                },
+                child: const Text(
+                  "LETS GO",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 40),
           ],
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:rupix_app/Pages/settings/setting_home_screen.dart';
 import 'package:rupix_app/QrCode/scan_qr_page.dart';
 import 'package:rupix_app/Pages/RiwayatTransaksi/RiwayatTransaksi.dart';
 import 'package:rupix_app/Pages/Login/welcomecrypto.dart';
+import 'package:rupix_app/Pages/aktivitas.dart'; 
 
 class WalletHomePage extends StatefulWidget {
   const WalletHomePage({super.key});
@@ -26,7 +27,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
   // ✅ Pages untuk BottomNav
   late final List<Widget> _pages = [
     _buildMainWalletPage(),
-    const RiwayatTransaksiPage(),
+    const AktivitasPage(), // ✅ FIX supaya muncul dummy Aktivitas
     SettingsHomeScreen(onMenuTap: () {
       debugPrint("Menu tapped in SettingsHomeScreen");
     }),

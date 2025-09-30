@@ -35,8 +35,8 @@ class LetsGoPage extends StatelessWidget {
 
             // Deskripsi
             const Text(
-              "Sekarang kamu telah memiliki kontrol penuh atas dompet\n"
-              "dan kunci privat dan dukunga jaringan ke Crypto serta Rupiah!",
+              "Sekarang kamu telah memiliki dompetmu\n"
+              "dalam dukungan jaringan ke Crypto serta Rupiah!",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.grey,

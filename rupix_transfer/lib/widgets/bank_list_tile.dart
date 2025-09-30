@@ -36,7 +36,7 @@ class BankListTile extends StatelessWidget {
                 ),
               ),
             ),
-            const Icon(Icons.circle, color: Colors.grey, size: 18),
+            // Ikon radio button dihapus di sini
           ],
         ),
       ),

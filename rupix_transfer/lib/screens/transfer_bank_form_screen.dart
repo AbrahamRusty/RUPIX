@@ -10,12 +10,15 @@ class TransferBankFormScreen extends StatefulWidget {
 }
 
 class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
+  final TextEditingController _recipientNameController =
+      TextEditingController();
   final TextEditingController _accountNumberController =
       TextEditingController();
   final TextEditingController _amountController = TextEditingController();
 
   @override
   void dispose() {
+    _recipientNameController.dispose();
     _accountNumberController.dispose();
     _amountController.dispose();
     super.dispose();
@@ -26,7 +29,7 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF5D3FD3),
+        backgroundColor: const Color(0xFF0088FF),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
@@ -47,6 +50,28 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // TextField untuk Nama Penerima
+            const Text(
+              'Enter Recipient Name',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: _recipientNameController,
+              autofocus: true, // Keyboard akan muncul otomatis
+              decoration: InputDecoration(
+                hintText: 'ex: Patricia Natania',
+                filled: true,
+                fillColor: Colors.grey.withOpacity(0.1),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // TextField untuk Nomor Rekening
             const Text(
               'Enter Account Number',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -54,26 +79,9 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: _accountNumberController,
-              decoration: InputDecoration(
-                hintText: 'ex: 11222333',
-                filled: true,
-                fillColor: Colors.grey.withOpacity(0.1),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
-                ),
-              ),
               keyboardType: TextInputType.number,
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Payment Purpose',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            TextField(
               decoration: InputDecoration(
-                hintText: 'Optional',
+                hintText: 'ex: 1234567890',
                 filled: true,
                 fillColor: Colors.grey.withOpacity(0.1),
                 border: OutlineInputBorder(
@@ -83,6 +91,8 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
               ),
             ),
             const SizedBox(height: 20),
+
+            // TextField untuk Jumlah Transfer
             const Text(
               'Enter Amount',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -90,13 +100,9 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: _amountController,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                prefixText: 'Rp',
-                prefixStyle: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+                hintText: 'Rp',
                 filled: true,
                 fillColor: Colors.grey.withOpacity(0.1),
                 border: OutlineInputBorder(
@@ -104,50 +110,53 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
                   borderSide: BorderSide.none,
                 ),
               ),
-              keyboardType: TextInputType.number,
+            ),
+            const SizedBox(height: 20),
+
+            // Quick Button
+            const Text(
+              'Quick Amount',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _buildQuickAmountButton(50000),
                 _buildQuickAmountButton(100000),
-                _buildQuickAmountButton(200000),
+                _buildQuickAmountButton(150000),
               ],
             ),
-            const Spacer(),
+            const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_accountNumberController.text.isNotEmpty &&
-                        _amountController.text.isNotEmpty) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => TransferBankConfirmScreen(
-                            bankName: widget.bankName,
-                            accountNumber: _accountNumberController.text,
-                            amount: _amountController.text,
-                          ),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (_accountNumberController.text.isNotEmpty &&
+                      _amountController.text.isNotEmpty) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TransferBankConfirmScreen(
+                          bankName: widget.bankName,
+                          accountNumber: _accountNumberController.text,
+                          amount: _amountController.text,
+                          recipientName: _recipientNameController.text,
                         ),
-                      );
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF5D3FD3),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                      ),
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF0088FF),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Text(
-                    'Confirm',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
+                ),
+                child: const Text(
+                  'Confirm',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ),

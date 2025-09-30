@@ -35,7 +35,7 @@ class TransferMethodButton extends StatelessWidget {
             Text(
               label,
               style: const TextStyle(
-                color: Color(0xFFB289EB),
+                color: Color(0xFF0088FF),
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),

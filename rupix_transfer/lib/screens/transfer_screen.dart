@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rupix_transfer/widgets/contact_item.dart';
 import 'package:rupix_transfer/widgets/transfer_method_button.dart';
-import 'package:rupix_transfer/screens/transfer_amount_screen.dart';
 import 'package:rupix_transfer/screens/transfer_bank_screen.dart';
 import 'package:rupix_transfer/screens/transfer_ewallet_screen.dart';
+import 'package:rupix_transfer/screens/rupix_transfer_amount_screen.dart';
 
 class Contact {
   final String name;
@@ -24,7 +24,18 @@ class _TransferScreenState extends State<TransferScreen> {
     Contact(name: 'Patricia Natania', details: 'RupiX - 0011 2000 3456'),
     Contact(name: 'Lyvia Reva', details: 'BCA - 8******20'),
     Contact(name: 'Jessica W', details: 'Gopay - 08*******98'),
+    Contact(name: 'Abraham', details: 'RupiX - 2333 9090 8785'),
+    Contact(name: 'Satria R', details: 'Gopay - 08*******77'),
+    Contact(name: 'Vicky Erie', details: 'BRI - 1******32'),
   ];
+
+  final Map<String, String> _staticRupiXNumbers = {
+    'Lyvia Reva': '1122 3344 5566',
+    'Jessica W': '6655 4433 2211',
+    'Satria R': '7890 1234 5678',
+    'Vicky Erie': '1111 2222 3333',
+  };
+
   List<Contact> _filteredContacts = [];
   final TextEditingController _searchController = TextEditingController();
   Contact? _selectedContact;
@@ -44,6 +55,13 @@ class _TransferScreenState extends State<TransferScreen> {
             contact.details.toLowerCase().contains(query);
       }).toList();
     });
+  }
+
+  @override
+  void dispose() {
+    _searchController.removeListener(_filterContacts);
+    _searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -116,13 +134,13 @@ class _TransferScreenState extends State<TransferScreen> {
                 controller: _searchController,
                 decoration: InputDecoration(
                   hintText: 'Search contact',
-                  hintStyle: TextStyle(
-                    color: Colors.black.withOpacity(0.4),
+                  hintStyle: const TextStyle(
+                    color: Color.fromRGBO(0, 0, 0, 0.4),
                     fontSize: 15,
                   ),
                   prefixIcon: const Icon(Icons.search, color: Colors.grey),
                   filled: true,
-                  fillColor: Colors.grey.withOpacity(0.2),
+                  fillColor: const Color.fromRGBO(128, 128, 128, 0.2),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide.none,
@@ -145,22 +163,36 @@ class _TransferScreenState extends State<TransferScreen> {
                 itemCount: _filteredContacts.length,
                 itemBuilder: (context, index) {
                   final contact = _filteredContacts[index];
+
+                  // Tentukan nomor RupiX yang akan digunakan
+                  String finalDetails;
+                  if (contact.details.startsWith('RupiX')) {
+                    finalDetails = contact.details;
+                  } else {
+                    String? customRupiXNumber =
+                        _staticRupiXNumbers[contact.name];
+                    if (customRupiXNumber != null) {
+                      finalDetails = 'RupiX - $customRupiXNumber';
+                    } else {
+                      finalDetails = 'RupiX - 1234 5678 9012';
+                    }
+                  }
+
                   return GestureDetector(
                     onTap: () {
                       setState(() {
                         _selectedContact = contact;
                       });
-                      if (contact.details.contains('RupiX')) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RupiXTransferAmountScreen(
-                              contactName: contact.name,
-                              contactDetails: contact.details,
-                            ),
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RupiXTransferAmountScreen(
+                            contactName: contact.name,
+                            contactDetails: finalDetails,
                           ),
-                        );
-                      }
+                        ),
+                      );
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 10.0),

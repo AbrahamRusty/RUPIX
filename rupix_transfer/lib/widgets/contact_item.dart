@@ -20,7 +20,7 @@ class ContactItem extends StatelessWidget {
         color: const Color(0x21D9D9D9),
         borderRadius: BorderRadius.circular(15),
         border: isSelected
-            ? Border.all(color: const Color(0xFFA34EFF), width: 1)
+            ? Border.all(color: const Color(0xFF0088FF), width: 1)
             : Border.all(color: Colors.transparent),
       ),
       child: Row(

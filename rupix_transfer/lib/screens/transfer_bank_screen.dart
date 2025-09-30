@@ -2,15 +2,61 @@ import 'package:flutter/material.dart';
 import 'package:rupix_transfer/screens/transfer_bank_form_screen.dart';
 import 'package:rupix_transfer/widgets/bank_list_tile.dart';
 
-class TransferBankScreen extends StatelessWidget {
+class TransferBankScreen extends StatefulWidget {
   const TransferBankScreen({super.key});
+
+  @override
+  State<TransferBankScreen> createState() => _TransferBankScreenState();
+}
+
+class _TransferBankScreenState extends State<TransferBankScreen> {
+  final List<Map<String, String>> _allBanks = [
+    {'name': 'BCA', 'logo': 'assets/images/bca.png'},
+    {'name': 'Mandiri', 'logo': 'assets/images/mandiri.png'},
+    {'name': 'BNI', 'logo': 'assets/images/bni.png'},
+    {
+      'name': 'Bank Syariah Indonesia',
+      'logo': 'assets/images/bank syariah indonesia.png',
+    },
+    {'name': 'BRI', 'logo': 'assets/images/bri.png'},
+    {'name': 'Bank Danamon', 'logo': 'assets/images/bank-danamon.png'},
+    {'name': 'CIMB Niaga', 'logo': 'assets/images/cimbniaga.png'},
+    {'name': 'Bank DKI', 'logo': 'assets/images/bank-dki.png'},
+    {'name': 'Seabank', 'logo': 'assets/images/seabank.png'},
+  ];
+
+  List<Map<String, String>> _filteredBanks = [];
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredBanks = _allBanks;
+    _searchController.addListener(_filterBanks);
+  }
+
+  void _filterBanks() {
+    final query = _searchController.text.toLowerCase();
+    setState(() {
+      _filteredBanks = _allBanks.where((bank) {
+        return bank['name']!.toLowerCase().contains(query);
+      }).toList();
+    });
+  }
+
+  @override
+  void dispose() {
+    _searchController.removeListener(_filterBanks);
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF5D3FD3),
+        backgroundColor: const Color(0xFF0088FF),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
@@ -26,91 +72,58 @@ class TransferBankScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Transfer to Bank',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 5),
-              const Text(
-                'Search or select recipients bank',
-                style: TextStyle(fontSize: 14, color: Colors.grey),
-              ),
-              const SizedBox(height: 15),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search bank',
-                  hintStyle: TextStyle(color: Colors.black.withOpacity(0.4)),
-                  prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                  filled: true,
-                  fillColor: Colors.grey.withOpacity(0.2),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide.none,
-                  ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Transfer to Bank',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 5),
+            const Text(
+              'Search or select recipients bank',
+              style: TextStyle(fontSize: 14, color: Colors.grey),
+            ),
+            const SizedBox(height: 15),
+            TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                hintText: 'Search bank',
+                hintStyle: TextStyle(color: Colors.black.withOpacity(0.4)),
+                prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                filled: true,
+                fillColor: Colors.grey.withOpacity(0.2),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide.none,
                 ),
               ),
-              const SizedBox(height: 20),
-              BankListTile(
-                bankName: 'BCA',
-                logoPath: 'assets/images/bca.png',
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const TransferBankFormScreen(bankName: 'BCA'),
-                    ),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _filteredBanks.length,
+                itemBuilder: (context, index) {
+                  final bank = _filteredBanks[index];
+                  return BankListTile(
+                    bankName: bank['name']!,
+                    logoPath: bank['logo']!,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              TransferBankFormScreen(bankName: bank['name']!),
+                        ),
+                      );
+                    },
                   );
                 },
               ),
-              BankListTile(
-                bankName: 'Mandiri',
-                logoPath: 'assets/images/mandiri.png',
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const TransferBankFormScreen(bankName: 'Mandiri'),
-                    ),
-                  );
-                },
-              ),
-              BankListTile(
-                bankName: 'BNI',
-                logoPath: 'assets/images/bni.png',
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const TransferBankFormScreen(bankName: 'BNI'),
-                    ),
-                  );
-                },
-              ),
-              BankListTile(
-                bankName: 'Bank Syariah Indonesia',
-                logoPath: 'assets/images/bank syariah indonesia.png',
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const TransferBankFormScreen(
-                        bankName: 'Bank Syariah Indonesia',
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

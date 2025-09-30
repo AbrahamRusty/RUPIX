@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:rupix_transfer/screens/transfer_receipt_screen.dart';
+import 'package:intl/intl.dart';
 
 class TransferBankConfirmScreen extends StatelessWidget {
   final String bankName;
   final String accountNumber;
   final String amount;
+  final String recipientName;
 
   const TransferBankConfirmScreen({
     super.key,
     required this.bankName,
     required this.accountNumber,
     required this.amount,
+    required this.recipientName,
   });
 
   @override
@@ -18,12 +21,11 @@ class TransferBankConfirmScreen extends StatelessWidget {
     final double transferAmount = double.tryParse(amount) ?? 0;
     const double transferFee = 2500;
     final double totalAmount = transferAmount + transferFee;
-    final String recipientName = 'Patricia Natania';
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF5D3FD3),
+        backgroundColor: const Color(0xFF0088FF),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
@@ -39,37 +41,52 @@ class TransferBankConfirmScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             const Text(
               'Recipient',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
+            // Informasi Rekening Penerima
             _buildInfoRow(recipientName, accountNumber),
             const SizedBox(height: 20),
             const Text(
-              'Bank',
+              'Details',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-            _buildInfoRow(bankName, 'assets/images/bca.png'),
-            const SizedBox(height: 20),
-            const Text(
-              'Transfer Details',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            // Detail Transaksi
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                children: [
+                  _buildDetailRow(
+                    'Amount',
+                    'Rp${NumberFormat('#,##0').format(transferAmount)}',
+                  ),
+                  _buildDetailRow(
+                    'Fee',
+                    'Rp${NumberFormat('#,##0').format(transferFee)}',
+                  ),
+                  const Divider(),
+                  _buildDetailRow(
+                    'Total',
+                    'Rp${NumberFormat('#,##0').format(totalAmount)}',
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 10),
-            _buildDetailRow('Transfer Amount', 'Rp$amount'),
-            _buildDetailRow(
-              'Transfer Fee',
-              'Rp${transferFee.toStringAsFixed(0)}',
-            ),
-            _buildDetailRow('Total', 'Rp${totalAmount.toStringAsFixed(0)}'),
-            const Spacer(),
+
+            const SizedBox(height: 40),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -78,15 +95,15 @@ class TransferBankConfirmScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => TransferReceiptScreen(
-                        amount: totalAmount.toStringAsFixed(0),
+                        amount: amount,
                         recipientName: recipientName,
-                        recipientDetails: accountNumber,
+                        recipientDetails: '$bankName - $accountNumber',
                       ),
                     ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF5D3FD3),
+                  backgroundColor: const Color(0xFF0088FF),
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
@@ -94,38 +111,43 @@ class TransferBankConfirmScreen extends StatelessWidget {
                   ),
                 ),
                 child: const Text(
-                  'Continue',
+                  'Confirm',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildInfoRow(String title, String value) {
+  // Widget untuk tampilan nama dan nomor rekening
+  Widget _buildInfoRow(String name, String number) {
     return Container(
       padding: const EdgeInsets.all(16),
+      width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.grey.withOpacity(0.1),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          if (value.contains('assets'))
-            Image.asset(value, width: 40)
-          else
-            Text(
-              value,
-              style: const TextStyle(fontSize: 16, color: Colors.grey),
+            name,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            number,
+            style: const TextStyle(fontSize: 16, color: Colors.grey),
+          ),
         ],
       ),
     );

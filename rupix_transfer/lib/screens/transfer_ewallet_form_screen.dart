@@ -13,11 +13,14 @@ class TransferEWalletFormScreen extends StatefulWidget {
 class _TransferEWalletFormScreenState extends State<TransferEWalletFormScreen> {
   final TextEditingController _contactController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
+  final TextEditingController _recipientNameController =
+      TextEditingController();
 
   @override
   void dispose() {
     _contactController.dispose();
     _amountController.dispose();
+    _recipientNameController.dispose();
     super.dispose();
   }
 
@@ -26,7 +29,7 @@ class _TransferEWalletFormScreenState extends State<TransferEWalletFormScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF5D3FD3),
+        backgroundColor: const Color(0xFF0088FF),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
@@ -47,15 +50,16 @@ class _TransferEWalletFormScreenState extends State<TransferEWalletFormScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Field untuk Nama Penerima (ditambahkan)
             const Text(
-              'Enter Name/Contact',
+              'Enter Recipient Name',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             TextField(
-              controller: _contactController,
+              controller: _recipientNameController,
               decoration: InputDecoration(
-                hintText: 'Ketik nama atau nomor hp',
+                hintText: 'Ketik nama penerima',
                 filled: true,
                 fillColor: Colors.grey.withOpacity(0.1),
                 border: OutlineInputBorder(
@@ -65,6 +69,29 @@ class _TransferEWalletFormScreenState extends State<TransferEWalletFormScreen> {
               ),
             ),
             const SizedBox(height: 20),
+
+            // Field untuk Nomor Kontak
+            const Text(
+              'Enter Phone Number',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              controller: _contactController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                hintText: 'ex: 0812345678',
+                filled: true,
+                fillColor: Colors.grey.withOpacity(0.1),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // Field untuk Jumlah Transfer
             const Text(
               'Enter Amount',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -72,6 +99,7 @@ class _TransferEWalletFormScreenState extends State<TransferEWalletFormScreen> {
             const SizedBox(height: 10),
             TextField(
               controller: _amountController,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 prefixText: 'Rp',
                 prefixStyle: const TextStyle(
@@ -86,7 +114,6 @@ class _TransferEWalletFormScreenState extends State<TransferEWalletFormScreen> {
                   borderSide: BorderSide.none,
                 ),
               ),
-              keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 10),
             Row(
@@ -97,7 +124,7 @@ class _TransferEWalletFormScreenState extends State<TransferEWalletFormScreen> {
                 _buildQuickAmountButton(200000),
               ],
             ),
-            const Spacer(),
+            const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               child: Padding(
@@ -111,15 +138,16 @@ class _TransferEWalletFormScreenState extends State<TransferEWalletFormScreen> {
                         MaterialPageRoute(
                           builder: (context) => TransferReceiptScreen(
                             amount: _amountController.text,
-                            recipientName: _contactController.text,
-                            recipientDetails: 'Gopay - 08*****12',
+                            recipientName: _recipientNameController.text,
+                            recipientDetails:
+                                '${widget.ewalletName} - ${_contactController.text}',
                           ),
                         ),
                       );
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF5D3FD3),
+                    backgroundColor: const Color(0xFF0088FF),
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(

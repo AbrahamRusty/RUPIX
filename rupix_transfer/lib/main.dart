@@ -15,7 +15,9 @@ class TransferApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         fontFamily: 'Inter',
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFB188EB)),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 60, 144, 241),
+        ),
         useMaterial3: true,
       ),
       home: const TransferScreen(),

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-
-// Pastikan semua path ini valid:
 import 'Pages/Login/login.dart';
 import 'Pages/WalletHomePage.dart';
-
 import 'Pages/settings/about_screen.dart';
-// BERI ALIAS (AS) PADA SEMUA IMPORT SCREEN YANG MUNGKIN MENGANDUNG AMBIGUITAS
 import 'Pages/settings/change_email_screen.dart' as change_email_screen;
 import 'Pages/settings/change_password_screen.dart' as change_password_screen;
 import 'Pages/settings/change_username_screen.dart' as change_username_screen;
@@ -13,8 +9,8 @@ import 'Pages/settings/privacy_policy_screen.dart';
 import 'Pages/settings/help_center_screen.dart';
 import 'Pages/settings/email_support_screen.dart';
 import 'Pages/settings/chat_bot_screen.dart';
-import 'Pages/settings/success_screen.dart'; // <-- Import SuccessScreen murni
-import 'Pages/settings/setting_home_screen.dart';
+import 'Pages/settings/success_screen.dart';
+//import 'Pages/settings/setting_home_screen.dart';
 
 void main() {
   runApp(const RupiahWalletApp());

@@ -1,7 +1,4 @@
-// lib/screens/settings_home_screen.dart
-
 import 'package:flutter/material.dart';
-// Asumsi path ini benar, jika tidak, ganti dengan path yang sesuai
 import 'package:rupix_app/widgets/logout_dialog.dart'; 
 
 const Color customBlue = Color(0xFF3C8DFF); // Menggunakan warna biru dari WalletHomePage

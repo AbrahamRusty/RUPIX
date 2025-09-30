@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:rupix_app/Pages/Login/welcome.dart'; // bumper Rupiah Wallet
-import 'package:rupix_app/Pages/Login/welcomecrypto.dart'; // bumper Crypto Wallet
 
 class CryptoHomePage extends StatefulWidget {
   const CryptoHomePage({super.key});
@@ -16,7 +15,7 @@ class _CryptoHomePageState extends State<CryptoHomePage> {
 
   String selectedTimeFrame = "Live";
 
-  // Dummy data analytics (rapi & konsisten)
+  // Dummy data analytics
   final Map<String, Map<String, dynamic>> chartData = {
     "Live": {
       "spots": [
@@ -122,22 +121,19 @@ class _CryptoHomePageState extends State<CryptoHomePage> {
                         );
                       }).toList(),
                       onChanged: (value) {
+                        if (value == null) return;
                         if (value == "Rupiah Wallet") {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const WelcomePage()),
                           );
-                        } else if (value == "Crypto Wallet") {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const WelcomeCrypto()),
-                          );
+                        } else {
+                          // Crypto Wallet → jangan transisi ke bumper lagi
+                          setState(() {
+                            selectedWallet = value;
+                          });
                         }
-                        setState(() {
-                          selectedWallet = value!;
-                        });
                       },
                     ),
                   ),

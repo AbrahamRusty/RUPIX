@@ -14,7 +14,7 @@ class _WelcomeCryptoState extends State<WelcomeCrypto> {
     super.initState();
 
     // Delay 2 detik sebelum masuk ke CryptoHomePage
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 1), () {
       if (mounted) {
         Navigator.pushReplacement(
           context,

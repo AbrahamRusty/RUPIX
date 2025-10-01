@@ -7,9 +7,13 @@ class HalfDrawerMenu extends StatefulWidget {
   State<HalfDrawerMenu> createState() => _HalfDrawerMenuState();
 }
 
-class _HalfDrawerMenuState extends State<HalfDrawerMenu> with SingleTickerProviderStateMixin {
+class _HalfDrawerMenuState extends State<HalfDrawerMenu>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _slideAnimation;
+
+  double dragStartX = 0;
+  double drawerWidth = 0;
 
   @override
   void initState() {
@@ -20,11 +24,10 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu> with SingleTickerProvid
     );
 
     _slideAnimation = Tween<Offset>(
-      begin: const Offset(-1, 0), // mulai dari kiri
+      begin: const Offset(-1, 0),
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
-    // mainkan animasi saat widget muncul
     _controller.forward();
   }
 
@@ -42,32 +45,39 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onHorizontalDragUpdate: (details) {
-        // swipe kanan untuk close
-        if (details.delta.dx > 10) {
-          _closeDrawer();
-        }
-      },
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
-          children: [
-            // background semi-transparent
-            GestureDetector(
-              onTap: _closeDrawer,
-              child: Container(color: Colors.black54),
-            ),
-            // drawer dengan animasi slide
-            SlideTransition(
-              position: _slideAnimation,
-              child: Material(
-                elevation: 16,
+    drawerWidth = MediaQuery.of(context).size.width * 0.6;
+
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          // background gelap
+          GestureDetector(
+            onTap: _closeDrawer,
+            child: Container(color: Colors.black54),
+          ),
+          // drawer dengan gesture full
+          SlideTransition(
+            position: _slideAnimation,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onHorizontalDragStart: (details) {
+                  dragStartX = details.globalPosition.dx;
+                },
+                onHorizontalDragUpdate: (details) {
+                  final dragDistance = details.globalPosition.dx - dragStartX;
+                  if (dragDistance > drawerWidth * 0.3) {
+                    _closeDrawer();
+                  }
+                },
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.6,
+                  width: drawerWidth,
                   height: double.infinity,
                   color: const Color(0xFF3C8DFF),
-                  padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,29 +91,32 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu> with SingleTickerProvid
                           ),
                         ),
                         const SizedBox(height: 30),
-                        _menuItem(icon: Icons.privacy_tip, label: "Privacy Policy", onTap: () => debugPrint("Privacy Policy tapped")),
-                        _menuItem(icon: Icons.email, label: "Email Support", onTap: () => debugPrint("Email Support tapped")),
-                        _menuItem(icon: Icons.info, label: "About", onTap: () => debugPrint("About tapped")),
-                        _menuItem(icon: Icons.email_outlined, label: "Change Email", onTap: () => debugPrint("Change Email tapped")),
-                        _menuItem(icon: Icons.lock, label: "Change Password", onTap: () => debugPrint("Change Password tapped")),
-                        _menuItem(icon: Icons.help, label: "Help Center", onTap: () => debugPrint("Help Center tapped")),
-                        _menuItem(icon: Icons.chat, label: "Chat Bot", onTap: () => debugPrint("Chat Bot tapped")),
-                        _menuItem(icon: Icons.settings, label: "Settings", onTap: () => debugPrint("Settings tapped")),
+                        _menuItem(Icons.privacy_tip, "Privacy Policy"),
+                        _menuItem(Icons.email, "Email Support"),
+                        _menuItem(Icons.info, "About"),
+                        _menuItem(Icons.email_outlined, "Change Email"),
+                        _menuItem(Icons.lock, "Change Password"),
+                        _menuItem(Icons.help, "Help Center"),
+                        _menuItem(Icons.chat, "Chat Bot"),
+                        _menuItem(Icons.settings, "Settings"),
                         const SizedBox(height: 40),
                         InkWell(
                           onTap: () => debugPrint("Logout tapped"),
                           borderRadius: BorderRadius.circular(8),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 12, horizontal: 16),
                             decoration: BoxDecoration(
-                              color: Colors.red.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
+                                color: Colors.red.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(8)),
                             child: Row(
                               children: const [
                                 Icon(Icons.logout, color: Colors.white),
                                 SizedBox(width: 12),
-                                Text("Logout", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                                Text("Logout",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold)),
                               ],
                             ),
                           ),
@@ -115,15 +128,15 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu> with SingleTickerProvid
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  Widget _menuItem({required IconData icon, required String label, VoidCallback? onTap}) {
+  Widget _menuItem(IconData icon, String label) {
     return InkWell(
-      onTap: onTap,
+      onTap: () => debugPrint("$label tapped"),
       borderRadius: BorderRadius.circular(8),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -133,20 +146,12 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu> with SingleTickerProvid
             const SizedBox(width: 16),
             Text(
               label,
-              style: const TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
+              style: const TextStyle(
+                  color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
             ),
           ],
         ),
       ),
     );
   }
-}
-
-// Cara panggil dari halaman utama:
-void openHalfDrawer(BuildContext context) {
-  showDialog(
-    context: context,
-    barrierColor: Colors.transparent,
-    builder: (_) => const HalfDrawerMenu(),
-  );
 }

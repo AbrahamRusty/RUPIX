@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rupix_app/Pages/TopUp/TopUp.dart';
-import 'package:rupix_app/Pages/settings/setting_home_screen.dart';
 import 'package:rupix_app/QrCode/scan_qr_page.dart';
 import 'package:rupix_app/Pages/RiwayatTransaksi/RiwayatTransaksi.dart';
 import 'package:rupix_app/Pages/Login/welcomecrypto.dart';
-import 'package:rupix_app/Pages/aktivitas.dart';
+import 'package:rupix_app/widgets/half_drawer_menu.dart'; // import HalfDrawerMenu
 
 class WalletHomePage extends StatefulWidget {
   const WalletHomePage({super.key});
@@ -17,20 +16,11 @@ class _WalletHomePageState extends State<WalletHomePage> {
   final String balance = 'Rp100.000.000';
   bool _isHidden = false;
 
-  int _selectedIndex = 0;
   String _selectedWallet = "Rupiah Wallet";
   final List<String> _walletOptions = ["Rupiah Wallet", "Crypto Wallet"];
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> pages = [
-      _buildMainWalletPage(context),
-      const AktivitasPage(),
-      SettingsHomeScreen(onMenuTap: () {
-        debugPrint("Menu tapped in SettingsHomeScreen");
-      }),
-    ];
-
     return Scaffold(
       body: Stack(
         children: [
@@ -45,7 +35,6 @@ class _WalletHomePageState extends State<WalletHomePage> {
           SafeArea(
             child: Column(
               children: [
-                // Custom AppBar
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Row(
@@ -53,10 +42,9 @@ class _WalletHomePageState extends State<WalletHomePage> {
                     children: [
                       IconButton(
                         icon: const Icon(Icons.menu, size: 28, color: Colors.black),
-                        onPressed: () => debugPrint("Hamburger tapped"),
+                        onPressed: () => _openHalfDrawer(context),
                       ),
 
-                      // Dropdown wallet switch
                       DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
                           value: _selectedWallet,
@@ -102,30 +90,26 @@ class _WalletHomePageState extends State<WalletHomePage> {
                   ),
                 ),
 
-                // Page content
-                Expanded(child: pages[_selectedIndex]),
+                Expanded(
+                  child: _buildMainWalletPage(context),
+                ),
               ],
             ),
           ),
         ],
       ),
-
-      // Bottom Nav
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: const Color.fromARGB(255, 200, 200, 200),
-        onTap: (index) => setState(() => _selectedIndex = index),
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet), label: "Dompet"),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: "Aktivitas"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
-        ],
-      ),
     );
   }
 
-  // 🔹 Main Wallet Page
+  void _openHalfDrawer(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierColor: Colors.transparent, // biar background gelap tapi bisa klik untuk close
+    builder: (_) => const HalfDrawerMenu(),
+  );
+}
+
+
   Widget _buildMainWalletPage(BuildContext context) {
     return Column(
       children: [
@@ -139,7 +123,6 @@ class _WalletHomePageState extends State<WalletHomePage> {
     );
   }
 
-  // 🔹 Balance Card
   Widget _buildBalanceCard(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(16),
@@ -184,9 +167,8 @@ class _WalletHomePageState extends State<WalletHomePage> {
     );
   }
 
-  // 🔹 Usage Info dengan chart + arrow
   Widget _buildUsageInfo(BuildContext context) {
-    double percent = 0.5; // 50% usage dummy
+    double percent = 0.5;
 
     return InkWell(
       onTap: () {
@@ -199,7 +181,6 @@ class _WalletHomePageState extends State<WalletHomePage> {
         decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(12)),
         child: Row(
           children: [
-            // Circular progress chart
             SizedBox(
               width: 32,
               height: 32,
@@ -220,16 +201,12 @@ class _WalletHomePageState extends State<WalletHomePage> {
               ),
             ),
             const SizedBox(width: 12),
-
-            // Text usage
             const Expanded(
               child: Text(
                 'Rp50.000.000 terpakai di Agustus',
                 style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500),
               ),
             ),
-
-            // Arrow
             const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
           ],
         ),
@@ -237,13 +214,11 @@ class _WalletHomePageState extends State<WalletHomePage> {
     );
   }
 
-  // 🔹 Action Buttons
   Widget _buildActionButtons(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _actionButton("TOP UP", Icons.arrow_upward, Colors.lightBlueAccent,
-            onPressed: () {
+        _actionButton("TOP UP", Icons.arrow_upward, Colors.lightBlueAccent, onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (_) => const TopUpPage()));
         }),
         _actionButton("TRANSFER", Icons.send, Colors.lightGreen),
@@ -260,8 +235,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
     );
   }
 
-  Widget _actionButton(String label, IconData icon, Color circleColor,
-      {VoidCallback? onPressed}) {
+  Widget _actionButton(String label, IconData icon, Color circleColor, {VoidCallback? onPressed}) {
     return Container(
       height: 50,
       decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(30)),
@@ -287,7 +261,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
     );
   }
 
-  // 🔹 Riwayat Transaksi (preview) → bisa di-tap
+  // 🔹 Riwayat Transaksi (preview)
   Widget _buildRiwayatTransaksi(BuildContext context) {
     return InkWell(
       onTap: () {
@@ -350,7 +324,6 @@ class _WalletHomePageState extends State<WalletHomePage> {
     );
   }
 
-  // 🔹 Service Grid
   Widget _buildServiceGrid() {
     return GridView.count(
       padding: const EdgeInsets.all(16),

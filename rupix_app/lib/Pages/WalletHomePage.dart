@@ -3,7 +3,8 @@ import 'package:rupix_app/Pages/TopUp/TopUp.dart';
 import 'package:rupix_app/QrCode/scan_qr_page.dart';
 import 'package:rupix_app/Pages/RiwayatTransaksi/RiwayatTransaksi.dart';
 import 'package:rupix_app/Pages/Login/welcomecrypto.dart';
-import 'package:rupix_app/widgets/half_drawer_menu.dart'; // import HalfDrawerMenu
+import 'package:rupix_app/Widgets/half_drawer_menu.dart';
+import 'package:rupix_app/Pages/Transfer/transfer_screen.dart';
 
 class WalletHomePage extends StatefulWidget {
   const WalletHomePage({super.key});
@@ -27,8 +28,14 @@ class _WalletHomePageState extends State<WalletHomePage> {
           // Background 50:50
           Column(
             children: [
-              Expanded(flex: 1, child: Container(color: const Color(0xFF3C8DFF))),
-              Expanded(flex: 1, child: Container(color: const Color(0xFFF1F0F0))),
+              Expanded(
+                flex: 1,
+                child: Container(color: const Color(0xFF3C8DFF)),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(color: const Color(0xFFF1F0F0)),
+              ),
             ],
           ),
 
@@ -36,12 +43,19 @@ class _WalletHomePageState extends State<WalletHomePage> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.menu, size: 28, color: Colors.black),
+                        icon: const Icon(
+                          Icons.menu,
+                          size: 28,
+                          color: Colors.black,
+                        ),
                         onPressed: () => _openHalfDrawer(context),
                       ),
 
@@ -50,10 +64,14 @@ class _WalletHomePageState extends State<WalletHomePage> {
                           value: _selectedWallet,
                           dropdownColor: Colors.white,
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Colors.black),
-                          icon: const Icon(Icons.arrow_drop_down, color: Colors.black),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
+                          icon: const Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black,
+                          ),
                           items: _walletOptions.map((wallet) {
                             return DropdownMenuItem<String>(
                               value: wallet,
@@ -63,15 +81,21 @@ class _WalletHomePageState extends State<WalletHomePage> {
                           onChanged: (value) {
                             if (value == null) return;
 
-                            if (value == "Crypto Wallet" && _selectedWallet != "Crypto Wallet") {
+                            if (value == "Crypto Wallet" &&
+                                _selectedWallet != "Crypto Wallet") {
                               Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(builder: (_) => const WelcomeCrypto()),
+                                MaterialPageRoute(
+                                  builder: (_) => const WelcomeCrypto(),
+                                ),
                               );
-                            } else if (value == "Rupiah Wallet" && _selectedWallet != "Rupiah Wallet") {
+                            } else if (value == "Rupiah Wallet" &&
+                                _selectedWallet != "Rupiah Wallet") {
                               Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(builder: (_) => const WalletHomePage()),
+                                MaterialPageRoute(
+                                  builder: (_) => const WalletHomePage(),
+                                ),
                               );
                             }
 
@@ -83,16 +107,18 @@ class _WalletHomePageState extends State<WalletHomePage> {
                       ),
 
                       IconButton(
-                        icon: const Icon(Icons.person, size: 28, color: Colors.black),
+                        icon: const Icon(
+                          Icons.person,
+                          size: 28,
+                          color: Colors.black,
+                        ),
                         onPressed: () => debugPrint("User tapped"),
                       ),
                     ],
                   ),
                 ),
 
-                Expanded(
-                  child: _buildMainWalletPage(context),
-                ),
+                Expanded(child: _buildMainWalletPage(context)),
               ],
             ),
           ),
@@ -102,13 +128,12 @@ class _WalletHomePageState extends State<WalletHomePage> {
   }
 
   void _openHalfDrawer(BuildContext context) {
-  showDialog(
-    context: context,
-    barrierColor: Colors.transparent, // biar background gelap tapi bisa klik untuk close
-    builder: (_) => const HalfDrawerMenu(),
-  );
-}
-
+    showDialog(
+      context: context,
+      barrierColor: Colors.transparent,
+      builder: (_) => const HalfDrawerMenu(),
+    );
+  }
 
   Widget _buildMainWalletPage(BuildContext context) {
     return Column(
@@ -130,32 +155,52 @@ class _WalletHomePageState extends State<WalletHomePage> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8, offset: const Offset(0, 4))],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [
-          const Text('SALDO',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87)),
+          const Text(
+            'SALDO',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
           const SizedBox(height: 8),
           Row(
             children: [
               IconButton(
-                icon: Icon(_isHidden ? Icons.visibility_off : Icons.visibility,
-                    color: Colors.grey[700]),
+                icon: Icon(
+                  _isHidden ? Icons.visibility_off : Icons.visibility,
+                  color: Colors.grey[700],
+                ),
                 onPressed: () => setState(() => _isHidden = !_isHidden),
               ),
               Expanded(
                 child: Center(
                   child: Text(
                     _isHidden ? "••••••••••" : balance,
-                    style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
               IconButton(
                 icon: const Icon(Icons.qr_code_scanner, color: Colors.black87),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => const ScanQRPage()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const ScanQRPage()),
+                  );
                 },
               ),
             ],
@@ -172,13 +217,18 @@ class _WalletHomePageState extends State<WalletHomePage> {
 
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (_) => const RiwayatTransaksiPage()));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const RiwayatTransaksiPage()),
+        );
       },
       borderRadius: BorderRadius.circular(12),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(12)),
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(12),
+        ),
         child: Row(
           children: [
             SizedBox(
@@ -194,9 +244,11 @@ class _WalletHomePageState extends State<WalletHomePage> {
                     strokeWidth: 4,
                   ),
                   Center(
-                    child: Text("${(percent * 100).toInt()}%",
-                        style: const TextStyle(color: Colors.white, fontSize: 10)),
-                  )
+                    child: Text(
+                      "${(percent * 100).toInt()}%",
+                      style: const TextStyle(color: Colors.white, fontSize: 10),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -204,7 +256,11 @@ class _WalletHomePageState extends State<WalletHomePage> {
             const Expanded(
               child: Text(
                 'Rp50.000.000 terpakai di Agustus',
-                style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
@@ -218,14 +274,35 @@ class _WalletHomePageState extends State<WalletHomePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _actionButton("TOP UP", Icons.arrow_upward, Colors.lightBlueAccent, onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (_) => const TopUpPage()));
-        }),
-        _actionButton("TRANSFER", Icons.send, Colors.lightGreen),
+        _actionButton(
+          "TOP UP",
+          Icons.arrow_upward,
+          Colors.lightBlueAccent,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const TopUpPage()),
+            );
+          },
+        ),
+        _actionButton(
+          "TRANSFER",
+          Icons.send,
+          Colors.lightGreen,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const TransferScreen()),
+            );
+          },
+        ),
         Container(
           width: 50,
           height: 50,
-          decoration: const BoxDecoration(color: Colors.yellow, shape: BoxShape.circle),
+          decoration: const BoxDecoration(
+            color: Colors.yellow,
+            shape: BoxShape.circle,
+          ),
           child: IconButton(
             onPressed: () => debugPrint("MORE tapped"),
             icon: const Icon(Icons.more_horiz, color: Colors.black),
@@ -235,38 +312,58 @@ class _WalletHomePageState extends State<WalletHomePage> {
     );
   }
 
-  Widget _actionButton(String label, IconData icon, Color circleColor, {VoidCallback? onPressed}) {
+  Widget _actionButton(
+    String label,
+    IconData icon,
+    Color circleColor, {
+    VoidCallback? onPressed,
+  }) {
     return Container(
       height: 50,
-      decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(30)),
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(30),
+      ),
       child: InkWell(
         onTap: onPressed ?? () => debugPrint("Action $label tapped"),
         borderRadius: BorderRadius.circular(30),
-        child: Row(mainAxisSize: MainAxisSize.min, children: [
-          Container(
-            width: 42,
-            height: 42,
-            margin: const EdgeInsets.only(left: 6),
-            decoration: BoxDecoration(color: circleColor, shape: BoxShape.circle),
-            child: Center(child: Icon(icon, size: 18, color: Colors.black)),
-          ),
-          const SizedBox(width: 12),
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: Text(label,
-                style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
-          ),
-        ]),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 42,
+              height: 42,
+              margin: const EdgeInsets.only(left: 6),
+              decoration: BoxDecoration(
+                color: circleColor,
+                shape: BoxShape.circle,
+              ),
+              child: Center(child: Icon(icon, size: 18, color: Colors.black)),
+            ),
+            const SizedBox(width: 12),
+            Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: Text(
+                label,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  // 🔹 Riwayat Transaksi (preview)
   Widget _buildRiwayatTransaksi(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (_) => const RiwayatTransaksiPage()));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const RiwayatTransaksiPage()),
+        );
       },
       borderRadius: BorderRadius.circular(16),
       child: Container(
@@ -275,47 +372,76 @@ class _WalletHomePageState extends State<WalletHomePage> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
-          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6, offset: const Offset(0, 3))],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 6,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
         child: Column(
           children: [
-            Row(children: const [
-              Expanded(
-                child: Center(
-                  child: Text("Riwayat Transaksi",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+            Row(
+              children: const [
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "Riwayat Transaksi",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              Icon(Icons.expand_more, color: Colors.black54),
-            ]),
+                Icon(Icons.expand_more, color: Colors.black54),
+              ],
+            ),
             const SizedBox(height: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(children: [
-                  CircleAvatar(
-                    radius: 18,
-                    backgroundColor: Colors.grey[200],
-                    child: const Icon(Icons.flash_on, color: Colors.orange),
-                  ),
-                  const SizedBox(width: 12),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text("Listrik PLN",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                      Text("Kemarin 19.00",
-                          style: TextStyle(color: Colors.grey, fontSize: 12)),
-                    ],
-                  ),
-                ]),
-                Row(children: const [
-                  Icon(Icons.arrow_downward, size: 20, color: Colors.red),
-                  SizedBox(width: 4),
-                  Text("Rp250.000",
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 18,
+                      backgroundColor: Colors.grey[200],
+                      child: const Icon(Icons.flash_on, color: Colors.orange),
+                    ),
+                    const SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          "Listrik PLN",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
+                        Text(
+                          "Kemarin 19.00",
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Row(
+                  children: const [
+                    Icon(Icons.arrow_downward, size: 20, color: Colors.red),
+                    SizedBox(width: 4),
+                    Text(
+                      "Rp250.000",
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 14, color: Colors.red)),
-                ]),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ],
@@ -352,11 +478,20 @@ class _WalletHomePageState extends State<WalletHomePage> {
         elevation: 3,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Center(
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Icon(icon, size: 28, color: Colors.blueAccent),
-            const SizedBox(height: 8),
-            Text(title, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
-          ]),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, size: 28, color: Colors.blueAccent),
+              const SizedBox(height: 8),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -161,7 +161,7 @@ class HelpCenterScreenState extends State<HelpCenterScreen> {
                   },
                 ),
               );
-            }).toList(),
+            }),
 
             const SizedBox(height: 24),
             Padding(

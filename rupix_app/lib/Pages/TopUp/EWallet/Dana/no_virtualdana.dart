@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import '../Dana/nominaldana.dart';
 
 class NoVirtualDanaPage extends StatefulWidget {
+  const NoVirtualDanaPage({super.key});
+
   @override
   _NoVirtualDanaPageState createState() => _NoVirtualDanaPageState();
 }
 
 class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
-  TextEditingController _vaController = TextEditingController();
+  final TextEditingController _vaController = TextEditingController();
 
   @override
   void dispose() {
@@ -34,7 +36,11 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
             CircleAvatar(
               radius: 28,
               backgroundColor: Colors.blue.shade100,
-              child: Icon(Icons.account_balance_wallet, size: 40, color: Colors.blue),
+              child: Icon(
+                Icons.account_balance_wallet,
+                size: 40,
+                color: Colors.blue,
+              ),
             ),
             SizedBox(height: 20),
             Text(
@@ -69,11 +75,11 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
                         shape: BoxShape.circle,
                         color: Colors.grey.shade500,
                       ),
-                      child: Icon(Icons.close, color: Colors.white),
                       padding: EdgeInsets.all(4),
+                      child: Icon(Icons.close, color: Colors.white),
                     ),
                   ),
-                )
+                ),
               ],
             ),
             Spacer(),
@@ -87,23 +93,28 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                NominalDanaPage(virtualNumber: _vaController.text),
+                            builder: (context) => NominalDanaPage(
+                              virtualNumber: _vaController.text,
+                            ),
                           ),
                         );
                       },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                   backgroundColor: Colors.black,
                   disabledBackgroundColor: Colors.black38,
                 ),
                 child: Text(
                   'SELANJUTNYA',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

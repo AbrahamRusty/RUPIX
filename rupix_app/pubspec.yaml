@@ -33,6 +33,7 @@ dependencies:
   fl_chart: ^0.68.0
   local_auth: ^2.3.0
   mobile_scanner: ^6.0.2
+  intl: ^0.20.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -60,6 +61,25 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+
+    # Folder Transfer
+    - assets/Transfer/bank syariah indonesia.png
+    - assets/Transfer/bank-danamon.png
+    - assets/Transfer/bank-dki.png
+    - assets/Transfer/bank.png
+    - assets/Transfer/bca.png
+    - assets/Transfer/bni.png
+    - assets/Transfer/bri.png
+    - assets/Transfer/ceklis.png
+    - assets/Transfer/cimbniaga.png
+    - assets/Transfer/dana.png
+    - assets/Transfer/ewallet.png
+    - assets/Transfer/gopay.png
+    - assets/Transfer/mandiri.png
+    - assets/Transfer/ovo.png
+    - assets/Transfer/seabank.png
+    - assets/Transfer/shopeepay.png
+
     # Folder Environment
     - assets/Environment/Additional Card.png
     - assets/Environment/Card.png

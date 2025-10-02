@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'jumlahpulsa.dart';
 
 class Notelp extends StatefulWidget {
+  const Notelp({super.key});
+
   @override
   _notelp createState() => _notelp();
 }
 
 class _notelp extends State<Notelp> {
-  TextEditingController _vaController = TextEditingController();
+  final TextEditingController _vaController = TextEditingController();
 
   @override
   void dispose() {
@@ -34,8 +36,8 @@ class _notelp extends State<Notelp> {
           color: Colors.white,
         ),
         title: Text(
-          'Pulsa', 
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)
+          'Pulsa',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 0, 76, 184),
@@ -48,7 +50,12 @@ class _notelp extends State<Notelp> {
             SizedBox(height: 24),
             CircleAvatar(
               radius: 28,
-              backgroundColor: const Color.fromARGB(77, 111, 111, 111), // Transparan abu-abu
+              backgroundColor: const Color.fromARGB(
+                77,
+                111,
+                111,
+                111,
+              ), // Transparan abu-abu
               child: _pulsaLogo(),
             ),
             SizedBox(height: 20),
@@ -66,7 +73,9 @@ class _notelp extends State<Notelp> {
                 TextField(
                   controller: _vaController,
                   keyboardType: TextInputType.number,
-                  style: TextStyle(color: Colors.black), // Text hitam untuk kontras
+                  style: TextStyle(
+                    color: Colors.black,
+                  ), // Text hitam untuk kontras
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.grey.shade300,
@@ -74,7 +83,10 @@ class _notelp extends State<Notelp> {
                       borderRadius: BorderRadius.circular(16),
                       borderSide: BorderSide.none,
                     ),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
                     hintText: 'Contoh: 081234567890',
                     hintStyle: TextStyle(color: Colors.grey.shade600),
                   ),
@@ -93,8 +105,8 @@ class _notelp extends State<Notelp> {
                           shape: BoxShape.circle,
                           color: Colors.grey.shade600,
                         ),
-                        child: Icon(Icons.close, color: Colors.white, size: 16),
                         padding: EdgeInsets.all(6),
+                        child: Icon(Icons.close, color: Colors.white, size: 16),
                       ),
                     ),
                   ),
@@ -104,20 +116,26 @@ class _notelp extends State<Notelp> {
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(77, 111, 111, 111), // Card info transparan
+                color: const Color.fromARGB(
+                  77,
+                  111,
+                  111,
+                  111,
+                ), // Card info transparan
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
                 children: [
-                  Icon(Icons.info_outline, color: Colors.green.shade300, size: 20),
+                  Icon(
+                    Icons.info_outline,
+                    color: Colors.green.shade300,
+                    size: 20,
+                  ),
                   SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       'Pastikan nomor telepon sudah benar sebelum melanjutkan',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                      ),
+                      style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
                 ],
@@ -138,7 +156,12 @@ class _notelp extends State<Notelp> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Biru konsisten
+                  backgroundColor: const Color.fromARGB(
+                    255,
+                    0,
+                    76,
+                    184,
+                  ), // Biru konsisten
                   elevation: 4,
                   shadowColor: Colors.blue.withOpacity(0.3),
                 ),

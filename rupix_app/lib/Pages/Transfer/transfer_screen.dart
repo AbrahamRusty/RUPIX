@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rupix_app/Widgets/bank_list_tile.dart';
 import 'package:rupix_app/Widgets/contact_item.dart';
-import 'package:rupix_app/Widgets/ewallet_list_tile.dart';
 import 'package:rupix_app/Widgets/transfer_method_button.dart';
 import 'package:rupix_app/Pages/Transfer/rupix_transfer_amount_screen.dart';
+import 'package:rupix_app/Pages/Transfer/transfer_bank_screen.dart';
+import 'package:rupix_app/Pages/Transfer/transfer_ewallet_screen.dart';
 
 class Contact {
   final String name;
@@ -120,14 +120,7 @@ class _TransferScreenState extends State<TransferScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            BankListTile(
-                              bankName: 'RupiX',
-                              logoPath: 'assets/Transfer/rupix_logo.png',
-                              onTap: () {
-                                // Add your desired onTap logic here
-                              },
-                            ),
+                        builder: (context) => const TransferBankScreen(),
                       ),
                     );
                   },
@@ -139,14 +132,7 @@ class _TransferScreenState extends State<TransferScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            EWalletListTile(
-                              ewalletName: 'E-Wallet',
-                              logoPath: 'assets/Transfer/ewallet_logo.png',
-                              onTap: () {
-                                // Add your desired onTap logic here
-                              },
-                            ),
+                        builder: (context) => const TransferEWalletScreen(),
                       ),
                     );
                   },

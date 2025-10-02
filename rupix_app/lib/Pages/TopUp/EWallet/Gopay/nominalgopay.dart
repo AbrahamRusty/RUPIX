@@ -4,15 +4,16 @@ import 'konfirmasigopay.dart';
 class NominalgopayPage extends StatefulWidget {
   final String virtualNumber;
 
-  const NominalgopayPage({Key? key, required this.virtualNumber})
-    : super(key: key);
+  const NominalgopayPage({super.key, required this.virtualNumber});
 
   @override
   _NominalgopayPageState createState() => _NominalgopayPageState();
 }
 
 class _NominalgopayPageState extends State<NominalgopayPage> {
-  TextEditingController _nominalController = TextEditingController(text: '0');
+  final TextEditingController _nominalController = TextEditingController(
+    text: '0',
+  );
 
   @override
   void dispose() {

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import '../Linkaja/nominallinkaja.dart';
 
 class NoVirtuallinkajaPage extends StatefulWidget {
+  const NoVirtuallinkajaPage({super.key});
+
   @override
   _NoVirtuallinkajaPageState createState() => _NoVirtuallinkajaPageState();
 }
 
 class _NoVirtuallinkajaPageState extends State<NoVirtuallinkajaPage> {
-  TextEditingController _vaController = TextEditingController();
+  final TextEditingController _vaController = TextEditingController();
 
   @override
   void dispose() {
@@ -34,7 +36,11 @@ class _NoVirtuallinkajaPageState extends State<NoVirtuallinkajaPage> {
             CircleAvatar(
               radius: 28,
               backgroundColor: Colors.blue.shade100,
-              child: Image.asset('assets/Environment/linkaja.png', width: 40, height: 40),
+              child: Image.asset(
+                'assets/Environment/linkaja.png',
+                width: 40,
+                height: 40,
+              ),
             ),
             SizedBox(height: 20),
             Text(
@@ -69,8 +75,8 @@ class _NoVirtuallinkajaPageState extends State<NoVirtuallinkajaPage> {
                         shape: BoxShape.circle,
                         color: Colors.grey.shade500,
                       ),
-                      child: Icon(Icons.close, color: Colors.white),
                       padding: EdgeInsets.all(4),
+                      child: Icon(Icons.close, color: Colors.white),
                     ),
                   ),
                 ),
@@ -84,7 +90,9 @@ class _NoVirtuallinkajaPageState extends State<NoVirtuallinkajaPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => NominallinkajaPage()),
+                    MaterialPageRoute(
+                      builder: (context) => NominallinkajaPage(),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import '../Gopay/nominalgopay.dart';
 
 class NoVirtualgopayPage extends StatefulWidget {
+  const NoVirtualgopayPage({super.key});
+
   @override
   _NoVirtualgopayPageState createState() => _NoVirtualgopayPageState();
 }
 
 class _NoVirtualgopayPageState extends State<NoVirtualgopayPage> {
-  TextEditingController _vaController = TextEditingController();
+  final TextEditingController _vaController = TextEditingController();
 
   @override
   void dispose() {
@@ -34,7 +36,11 @@ class _NoVirtualgopayPageState extends State<NoVirtualgopayPage> {
             CircleAvatar(
               radius: 28,
               backgroundColor: Colors.blue.shade100,
-              child: Image.asset('assets/Environment/gopay.png', width: 40, height: 40),
+              child: Image.asset(
+                'assets/Environment/gopay.png',
+                width: 40,
+                height: 40,
+              ),
             ),
             SizedBox(height: 20),
             Text(
@@ -69,8 +75,8 @@ class _NoVirtualgopayPageState extends State<NoVirtualgopayPage> {
                         shape: BoxShape.circle,
                         color: Colors.grey.shade500,
                       ),
-                      child: Icon(Icons.close, color: Colors.white),
                       padding: EdgeInsets.all(4),
+                      child: Icon(Icons.close, color: Colors.white),
                     ),
                   ),
                 ),
@@ -90,7 +96,10 @@ class _NoVirtualgopayPageState extends State<NoVirtualgopayPage> {
                   }
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => NominalgopayPage(virtualNumber: _vaController.text)),
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          NominalgopayPage(virtualNumber: _vaController.text),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(

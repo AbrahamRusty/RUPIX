@@ -4,14 +4,16 @@ import 'konfirmasidana.dart';
 class NominalDanaPage extends StatefulWidget {
   final String virtualNumber;
 
-  const NominalDanaPage({Key? key, this.virtualNumber = ''}) : super(key: key);
+  const NominalDanaPage({super.key, this.virtualNumber = ''});
 
   @override
   _NominalDanaPageState createState() => _NominalDanaPageState();
 }
 
 class _NominalDanaPageState extends State<NominalDanaPage> {
-  TextEditingController _nominalController = TextEditingController(text: '0');
+  final TextEditingController _nominalController = TextEditingController(
+    text: '0',
+  );
 
   @override
   void dispose() {
@@ -42,15 +44,22 @@ class _NominalDanaPageState extends State<NominalDanaPage> {
             // Virtual Number Always On Top
             Row(
               children: [
-                Image.asset('assets/Environment/dana.png', width: 20, height: 20),
+                Image.asset(
+                  'assets/Environment/dana.png',
+                  width: 20,
+                  height: 20,
+                ),
                 SizedBox(width: 8),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(maskedName, style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(
+                      maskedName,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     Text(phoneNumber, style: TextStyle(fontSize: 12)),
                   ],
-                )
+                ),
               ],
             ),
 
@@ -62,12 +71,21 @@ class _NominalDanaPageState extends State<NominalDanaPage> {
               decoration: BoxDecoration(
                 color: Colors.grey.shade100,
                 borderRadius: BorderRadius.circular(8),
-                boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3, offset: Offset(0, 1))],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 3,
+                    offset: Offset(0, 1),
+                  ),
+                ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('MASUKKAN NOMINAL', style: TextStyle(fontWeight: FontWeight.w500)),
+                  Text(
+                    'MASUKKAN NOMINAL',
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
                   TextField(
                     controller: _nominalController,
                     keyboardType: TextInputType.number,
@@ -91,15 +109,30 @@ class _NominalDanaPageState extends State<NominalDanaPage> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(4),
-                boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3, offset: Offset(0, 1))],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 3,
+                    offset: Offset(0, 1),
+                  ),
+                ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Tabungan', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(tabunganNumber, style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(
+                    'Tabungan',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    tabunganNumber,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   SizedBox(height: 4),
-                  Text(tabunganSaldo, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  Text(
+                    tabunganSaldo,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
                 ],
               ),
             ),
@@ -111,7 +144,11 @@ class _NominalDanaPageState extends State<NominalDanaPage> {
               height: 48,
               child: ElevatedButton(
                 onPressed: () {
-                  int nominal = int.tryParse(_nominalController.text.replaceAll('.', '')) ?? 0;
+                  int nominal =
+                      int.tryParse(
+                        _nominalController.text.replaceAll('.', ''),
+                      ) ??
+                      0;
                   if (nominal <= 0) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Masukkan nominal yang valid')),
@@ -138,10 +175,13 @@ class _NominalDanaPageState extends State<NominalDanaPage> {
                 ),
                 child: Text(
                   'TOP UP',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

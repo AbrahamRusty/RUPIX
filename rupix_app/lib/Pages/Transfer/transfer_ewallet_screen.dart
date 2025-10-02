@@ -2,11 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:rupix_app/Pages/Transfer/transfer_ewallet_form_screen.dart';
 import 'package:rupix_app/Widgets/ewallet_list_tile.dart';
 
-class TransferEWalletScreen extends StatelessWidget {
+class TransferEWalletScreen extends StatefulWidget {
   const TransferEWalletScreen({super.key});
 
   @override
+  State<TransferEWalletScreen> createState() => _TransferEWalletScreenState();
+}
+
+class _TransferEWalletScreenState extends State<TransferEWalletScreen> {
+  String? _selectedEWallet;
+  String? _selectedEWalletLogoPath;
+
+  final List<Map<String, String>> _eWallets = const [
+    {'name': 'Gopay', 'path': 'assets/Transfer/gopay.png'},
+    {'name': 'OVO', 'path': 'assets/Transfer/ovo.png'},
+    {'name': 'ShopeePay', 'path': 'assets/Transfer/shopeepay.png'},
+    {'name': 'Dana', 'path': 'assets/Transfer/dana.png'},
+  ];
+
+  @override
   Widget build(BuildContext context) {
+    final bool isContinueEnabled = _selectedEWallet != null;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -60,74 +77,51 @@ class TransferEWalletScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  EWalletListTile(
-                    ewalletName: 'Gopay',
-                    logoPath: 'assets/Transfer/gopay.png',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const TransferEWalletFormScreen(
-                            ewalletName: 'Gopay',
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  EWalletListTile(
-                    ewalletName: 'OVO',
-                    logoPath: 'assets/Transfer/ovo.png',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const TransferEWalletFormScreen(
-                            ewalletName: 'OVO',
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  EWalletListTile(
-                    ewalletName: 'ShopeePay',
-                    logoPath: 'assets/Transfer/shopeepay.png',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const TransferEWalletFormScreen(
-                            ewalletName: 'ShopeePay',
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  EWalletListTile(
-                    ewalletName: 'Dana',
-                    logoPath: 'assets/Transfer/dana.png',
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const TransferEWalletFormScreen(
-                            ewalletName: 'Dana',
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+
+                  ..._eWallets.map((ewallet) {
+                    final ewalletName = ewallet['name']!;
+                    final logoPath = ewallet['path']!;
+
+                    return EWalletListTile(
+                      ewalletName: ewalletName,
+                      logoPath: logoPath,
+                      isSelected: _selectedEWallet == ewalletName,
+                      onTap: () {
+                        setState(() {
+                          _selectedEWallet = ewalletName;
+                          _selectedEWalletLogoPath = logoPath;
+                        });
+                      },
+                    );
+                  }),
                 ],
               ),
             ),
           ),
+
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: isContinueEnabled
+                    ? () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TransferEWalletFormScreen(
+                              ewalletName: _selectedEWallet!,
+                            ),
+                          ),
+                        );
+                      }
+                    : null,
+
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0088FF),
+                  backgroundColor: isContinueEnabled
+                      ? const Color(0xFF0088FF)
+                      : Colors.grey, // Warna abu-abu jika disabled
+
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(

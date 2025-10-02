@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'konfirmasipulsa.dart';
 
 class Jumlahpulsa extends StatefulWidget {
-  const Jumlahpulsa({Key? key}) : super(key: key);
+  const Jumlahpulsa({super.key});
 
   @override
   _pulsaPageState createState() => _pulsaPageState();
@@ -65,7 +65,7 @@ class _pulsaPageState extends State<Jumlahpulsa> {
                 Text(
                   "PULSA",
                   style: TextStyle(
-                    fontSize: 18, 
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -101,7 +101,9 @@ class _pulsaPageState extends State<Jumlahpulsa> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: isSelected ? Colors.greenAccent : const Color.fromARGB(77, 111, 111, 111),
+                          color: isSelected
+                              ? Colors.greenAccent
+                              : const Color.fromARGB(77, 111, 111, 111),
                           width: 2,
                         ),
                         borderRadius: BorderRadius.circular(12),
@@ -112,7 +114,7 @@ class _pulsaPageState extends State<Jumlahpulsa> {
                             blurRadius: 6,
                             spreadRadius: 1,
                             offset: const Offset(0, 3),
-                          )
+                          ),
                         ],
                       ),
                       child: Text(
@@ -143,12 +145,9 @@ class _pulsaPageState extends State<Jumlahpulsa> {
                     blurRadius: 6,
                     spreadRadius: 1,
                     offset: const Offset(0, 3),
-                  )
+                  ),
                 ],
-                border: Border.all(
-                  color: Colors.grey.shade800,
-                  width: 1,
-                ),
+                border: Border.all(color: Colors.grey.shade800, width: 1),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,7 +155,7 @@ class _pulsaPageState extends State<Jumlahpulsa> {
                   Text(
                     "Tabungan",
                     style: TextStyle(
-                      fontSize: 16, 
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -186,15 +185,15 @@ class _pulsaPageState extends State<Jumlahpulsa> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: selectedIndex == null 
-                      ? Colors.grey.shade600 
+                  backgroundColor: selectedIndex == null
+                      ? Colors.grey.shade600
                       : const Color.fromARGB(255, 0, 76, 184),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                   elevation: selectedIndex == null ? 0 : 4,
-                  shadowColor: selectedIndex == null 
-                      ? Colors.transparent 
+                  shadowColor: selectedIndex == null
+                      ? Colors.transparent
                       : Colors.blue.withOpacity(0.3),
                 ),
                 onPressed: selectedIndex == null
@@ -214,13 +213,13 @@ class _pulsaPageState extends State<Jumlahpulsa> {
                 child: Text(
                   "SELANJUTNYA",
                   style: TextStyle(
-                    fontSize: 16, 
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
-                  ),              
+                  ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

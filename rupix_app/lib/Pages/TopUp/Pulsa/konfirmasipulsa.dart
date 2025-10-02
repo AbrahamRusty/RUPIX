@@ -7,18 +7,23 @@ class KonfirmasiTransaksipulsaPage extends StatelessWidget {
   final String noMeter;
 
   const KonfirmasiTransaksipulsaPage({
-    Key? key,
+    super.key,
     required this.nominal,
     required this.biayaAdmin,
     required this.noMeter,
-  }) : super(key: key);
+  });
 
   // Widget logo Pulsa untuk dark mode
   Widget _pulsaLogo() {
     return Icon(
       Icons.phone_android,
       size: 28,
-      color: const Color.fromARGB(136, 21, 255, 0), // Hijau konsisten dengan warna sebelumnya
+      color: const Color.fromARGB(
+        136,
+        21,
+        255,
+        0,
+      ), // Hijau konsisten dengan warna sebelumnya
     );
   }
 
@@ -97,7 +102,7 @@ class KonfirmasiTransaksipulsaPage extends StatelessWidget {
                     color: Colors.black.withOpacity(0.3),
                     blurRadius: 6,
                     offset: Offset(0, 3),
-                  )
+                  ),
                 ],
                 border: Border.all(color: Colors.grey.shade800, width: 1),
               ),
@@ -161,7 +166,11 @@ class KonfirmasiTransaksipulsaPage extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.info_outline, color: Colors.green.shade300, size: 20),
+                  Icon(
+                    Icons.info_outline,
+                    color: Colors.green.shade300,
+                    size: 20,
+                  ),
                   SizedBox(width: 12),
                   Expanded(
                     child: Text(

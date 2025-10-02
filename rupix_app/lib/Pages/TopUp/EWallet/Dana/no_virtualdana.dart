@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import '../Dana/nominaldana.dart';
 
 class NoVirtualDanaPage extends StatefulWidget {
+  const NoVirtualDanaPage({super.key});
+
   @override
   _NoVirtualDanaPageState createState() => _NoVirtualDanaPageState();
 }
 
 class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
-  TextEditingController _vaController = TextEditingController();
+  final TextEditingController _vaController = TextEditingController();
 
   @override
   void dispose() {
@@ -34,7 +36,11 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
             CircleAvatar(
               radius: 28,
               backgroundColor: Colors.blue.shade100,
-              child: Image.asset('assets/Environment/dana.png', width: 40, height: 40),
+              child: Image.asset(
+                'assets/Environment/dana.png',
+                width: 40,
+                height: 40,
+              ),
             ),
             SizedBox(height: 20),
             Text(
@@ -69,8 +75,8 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
                         shape: BoxShape.circle,
                         color: Colors.grey.shade500,
                       ),
-                      child: Icon(Icons.close, color: Colors.white),
                       padding: EdgeInsets.all(4),
+                      child: Icon(Icons.close, color: Colors.white),
                     ),
                   ),
                 ),

@@ -9,20 +9,24 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
   final String tarifDaya;
 
   const KonfirmasiTransaksiplnPage({
-    Key? key,
+    super.key,
     required this.nominal,
     required this.biayaAdmin,
     required this.noMeter,
     required this.pelanggan,
     required this.tarifDaya,
-  }) : super(key: key);
+  });
 
   // Widget logo PLN untuk dark mode
   Widget _plnLogo() {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Icon(Icons.flash_on, size: 28, color: const Color.fromARGB(255, 255, 230, 0)),
+        Icon(
+          Icons.flash_on,
+          size: 28,
+          color: const Color.fromARGB(255, 255, 230, 0),
+        ),
         Positioned(
           bottom: 2,
           child: Container(
@@ -53,8 +57,8 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
           color: Colors.white,
         ),
         title: Text(
-          'KONFIRMASI TRANSAKSI', 
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)
+          'KONFIRMASI TRANSAKSI',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 0, 76, 184),
@@ -84,22 +88,22 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'PLN TopUp', 
+                        'PLN TopUp',
                         style: TextStyle(
-                          fontWeight: FontWeight.bold, 
+                          fontWeight: FontWeight.bold,
                           fontSize: 18,
-                          color: Colors.white
-                        )
+                          color: Colors.white,
+                        ),
                       ),
                       Text(
-                        noMeter, 
+                        noMeter,
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.grey.shade400
-                        )
+                          color: Colors.grey.shade400,
+                        ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -116,7 +120,7 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
                     color: Colors.black.withOpacity(0.3),
                     blurRadius: 6,
                     offset: Offset(0, 3),
-                  )
+                  ),
                 ],
                 border: Border.all(color: Colors.grey.shade800, width: 1),
               ),
@@ -126,18 +130,18 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Nominal', 
+                        'Nominal',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white
-                        )
+                          color: Colors.white,
+                        ),
                       ),
                       Text(
-                        'Rp $nominal', 
+                        'Rp $nominal',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white
-                        )
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
@@ -148,18 +152,18 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Biaya Admin', 
+                        'Biaya Admin',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white
-                        )
+                          color: Colors.white,
+                        ),
                       ),
                       Text(
-                        'Rp $biayaAdmin', 
+                        'Rp $biayaAdmin',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white
-                        )
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
@@ -181,7 +185,7 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
                     color: Colors.black.withOpacity(0.3),
                     blurRadius: 6,
                     offset: Offset(0, 3),
-                  )
+                  ),
                 ],
                 border: Border.all(color: Colors.grey.shade800, width: 1),
               ),
@@ -189,12 +193,12 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Detail Transaksi', 
+                    'Detail Transaksi',
                     style: TextStyle(
-                      fontWeight: FontWeight.bold, 
+                      fontWeight: FontWeight.bold,
                       fontSize: 16,
-                      color: Colors.white
-                    )
+                      color: Colors.white,
+                    ),
                   ),
                   SizedBox(height: 16),
 
@@ -225,7 +229,7 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 0, 76, 184),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   elevation: 4,
                   shadowColor: Colors.blue.withOpacity(0.3),
@@ -233,9 +237,9 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
                 child: Text(
                   'TOP UP',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold, 
+                    fontWeight: FontWeight.bold,
                     color: Colors.white,
-                    fontSize: 16
+                    fontSize: 16,
                   ),
                 ),
               ),
@@ -251,19 +255,16 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          label, 
-          style: TextStyle(
-            color: Colors.grey.shade400,
-            fontSize: 14
-          )
+          label,
+          style: TextStyle(color: Colors.grey.shade400, fontSize: 14),
         ),
         Text(
-          value, 
+          value,
           style: TextStyle(
             color: Colors.white,
             fontSize: 14,
-            fontWeight: FontWeight.w500
-          )
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ],
     );

@@ -4,7 +4,7 @@ import 'konfirmasipdam.dart';
 class NominalpdamPage extends StatefulWidget {
   final String customerId;
 
-  const NominalpdamPage({Key? key, required this.customerId}) : super(key: key);
+  const NominalpdamPage({super.key, required this.customerId});
 
   @override
   _NominalpdamPageState createState() => _NominalpdamPageState();
@@ -52,9 +52,7 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        leading: BackButton(onPressed: () => Navigator.of(context).pop()),
         title: Text('PDAM', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: const Color(0xFF2196F3),
@@ -76,8 +74,10 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 4),
-                Text("1234567890",
-                    style: TextStyle(fontSize: 14, color: Colors.black54)),
+                Text(
+                  "1234567890",
+                  style: TextStyle(fontSize: 14, color: Colors.black54),
+                ),
               ],
             ),
             const SizedBox(height: 20),
@@ -104,7 +104,9 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: isSelected ? Colors.blue : Colors.grey.shade300,
+                          color: isSelected
+                              ? Colors.blue
+                              : Colors.grey.shade300,
                           width: 2,
                         ),
                         borderRadius: BorderRadius.circular(8),
@@ -115,7 +117,7 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
                             blurRadius: 3,
                             spreadRadius: 1,
                             offset: const Offset(0, 2),
-                          )
+                          ),
                         ],
                       ),
                       child: Text(
@@ -146,25 +148,29 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
                     blurRadius: 3,
                     spreadRadius: 1,
                     offset: const Offset(0, 2),
-                  )
+                  ),
                 ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
-                  Text("Tabungan",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  Text(
+                    "Tabungan",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
                   SizedBox(height: 4),
-                  Text("1172734473287178",
-                      style: TextStyle(fontSize: 14, color: Colors.black54)),
+                  Text(
+                    "1172734473287178",
+                    style: TextStyle(fontSize: 14, color: Colors.black54),
+                  ),
                   SizedBox(height: 8),
                   Text(
                     "Rp100.000.000",
                     style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
                 ],
               ),
@@ -196,12 +202,11 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
                       },
                 child: const Text(
                   "SELANJUTNYA",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,
-                  )
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
-            )
-          ]
+            ),
+          ],
         ),
       ),
     );

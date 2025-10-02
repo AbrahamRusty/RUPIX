@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rupix_app/Pages/WalletHomePage.dart';
 import 'notadana.dart';
 
 class Pindana extends StatelessWidget {
@@ -46,7 +45,9 @@ class _PinEntryPageState extends State<PinEntryPage> {
     // Navigate to TransaksiBerhasildanaPage
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const TransaksiBerhasildanaPage()),
+      MaterialPageRoute(
+        builder: (context) => const TransaksiBerhasildanaPage(),
+      ),
     );
   }
 
@@ -63,7 +64,11 @@ class _PinEntryPageState extends State<PinEntryPage> {
     );
   }
 
-  Widget _buildNumberButton(String label, {void Function()? onTap, Widget? child}) {
+  Widget _buildNumberButton(
+    String label, {
+    void Function()? onTap,
+    Widget? child,
+  }) {
     // design: numbers are simple text (no filled circle), centered with big spacing
     return GestureDetector(
       onTap: onTap,
@@ -72,7 +77,8 @@ class _PinEntryPageState extends State<PinEntryPage> {
         height: 76,
         width: 76,
         child: Center(
-          child: child ??
+          child:
+              child ??
               Text(
                 label,
                 style: const TextStyle(
@@ -96,7 +102,10 @@ class _PinEntryPageState extends State<PinEntryPage> {
           children: [
             // back button
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
               child: Row(
                 children: [
                   IconButton(
@@ -114,18 +123,12 @@ class _PinEntryPageState extends State<PinEntryPage> {
                 children: const [
                   Text(
                     'Masukkan PIN',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                   ),
                   SizedBox(height: 8),
                   Text(
                     "Gunakan PIN DANA Anda.",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.black54,
-                    ),
+                    style: TextStyle(fontSize: 14, color: Colors.black54),
                   ),
                 ],
               ),
@@ -185,9 +188,21 @@ class _PinEntryPageState extends State<PinEntryPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       // an empty place to balance layout (you can put Biometric icon here)
-                      _buildNumberButton('', onTap: null, child: const SizedBox.shrink()),
+                      _buildNumberButton(
+                        '',
+                        onTap: null,
+                        child: const SizedBox.shrink(),
+                      ),
                       _buildNumberButton('0', onTap: () => _onNumberPressed(0)),
-                      _buildNumberButton('', onTap: _onDeletePressed, child: const Icon(Icons.backspace_outlined, size: 22, color: Colors.black54)),
+                      _buildNumberButton(
+                        '',
+                        onTap: _onDeletePressed,
+                        child: const Icon(
+                          Icons.backspace_outlined,
+                          size: 22,
+                          color: Colors.black54,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 48),

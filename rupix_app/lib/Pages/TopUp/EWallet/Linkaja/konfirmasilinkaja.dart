@@ -8,12 +8,12 @@ class KonfirmasilinkajaPage extends StatelessWidget {
   final String phoneNumber;
 
   const KonfirmasilinkajaPage({
-    Key? key,
+    super.key,
     required this.virtualNumber,
     required this.nominal,
     required this.customerName,
     required this.phoneNumber,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +21,16 @@ class KonfirmasilinkajaPage extends StatelessWidget {
     String tipePembayaran = "LinkAjaTopup";
 
     String formatRupiah(int value) {
-      return 'Rp ' + value.toString().replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]}.');
+      return 'Rp ${value.toString().replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]}.')}';
     }
 
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
-        title: Text('KONFIRMASI TRANSAKSI', style: TextStyle(color: Colors.black)),
+        title: Text(
+          'KONFIRMASI TRANSAKSI',
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
         backgroundColor: const Color(0xFFE52B2B),
         foregroundColor: Colors.black,
@@ -42,16 +45,26 @@ class KonfirmasilinkajaPage extends StatelessWidget {
                 CircleAvatar(
                   radius: 20,
                   backgroundColor: Colors.blue.shade100,
-                  child: Image.asset('assets/Environment/linkaja.png', width: 28, height: 28),
+                  child: Image.asset(
+                    'assets/Environment/linkaja.png',
+                    width: 28,
+                    height: 28,
+                  ),
                 ),
                 SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('LinkAjaTopup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                    Text(
+                      'LinkAjaTopup',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
                     Text(phoneNumber, style: TextStyle(fontSize: 14)),
                   ],
-                )
+                ),
               ],
             ),
             SizedBox(height: 24),
@@ -59,14 +72,27 @@ class KonfirmasilinkajaPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                  boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3, offset: Offset(0, 1))]),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 3,
+                    offset: Offset(0, 1),
+                  ),
+                ],
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Nominal', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(formatRupiah(nominal), style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(
+                    'Nominal',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    formatRupiah(nominal),
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             ),
@@ -74,14 +100,27 @@ class KonfirmasilinkajaPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                  boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3, offset: Offset(0, 1))]),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 3,
+                    offset: Offset(0, 1),
+                  ),
+                ],
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Biaya Admin', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(formatRupiah(biayaAdmin), style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(
+                    'Biaya Admin',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    formatRupiah(biayaAdmin),
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             ),
@@ -91,37 +130,39 @@ class KonfirmasilinkajaPage extends StatelessWidget {
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(4), boxShadow: [
-                BoxShadow(color: Colors.grey.shade300, blurRadius: 3, offset: Offset(0, 1))
-              ]),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 3,
+                    offset: Offset(0, 1),
+                  ),
+                ],
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Detail', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  Text(
+                    'Detail',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
                   SizedBox(height: 12),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('No VA'),
-                      Text(virtualNumber),
-                    ],
+                    children: [Text('No VA'), Text(virtualNumber)],
                   ),
                   SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Pelanggan'),
-                      Text(customerName),
-                    ],
+                    children: [Text('Pelanggan'), Text(customerName)],
                   ),
                   SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('TIpe Pembayaran'),
-                      Text(tipePembayaran),
-                    ],
+                    children: [Text('TIpe Pembayaran'), Text(tipePembayaran)],
                   ),
                 ],
               ),
@@ -141,11 +182,16 @@ class KonfirmasilinkajaPage extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFE52B2B),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
                 child: Text(
                   'TOP UP',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

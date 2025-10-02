@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'nominalpdam.dart';
 
 class NoVirtualpdamPage extends StatefulWidget {
-  const NoVirtualpdamPage({Key? key}) : super(key: key);
+  const NoVirtualpdamPage({super.key});
 
   @override
   _NoVirtualpdamPageState createState() => _NoVirtualpdamPageState();
@@ -71,8 +71,8 @@ class _NoVirtualpdamPageState extends State<NoVirtualpdamPage> {
                         shape: BoxShape.circle,
                         color: Colors.grey.shade500,
                       ),
-                      child: Icon(Icons.close, color: Colors.white),
                       padding: EdgeInsets.all(4),
+                      child: Icon(Icons.close, color: Colors.white),
                     ),
                   ),
                 ),
@@ -94,17 +94,23 @@ class _NoVirtualpdamPageState extends State<NoVirtualpdamPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => NominalpdamPage(customerId: customerId),
+                      builder: (context) =>
+                          NominalpdamPage(customerId: customerId),
                     ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
                 child: Text(
                   'LANJUT',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

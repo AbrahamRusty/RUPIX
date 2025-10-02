@@ -197,7 +197,6 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
                 child: const Text(
                   "SELANJUTNYA",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,
-                  backgroundColor: const Color.fromARGB(255, 0, 0, 0),
                   )
                 ),
               ),

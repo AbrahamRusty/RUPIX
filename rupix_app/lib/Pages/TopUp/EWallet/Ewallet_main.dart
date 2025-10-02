@@ -5,8 +5,8 @@ import 'package:rupix_app/Pages/TopUp/EWallet/Gopay/no_virtualgopay.dart';
 import 'package:rupix_app/Pages/TopUp/EWallet/OVO/no_virtualovo.dart';
 import 'package:rupix_app/Pages/TopUp/EWallet/ShopeePay/no_virtualshopee.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ewallethome extends StatelessWidget {
+  const ewallethome({super.key});
 
   @override
   Widget build(BuildContext context) {

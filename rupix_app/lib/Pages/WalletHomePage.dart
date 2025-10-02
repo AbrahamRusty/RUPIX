@@ -5,6 +5,9 @@ import 'package:rupix_app/Pages/RiwayatTransaksi/RiwayatTransaksi.dart';
 import 'package:rupix_app/Pages/Login/welcomecrypto.dart';
 import 'package:rupix_app/Widgets/half_drawer_menu.dart';
 import 'package:rupix_app/Pages/Transfer/transfer_screen.dart';
+import 'package:rupix_app/Pages/TopUp/Pln/nomet.dart';
+import 'package:rupix_app/Pages/TopUp/PDAM/nominalpdam.dart';
+import 'package:rupix_app/Pages/TopUp/EWallet/Ewallet_main.dart';
 
 class WalletHomePage extends StatefulWidget {
   const WalletHomePage({super.key});
@@ -476,19 +479,34 @@ class _WalletHomePageState extends State<WalletHomePage> {
         _serviceCard("Split Bill", Icons.group),
         _serviceCard("E-Banking", Icons.account_balance),
         _serviceCard("Tarik Dana", Icons.download),
-        _serviceCard("E-Wallet", Icons.account_balance_wallet),
+        _serviceCard("E-Wallet", Icons.account_balance_wallet, onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const EwalletMain()),
+          );
+        }),
         _serviceCard("Promo", Icons.local_offer),
         _serviceCard("Tabungan", Icons.credit_card),
-        _serviceCard("Air", Icons.water_drop),
-        _serviceCard("Listrik", Icons.flash_on),
+        _serviceCard("Air", Icons.water_drop, onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const NominalpdamPage()),
+          );
+        }),
+        _serviceCard("Listrik", Icons.flash_on, onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => Nometpln()),
+          );
+        }),
         _serviceCard("Kesehatan", Icons.health_and_safety),
       ],
     );
   }
 
-  Widget _serviceCard(String title, IconData icon) {
+  Widget _serviceCard(String title, IconData icon, {VoidCallback? onTap}) {
     return InkWell(
-      onTap: () => debugPrint("Service $title tapped"),
+      onTap: onTap ?? () => debugPrint("Service $title tapped"),
       borderRadius: BorderRadius.circular(12),
       child: Card(
         elevation: 3,

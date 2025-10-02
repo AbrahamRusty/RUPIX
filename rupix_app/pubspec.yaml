@@ -94,6 +94,8 @@ flutter:
     - assets/Environment/ovo.png
     - assets/Environment/shopeepay.png
     - assets/Environment/linkaja.png
+    - assets/Environment/gopay.png
+    - assets/Environment/ceklis.png
 
     # Folder Menu
     - assets/Menu/Arrow_Circle_Down_Left.png

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rupix_app/Widgets/bank_list_tile.dart';
 import 'package:rupix_app/Widgets/contact_item.dart';
+import 'package:rupix_app/Widgets/ewallet_list_tile.dart';
 import 'package:rupix_app/Widgets/transfer_method_button.dart';
-import 'package:rupix_app/Pages/Transfer/transfer_bank_form_screen.dart';
-import 'package:rupix_app/Pages/Transfer/transfer_ewallet_form_screen.dart';
 import 'package:rupix_app/Pages/Transfer/rupix_transfer_amount_screen.dart';
 
 class Contact {
@@ -121,7 +121,13 @@ class _TransferScreenState extends State<TransferScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            const TransferBankFormScreen(bankName: 'RupiX'),
+                            BankListTile(
+                              bankName: 'RupiX',
+                              logoPath: 'assets/Transfer/rupix_logo.png',
+                              onTap: () {
+                                // Add your desired onTap logic here
+                              },
+                            ),
                       ),
                     );
                   },
@@ -134,7 +140,13 @@ class _TransferScreenState extends State<TransferScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            TransferEWalletFormScreen(ewalletName: 'E-Wallet'),
+                            EWalletListTile(
+                              ewalletName: 'E-Wallet',
+                              logoPath: 'assets/Transfer/ewallet_logo.png',
+                              onTap: () {
+                                // Add your desired onTap logic here
+                              },
+                            ),
                       ),
                     );
                   },

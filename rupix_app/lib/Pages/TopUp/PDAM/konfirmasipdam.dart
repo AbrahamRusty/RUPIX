@@ -6,10 +6,10 @@ class KonfirmasipdamPage extends StatelessWidget {
   final String customerId;
 
   const KonfirmasipdamPage({
-    Key? key,
+    super.key,
     required this.nominal,
     required this.customerId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +17,23 @@ class KonfirmasipdamPage extends StatelessWidget {
     String tipePembayaran = "PDAMTopup";
 
     String formatRupiah(int value) {
-      return 'Rp ' + value.toString().replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]}.');
+      return 'Rp ${value.toString().replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]}.')}';
     }
 
     // Parse nominal to int for calculation
-    int nominalValue = int.tryParse(nominal.replaceAll('ribu', '000').replaceAll('juta', '000000')) ?? 0;
+    int nominalValue =
+        int.tryParse(
+          nominal.replaceAll('ribu', '000').replaceAll('juta', '000000'),
+        ) ??
+        0;
 
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
-        title: Text('KONFIRMASI TRANSAKSI', style: TextStyle(color: Colors.black)),
+        title: Text(
+          'KONFIRMASI TRANSAKSI',
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
         backgroundColor: const Color(0xFF2196F3),
         foregroundColor: Colors.black,
@@ -47,10 +54,16 @@ class KonfirmasipdamPage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('PDAMTopup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                    Text(
+                      'PDAMTopup',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
                     Text('Bayar Tagihan Air', style: TextStyle(fontSize: 14)),
                   ],
-                )
+                ),
               ],
             ),
             SizedBox(height: 24),
@@ -58,14 +71,27 @@ class KonfirmasipdamPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                  boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3, offset: Offset(0, 1))]),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 3,
+                    offset: Offset(0, 1),
+                  ),
+                ],
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Nominal', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(formatRupiah(nominalValue), style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(
+                    'Nominal',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    formatRupiah(nominalValue),
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             ),
@@ -75,21 +101,29 @@ class KonfirmasipdamPage extends StatelessWidget {
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(4), boxShadow: [
-                BoxShadow(color: Colors.grey.shade300, blurRadius: 3, offset: Offset(0, 1))
-              ]),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(4),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 3,
+                    offset: Offset(0, 1),
+                  ),
+                ],
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Detail', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  Text(
+                    'Detail',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
                   SizedBox(height: 12),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('ID Pelanggan'),
-                      Text(customerId),
-                    ],
+                    children: [Text('ID Pelanggan'), Text(customerId)],
                   ),
                   SizedBox(height: 8),
                   Row(
@@ -102,10 +136,7 @@ class KonfirmasipdamPage extends StatelessWidget {
                   SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('TIpe Pembayaran'),
-                      Text(tipePembayaran),
-                    ],
+                    children: [Text('TIpe Pembayaran'), Text(tipePembayaran)],
                   ),
                 ],
               ),
@@ -118,18 +149,23 @@ class KonfirmasipdamPage extends StatelessWidget {
               height: 48,
               child: ElevatedButton(
                 onPressed: () {
-                   Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Pinpdam()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
                 child: Text(
                   'TOP UP',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

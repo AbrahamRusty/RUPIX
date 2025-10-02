@@ -12,49 +12,49 @@ class AktivitasPage extends StatelessWidget {
         "title": "Top Up Saldo",
         "subtitle": "BCA Virtual Account",
         "time": "12:45 - 30 Sep 2025",
-        "status": "Berhasil"
+        "status": "Berhasil",
       },
       {
         "icon": Icons.local_offer,
         "title": "Claim Promo Cashback",
         "subtitle": "Voucher Makan Rp 20.000",
         "time": "11:20 - 29 Sep 2025",
-        "status": "Berhasil"
+        "status": "Berhasil",
       },
       {
         "icon": Icons.flash_on,
         "title": "Bayar Listrik PLN",
         "subtitle": "Token 100k",
         "time": "18:00 - 28 Sep 2025",
-        "status": "Pending"
+        "status": "Pending",
       },
       {
         "icon": Icons.local_atm,
         "title": "Transfer ke Andi",
         "subtitle": "Rp 200.000",
         "time": "14:30 - 27 Sep 2025",
-        "status": "Berhasil"
+        "status": "Berhasil",
       },
       {
         "icon": Icons.phone_android,
         "title": "Beli Pulsa Telkomsel",
         "subtitle": "50.000",
         "time": "09:15 - 26 Sep 2025",
-        "status": "Gagal"
+        "status": "Gagal",
       },
       {
         "icon": Icons.card_giftcard,
         "title": "Bayar Netflix",
         "subtitle": "Rp 54.000",
         "time": "07:10 - 25 Sep 2025",
-        "status": "Berhasil"
+        "status": "Berhasil",
       },
       {
         "icon": Icons.local_dining,
         "title": "Pesan GoFood",
         "subtitle": "McDonald's",
         "time": "20:40 - 24 Sep 2025",
-        "status": "Berhasil"
+        "status": "Berhasil",
       },
     ];
 
@@ -104,8 +104,8 @@ class AktivitasPage extends StatelessWidget {
                         color: item["status"] == "Berhasil"
                             ? Colors.green
                             : item["status"] == "Pending"
-                                ? Colors.orange
-                                : Colors.red,
+                            ? Colors.orange
+                            : Colors.red,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

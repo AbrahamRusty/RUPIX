@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:rupix_app/Pages/WalletHomePage.dart'; // Import file WalletHomePage
 
 class TransferReceiptScreen extends StatelessWidget {
   final String amount;
@@ -48,98 +47,105 @@ class TransferReceiptScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 40),
-              Container(
-                padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Image.asset(
-                      'assets/Transfer/ceklis.png',
-                      width: 60,
-                      height: 60,
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Transfer Successful!',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Your money has been transfered successfully!',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                    ),
-                    const Divider(height: 40),
-                    _buildReceiptRow('Transfer Amount', 'Rp$amount'),
-                    const SizedBox(height: 16),
-                    _buildReceiptRow(recipientName, recipientDetails),
-                    const SizedBox(height: 16),
-                    _buildReceiptRow('Date & Time', '$date, $time'),
-                    const SizedBox(height: 16),
-                    _buildReceiptRow('No. Ref', '117886900281'),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'See Detail',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey[700],
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Colors.grey,
+          child: Center(
+            // Menggunakan Center untuk membatasi lebar
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 350),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(24),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          offset: const Offset(0, 5),
                         ),
                       ],
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () {
-                  // Navigasi kembali ke WalletHomePage
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => WalletHomePage()),
-                    (route) => false, // Hapus semua route sebelumnya
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: const Color(0xFF0088FF),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/Transfer/ceklis.png',
+                          width: 60,
+                          height: 60,
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Transfer Successful!',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Your money has been transfered successfully!',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        const Divider(height: 40),
+                        _buildReceiptRow('Transfer Amount', 'Rp$amount'),
+                        const SizedBox(height: 14),
+                        _buildReceiptRow(recipientName, recipientDetails),
+                        const SizedBox(height: 14),
+                        _buildReceiptRow('Date & Time', '$date, $time'),
+                        const SizedBox(height: 14),
+                        _buildReceiptRow('No. Ref', '117886900281'),
+                        const SizedBox(height: 14), //
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'See Detail',
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.grey[700],
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.grey,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                child: const Text(
-                  'Done',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
+                  const SizedBox(height: 30),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: const Color(0xFF0088FF),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Text(
+                      'Done',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
@@ -150,11 +156,11 @@ class TransferReceiptScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: TextStyle(fontSize: 16, color: Colors.grey[700])),
+        Text(title, style: TextStyle(fontSize: 15, color: Colors.grey[700])),
         Text(
           value,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 15,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),

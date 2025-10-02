@@ -116,35 +116,39 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
               ],
             ),
             const Spacer(),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (_accountNumberController.text.isNotEmpty &&
-                      _amountController.text.isNotEmpty) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => TransferBankConfirmScreen(
-                          bankName: widget.bankName,
-                          accountNumber: _accountNumberController.text,
-                          amount: _amountController.text,
+            // --- BAGIAN YANG DIKOREKSI DIMULAI DI SINI ---
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_accountNumberController.text.isNotEmpty &&
+                        _amountController.text.isNotEmpty) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TransferBankConfirmScreen(
+                            bankName: widget.bankName,
+                            accountNumber: _accountNumberController.text,
+                            amount: _amountController.text,
+                          ),
                         ),
-                      ),
-                    );
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0088FF),
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF0088FF),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
-                ),
-                child: const Text(
-                  'Confirm',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  child: const Text(
+                    'Confirm',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),

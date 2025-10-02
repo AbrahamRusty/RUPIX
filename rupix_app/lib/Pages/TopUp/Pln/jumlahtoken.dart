@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'konfirmasipln.dart';
 
 class Jumlahtoken extends StatefulWidget {
-  const Jumlahtoken({Key? key}) : super(key: key);
+  const Jumlahtoken({super.key});
 
   @override
   _PLNPageState createState() => _PLNPageState();
@@ -27,7 +27,11 @@ class _PLNPageState extends State<Jumlahtoken> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Icon(Icons.flash_on, size: 60, color: const Color.fromARGB(255, 255, 230, 0)),
+        Icon(
+          Icons.flash_on,
+          size: 60,
+          color: const Color.fromARGB(255, 255, 230, 0),
+        ),
         Positioned(
           bottom: 3,
           child: Container(
@@ -55,10 +59,7 @@ class _PLNPageState extends State<Jumlahtoken> {
           onPressed: () => Navigator.of(context).pop(),
           color: Colors.white,
         ),
-        title: Text(
-          'Pilih Nominal',
-          style: TextStyle(color: Colors.white),
-        ),
+        title: Text('Pilih Nominal', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 0, 76, 184),
         elevation: 0,
@@ -80,14 +81,16 @@ class _PLNPageState extends State<Jumlahtoken> {
                 Text(
                   "PLN",
                   style: TextStyle(
-                    fontSize: 18, 
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
                 SizedBox(height: 4),
-                Text("14522133652",
-                    style: TextStyle(fontSize: 14, color: Colors.grey.shade400)),
+                Text(
+                  "14522133652",
+                  style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                ),
               ],
             ),
             const SizedBox(height: 24),
@@ -114,7 +117,9 @@ class _PLNPageState extends State<Jumlahtoken> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: isSelected ? Colors.blueAccent : const Color.fromARGB(77, 111, 111, 111),
+                          color: isSelected
+                              ? Colors.blueAccent
+                              : const Color.fromARGB(77, 111, 111, 111),
                           width: 2,
                         ),
                         borderRadius: BorderRadius.circular(12),
@@ -125,7 +130,7 @@ class _PLNPageState extends State<Jumlahtoken> {
                             blurRadius: 6,
                             spreadRadius: 1,
                             offset: const Offset(0, 3),
-                          )
+                          ),
                         ],
                       ),
                       child: Text(
@@ -156,12 +161,9 @@ class _PLNPageState extends State<Jumlahtoken> {
                     blurRadius: 6,
                     spreadRadius: 1,
                     offset: const Offset(0, 3),
-                  )
+                  ),
                 ],
-                border: Border.all(
-                  color: Colors.grey.shade800,
-                  width: 1,
-                ),
+                border: Border.all(color: Colors.grey.shade800, width: 1),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,7 +171,7 @@ class _PLNPageState extends State<Jumlahtoken> {
                   Text(
                     "Tabungan",
                     style: TextStyle(
-                      fontSize: 16, 
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -199,15 +201,15 @@ class _PLNPageState extends State<Jumlahtoken> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: selectedIndex == null 
-                      ? Colors.grey.shade600 
+                  backgroundColor: selectedIndex == null
+                      ? Colors.grey.shade600
                       : const Color.fromARGB(255, 0, 76, 184),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                   elevation: 4,
-                  shadowColor: selectedIndex == null 
-                      ? Colors.transparent 
+                  shadowColor: selectedIndex == null
+                      ? Colors.transparent
                       : Colors.blue.withOpacity(0.3),
                 ),
                 onPressed: selectedIndex == null
@@ -229,13 +231,13 @@ class _PLNPageState extends State<Jumlahtoken> {
                 child: Text(
                   "SELANJUTNYA",
                   style: TextStyle(
-                    fontSize: 16, 
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
-                  ),              
+                  ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

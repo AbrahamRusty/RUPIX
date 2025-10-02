@@ -70,32 +70,35 @@ class TransferBankConfirmScreen extends StatelessWidget {
             ),
             _buildDetailRow('Total', 'Rp${totalAmount.toStringAsFixed(0)}'),
             const Spacer(),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => TransferReceiptScreen(
-                        amount: totalAmount.toStringAsFixed(0),
-                        recipientName: recipientName,
-                        recipientDetails: accountNumber,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TransferReceiptScreen(
+                          amount: totalAmount.toStringAsFixed(0),
+                          recipientName: recipientName,
+                          recipientDetails: accountNumber,
+                        ),
                       ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF0088FF),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0088FF),
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
                   ),
-                ),
-                child: const Text(
-                  'Continue',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  child: const Text(
+                    'Continue',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),

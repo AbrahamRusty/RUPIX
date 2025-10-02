@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import '../ShopeePay/nominalshopee.dart';
 
 class NoVirtualshopeePage extends StatefulWidget {
+  const NoVirtualshopeePage({super.key});
+
   @override
   _NoVirtualshopeePageState createState() => _NoVirtualshopeePageState();
 }
 
 class _NoVirtualshopeePageState extends State<NoVirtualshopeePage> {
-  TextEditingController _vaController = TextEditingController();
+  final TextEditingController _vaController = TextEditingController();
 
   @override
   void dispose() {
@@ -34,7 +36,11 @@ class _NoVirtualshopeePageState extends State<NoVirtualshopeePage> {
             CircleAvatar(
               radius: 28,
               backgroundColor: Colors.blue.shade100,
-              child: Image.asset('assets/Environment/shopeepay.png', width: 40, height: 40),
+              child: Image.asset(
+                'assets/Environment/shopeepay.png',
+                width: 40,
+                height: 40,
+              ),
             ),
             SizedBox(height: 20),
             Text(
@@ -69,8 +75,8 @@ class _NoVirtualshopeePageState extends State<NoVirtualshopeePage> {
                         shape: BoxShape.circle,
                         color: Colors.grey.shade500,
                       ),
-                      child: Icon(Icons.close, color: Colors.white),
                       padding: EdgeInsets.all(4),
+                      child: Icon(Icons.close, color: Colors.white),
                     ),
                   ),
                 ),
@@ -84,7 +90,9 @@ class _NoVirtualshopeePageState extends State<NoVirtualshopeePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => NominalshopeePage()),
+                    MaterialPageRoute(
+                      builder: (context) => NominalshopeePage(),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'jumlahtoken.dart';
 
 class Nometpln extends StatefulWidget {
+  const Nometpln({super.key});
+
   @override
   _Nometpln createState() => _Nometpln();
 }
 
 class _Nometpln extends State<Nometpln> {
-  TextEditingController _vaController = TextEditingController();
+  final TextEditingController _vaController = TextEditingController();
 
   @override
   void dispose() {
@@ -20,7 +22,11 @@ class _Nometpln extends State<Nometpln> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Icon(Icons.flash_on, size: 28, color: const Color.fromARGB(255, 255, 230, 0)),
+        Icon(
+          Icons.flash_on,
+          size: 28,
+          color: const Color.fromARGB(255, 255, 230, 0),
+        ),
         Positioned(
           bottom: 2,
           child: Container(
@@ -60,7 +66,12 @@ class _Nometpln extends State<Nometpln> {
             SizedBox(height: 24),
             CircleAvatar(
               radius: 28,
-              backgroundColor: const Color.fromARGB(77, 111, 111, 111), // Transparan abu-abu
+              backgroundColor: const Color.fromARGB(
+                77,
+                111,
+                111,
+                111,
+              ), // Transparan abu-abu
               child: _plnLogo(),
             ),
             SizedBox(height: 20),
@@ -78,7 +89,9 @@ class _Nometpln extends State<Nometpln> {
                 TextField(
                   controller: _vaController,
                   keyboardType: TextInputType.number,
-                  style: TextStyle(color: Colors.black), // Text hitam untuk kontras
+                  style: TextStyle(
+                    color: Colors.black,
+                  ), // Text hitam untuk kontras
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.grey.shade300,
@@ -86,7 +99,10 @@ class _Nometpln extends State<Nometpln> {
                       borderRadius: BorderRadius.circular(16),
                       borderSide: BorderSide.none,
                     ),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
                     hintText: 'Masukkan IDPEL/No Meter',
                     hintStyle: TextStyle(color: Colors.grey.shade600),
                   ),
@@ -104,8 +120,8 @@ class _Nometpln extends State<Nometpln> {
                         shape: BoxShape.circle,
                         color: Colors.grey.shade600,
                       ),
-                      child: Icon(Icons.close, color: Colors.white, size: 16),
                       padding: EdgeInsets.all(6),
+                      child: Icon(Icons.close, color: Colors.white, size: 16),
                     ),
                   ),
                 ),
@@ -115,20 +131,26 @@ class _Nometpln extends State<Nometpln> {
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(77, 111, 111, 111), // Card info transparan
+                color: const Color.fromARGB(
+                  77,
+                  111,
+                  111,
+                  111,
+                ), // Card info transparan
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
                 children: [
-                  Icon(Icons.info_outline, color: Colors.blue.shade300, size: 20),
+                  Icon(
+                    Icons.info_outline,
+                    color: Colors.blue.shade300,
+                    size: 20,
+                  ),
                   SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       'Pastikan IDPEL/No Meter sudah benar sebelum melanjutkan',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                      ),
+                      style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
                 ],
@@ -149,7 +171,12 @@ class _Nometpln extends State<Nometpln> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Biru konsisten
+                  backgroundColor: const Color.fromARGB(
+                    255,
+                    0,
+                    76,
+                    184,
+                  ), // Biru konsisten
                   elevation: 4,
                   shadowColor: Colors.blue.withOpacity(0.3),
                 ),

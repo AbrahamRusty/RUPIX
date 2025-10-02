@@ -17,12 +17,12 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
     required this.tarifDaya,
   }) : super(key: key);
 
-  // Widget logo PLN sederhana dengan Icon dan warna
+  // Widget logo PLN untuk dark mode
   Widget _plnLogo() {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Icon(Icons.flash_on, size: 28, color: Colors.red),
+        Icon(Icons.flash_on, size: 28, color: const Color.fromARGB(255, 255, 230, 0)),
         Positioned(
           bottom: 2,
           child: Container(
@@ -30,8 +30,8 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
             height: 6,
             decoration: BoxDecoration(
               border: Border(
-                top: BorderSide(width: 2, color: Colors.blue),
-                bottom: BorderSide(width: 2, color: Colors.blue),
+                top: BorderSide(width: 2, color: Colors.blueAccent),
+                bottom: BorderSide(width: 2, color: Colors.blueAccent),
               ),
               borderRadius: BorderRadius.circular(1),
             ),
@@ -46,123 +46,175 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
     String tipePembayaran = "PLNTopup";
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0), // Background dark
       appBar: AppBar(
         leading: BackButton(
           onPressed: () => Navigator.of(context).pop(),
+          color: Colors.white,
         ),
-        title: Text('KONFIRMASI TRANSAKSI', style: TextStyle(color: Colors.black)),
+        title: Text(
+          'KONFIRMASI TRANSAKSI', 
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)
+        ),
         centerTitle: true,
-        backgroundColor: const Color(0xFF2196F3),
-        foregroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 0, 76, 184),
         elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.blue.shade100,
-                  child: _plnLogo(),
-                ),
-                SizedBox(width: 12),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('PLN TopUp', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                    Text(noMeter, style: TextStyle(fontSize: 14)),
-                  ],
-                )
-              ],
-            ),
-            SizedBox(height: 24),
-
+            // Header dengan logo PLN
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                  boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3, offset: Offset(0, 1))]),
+                color: const Color.fromARGB(77, 111, 111, 111),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.grey.shade800, width: 1),
+              ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Nominal', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text('Rp $nominal', style: TextStyle(fontWeight: FontWeight.bold)),
+                  CircleAvatar(
+                    radius: 24,
+                    backgroundColor: const Color.fromARGB(77, 111, 111, 111),
+                    child: _plnLogo(),
+                  ),
+                  SizedBox(width: 12),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'PLN TopUp', 
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold, 
+                          fontSize: 18,
+                          color: Colors.white
+                        )
+                      ),
+                      Text(
+                        noMeter, 
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey.shade400
+                        )
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 20),
+
+            // Section Nominal dan Biaya Admin
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                  boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3, offset: Offset(0, 1))]),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                color: const Color.fromARGB(77, 111, 111, 111),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 6,
+                    offset: Offset(0, 3),
+                  )
+                ],
+                border: Border.all(color: Colors.grey.shade800, width: 1),
+              ),
+              child: Column(
                 children: [
-                  Text('Biaya Admin', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text('Rp $biayaAdmin', style: TextStyle(fontWeight: FontWeight.bold)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Nominal', 
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white
+                        )
+                      ),
+                      Text(
+                        'Rp $nominal', 
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white
+                        )
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Divider(color: Colors.grey.shade700, height: 1),
+                  SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Biaya Admin', 
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white
+                        )
+                      ),
+                      Text(
+                        'Rp $biayaAdmin', 
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white
+                        )
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
 
-            SizedBox(height: 24),
+            SizedBox(height: 20),
 
+            // Section Detail Transaksi
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(4), boxShadow: [
-                BoxShadow(color: Colors.grey.shade300, blurRadius: 3, offset: Offset(0, 1))
-              ]),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(77, 111, 111, 111),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 6,
+                    offset: Offset(0, 3),
+                  )
+                ],
+                border: Border.all(color: Colors.grey.shade800, width: 1),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Detail', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                  SizedBox(height: 12),
+                  Text(
+                    'Detail Transaksi', 
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold, 
+                      fontSize: 16,
+                      color: Colors.white
+                    )
+                  ),
+                  SizedBox(height: 16),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('No Meter'),
-                      Text(noMeter),
-                    ],
-                  ),
-                  SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Pelanggan'),
-                      Text(pelanggan),
-                    ],
-                  ),
-                  SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Tarif/Daya'),
-                      Text(tarifDaya),
-                    ],
-                  ),
-                  SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Tipe Pembayaran'),
-                      Text(tipePembayaran),
-                    ],
-                  ),
+                  _detailRow('No Meter', noMeter),
+                  SizedBox(height: 12),
+                  _detailRow('Pelanggan', pelanggan),
+                  SizedBox(height: 12),
+                  _detailRow('Tarif/Daya', tarifDaya),
+                  SizedBox(height: 12),
+                  _detailRow('Tipe Pembayaran', tipePembayaran),
                 ],
               ),
             ),
 
             Spacer(),
 
+            // Tombol TOP UP
             SizedBox(
               width: double.infinity,
-              height: 48,
+              height: 52,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -171,18 +223,49 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  backgroundColor: const Color.fromARGB(255, 0, 76, 184),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)
+                  ),
+                  elevation: 4,
+                  shadowColor: Colors.blue.withOpacity(0.3),
                 ),
                 child: Text(
                   'TOP UP',
-                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold, 
+                    color: Colors.white,
+                    fontSize: 16
+                  ),
                 ),
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _detailRow(String label, String value) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          label, 
+          style: TextStyle(
+            color: Colors.grey.shade400,
+            fontSize: 14
+          )
+        ),
+        Text(
+          value, 
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w500
+          )
+        ),
+      ],
     );
   }
 }

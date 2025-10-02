@@ -20,7 +20,7 @@ class _Nometpln extends State<Nometpln> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Icon(Icons.flash_on, size: 28, color: Colors.red),
+        Icon(Icons.flash_on, size: 28, color: const Color.fromARGB(255, 255, 230, 0)),
         Positioned(
           bottom: 2,
           child: Container(
@@ -42,14 +42,15 @@ class _Nometpln extends State<Nometpln> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0), // Background dark
       appBar: AppBar(
         leading: BackButton(
           onPressed: () => Navigator.of(context).pop(),
+          color: Colors.white,
         ),
-        title: Text('PLN', style: TextStyle(color: Colors.black)),
+        title: Text('PLN', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF2196F3),
-        foregroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 0, 76, 184),
         elevation: 0,
       ),
       body: Padding(
@@ -59,13 +60,17 @@ class _Nometpln extends State<Nometpln> {
             SizedBox(height: 24),
             CircleAvatar(
               radius: 28,
-              backgroundColor: const Color.fromRGBO(187, 222, 251, 1),
+              backgroundColor: const Color.fromARGB(77, 111, 111, 111), // Transparan abu-abu
               child: _plnLogo(),
             ),
             SizedBox(height: 20),
             Text(
               'IDPEL/No Meter',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
             ),
             SizedBox(height: 12),
             Stack(
@@ -73,6 +78,7 @@ class _Nometpln extends State<Nometpln> {
                 TextField(
                   controller: _vaController,
                   keyboardType: TextInputType.number,
+                  style: TextStyle(color: Colors.black), // Text hitam untuk kontras
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.grey.shade300,
@@ -80,6 +86,9 @@ class _Nometpln extends State<Nometpln> {
                       borderRadius: BorderRadius.circular(16),
                       borderSide: BorderSide.none,
                     ),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    hintText: 'Masukkan IDPEL/No Meter',
+                    hintStyle: TextStyle(color: Colors.grey.shade600),
                   ),
                 ),
                 Positioned(
@@ -93,38 +102,63 @@ class _Nometpln extends State<Nometpln> {
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.grey.shade500,
+                        color: Colors.grey.shade600,
                       ),
-                      child: Icon(Icons.close, color: Colors.white),
-                      padding: EdgeInsets.all(4),
+                      child: Icon(Icons.close, color: Colors.white, size: 16),
+                      padding: EdgeInsets.all(6),
                     ),
                   ),
                 ),
               ],
             ),
+            SizedBox(height: 20),
+            Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(77, 111, 111, 111), // Card info transparan
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.info_outline, color: Colors.blue.shade300, size: 20),
+                  SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      'Pastikan IDPEL/No Meter sudah benar sebelum melanjutkan',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Spacer(),
             SizedBox(
               width: double.infinity,
-              height: 48,
-              child: OutlinedButton(
+              height: 52,
+              child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Jumlahtoken()),
                   );
                 },
-                style: OutlinedButton.styleFrom(
+                style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  side: BorderSide(color: Colors.black, width: 2),
-                  backgroundColor: Colors.black,
+                  backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Biru konsisten
+                  elevation: 4,
+                  shadowColor: Colors.blue.withOpacity(0.3),
                 ),
                 child: Text(
                   'SELANJUTNYA',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                 ),
               ),

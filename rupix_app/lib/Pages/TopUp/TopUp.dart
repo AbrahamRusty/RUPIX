@@ -20,24 +20,28 @@ class _TopUpPageState extends State<TopUpPage> {
       'label': 'PLN',
       'icon': Icons.flash_on,
       'color': const Color.fromARGB(255, 255, 230, 0),
-      'widget': Nometpln(), // Changed from Jumlahtoken to Notapln
+      'size': 40.0,
+      'widget': Nometpln(),
     },
     {
       'label': 'Pulsa',
       'icon': Icons.phone_android,
-      'color': Colors.black54,
+      'color': const Color.fromARGB(136, 21, 255, 0),
+      'size': 40.0,
       'widget': Notelp(),
     },
     {
       'label': 'E-Wallet',
       'icon': Icons.account_balance_wallet,
-      'color': Colors.blue,
+      'color': const Color.fromARGB(255, 243, 33, 33),
+      'size': 40.0,
       'widget': const EwalletMain(),
     },
     {
       'label': 'PDAM',
-      'icon': null,
-      'image': 'assets/Environment/Water_Drop.png',
+      'icon': Icons.water_drop,
+      'color': Colors.blueAccent,
+      'size': 40.0,
       'widget': const NoVirtualpdamPage(),
     },
   ];
@@ -66,9 +70,16 @@ class _TopUpPageState extends State<TopUpPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TOP UP'),
+        title: const Text(
+          'TOP UP',
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
-        backgroundColor: const Color(0xFF2196F3),
+        backgroundColor: const Color.fromARGB(255, 0, 76, 184),
         elevation: 0,
         leading: BackButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -77,8 +88,8 @@ class _TopUpPageState extends State<TopUpPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
+            color: Colors.white,
             onPressed: () {
-              // For demo, just clear search
               _searchController.clear();
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Opsi top up diperbarui')),
@@ -87,113 +98,72 @@ class _TopUpPageState extends State<TopUpPage> {
           ),
         ],
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return Column(
-              children: [
-                // Header
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.blue.shade50,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Pilih Layanan Top Up',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                // Search bar
-                TextField(
-                  controller: _searchController,
-                  decoration: InputDecoration(
-                    hintText: 'Cari layanan top up...',
-                    prefixIcon: const Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                // Recent Transactions
-                // Grid of top-up options filtered by search
-                Expanded(
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    children: filteredOptions.map((option) {
-                      return _topUpOption(
-                        context,
-                        icon: option['icon'] != null
-                            ? Icon(option['icon'], size: 40, color: option['color'])
-                            : Image.asset(option['image'], width: 40, height: 40, fit: BoxFit.contain),
-                        label: option['label'],
-                        onTap: () {
-                          if (option['widget'] != null) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => option['widget']),
-                            );
-                          }
-                        },
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-    );
-  }
-
-  Widget _topUpOption(
-    BuildContext context, {
-    required Widget icon,
-    required String label,
-    required VoidCallback onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.15),
-              blurRadius: 8,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 24),
-        width: double.infinity,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
-            icon,
-            const SizedBox(height: 12),
-            Text(
-              label,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                color: Colors.black87,
+            // Header
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(77, 111, 111, 111),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Center(
+                child: Text(
+                  'Pilih Layanan Top Up',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            
+            // Search bar
+            TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                hintText: 'Cari layanan top up...',
+                hintStyle: const TextStyle(color: Colors.grey),
+                prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                filled: true,
+                fillColor: const Color.fromARGB(77, 111, 111, 111),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              ),
+              style: const TextStyle(color: Colors.white),
+            ),
+            const SizedBox(height: 16),
+            
+            // Grid of top-up options
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                children: filteredOptions.map((option) {
+                  return _buildTopUpCard(
+                    icon: Icon(
+                      option['icon'],
+                      size: option['size'],
+                      color: option['color'],
+                    ),
+                    label: option['label'],
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => option['widget']),
+                      );
+                    },
+                  );
+                }).toList(),
               ),
             ),
           ],
@@ -201,5 +171,53 @@ class _TopUpPageState extends State<TopUpPage> {
       ),
     );
   }
+
+  Widget _buildTopUpCard({
+    required Widget icon,
+    required String label,
+    required VoidCallback onTap,
+  }) {
+    return Card(
+      color: const Color.fromARGB(77, 111, 111, 111),
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(
+          color: Colors.grey.shade600,
+          width: 1,
+        ),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.3),
+                  shape: BoxShape.circle,
+                ),
+                child: Center(child: icon),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
-  

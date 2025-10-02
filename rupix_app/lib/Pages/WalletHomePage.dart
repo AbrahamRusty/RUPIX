@@ -25,6 +25,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
 
   // Colors for Dark Mode
   final Color _backgroundColor = Color.fromARGB(255, 0, 0, 0);
+  final Color _headerBackgroundColor = Color.fromARGB(255, 0, 76, 184); // Warna biru untuk header
   final Color _cardColor = Color(0xFF1A1A1A);
   final Color _textColor = Colors.white;
   final Color _secondaryTextColor = Colors.grey[400]!;
@@ -38,15 +39,16 @@ class _WalletHomePageState extends State<WalletHomePage> {
       backgroundColor: _backgroundColor,
       body: Stack(
         children: [
-          // Background 50:50
+          // Background dengan header biru
           Column(
             children: [
-              Expanded(
-                flex: 1,
-                child: Container(color: _backgroundColor),
+              // Header bagian (biru)
+              Container(
+                height: 90, // Tinggi header
+                color: _headerBackgroundColor,
               ),
+              // Background utama (hitam)
               Expanded(
-                flex: 1,
                 child: Container(color: _backgroundColor),
               ),
             ],
@@ -55,79 +57,89 @@ class _WalletHomePageState extends State<WalletHomePage> {
           SafeArea(
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
+                // Header Section dengan background biru
+                Container(
+                  decoration: BoxDecoration(
+                    color: _headerBackgroundColor,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                    ),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        icon: Icon(
-                          Icons.menu,
-                          size: 28,
-                          color: _iconColor,
-                        ),
-                        onPressed: () => _openHalfDrawer(context),
-                      ),
-
-                      DropdownButtonHideUnderline(
-                        child: DropdownButton<String>(
-                          value: _selectedWallet,
-                          dropdownColor: _buttonColor,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: _textColor,
-                          ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
                           icon: Icon(
-                            Icons.arrow_drop_down,
-                            color: _textColor,
+                            Icons.menu,
+                            size: 28,
+                            color: _iconColor,
                           ),
-                          items: _walletOptions.map((wallet) {
-                            return DropdownMenuItem<String>(
-                              value: wallet,
-                              child: Text(wallet),
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            if (value == null) return;
-
-                            if (value == "Crypto Wallet" &&
-                                _selectedWallet != "Crypto Wallet") {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => const WelcomeCrypto(),
-                                ),
-                              );
-                            } else if (value == "Rupiah Wallet" &&
-                                _selectedWallet != "Rupiah Wallet") {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => const WalletHomePage(),
-                                ),
-                              );
-                            }
-
-                            setState(() {
-                              _selectedWallet = value;
-                            });
-                          },
+                          onPressed: () => _openHalfDrawer(context),
                         ),
-                      ),
 
-                      IconButton(
-                        icon: Icon(
-                          Icons.person,
-                          size: 28,
-                          color: _iconColor,
+                        DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: _selectedWallet,
+                            dropdownColor: _buttonColor,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: _textColor,
+                            ),
+                            icon: Icon(
+                              Icons.arrow_drop_down,
+                              color: _textColor,
+                            ),
+                            items: _walletOptions.map((wallet) {
+                              return DropdownMenuItem<String>(
+                                value: wallet,
+                                child: Text(wallet),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              if (value == null) return;
+
+                              if (value == "Crypto Wallet" &&
+                                  _selectedWallet != "Crypto Wallet") {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const WelcomeCrypto(),
+                                  ),
+                                );
+                              } else if (value == "Rupiah Wallet" &&
+                                  _selectedWallet != "Rupiah Wallet") {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const WalletHomePage(),
+                                  ),
+                                );
+                              }
+
+                              setState(() {
+                                _selectedWallet = value;
+                              });
+                            },
+                          ),
                         ),
-                        onPressed: () => debugPrint("User tapped"),
-                      ),
-                    ],
+
+                        IconButton(
+                          icon: Icon(
+                            Icons.person,
+                            size: 28,
+                            color: _iconColor,
+                          ),
+                          onPressed: () => debugPrint("User tapped"),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -141,12 +153,12 @@ class _WalletHomePageState extends State<WalletHomePage> {
   }
 
   void _openHalfDrawer(BuildContext context) {
-  showDialog(
-    context: context,
-    barrierColor: Colors.transparent,
-    builder: (_) => const HalfDrawerMenu(), // TANPA PARAMETER
-  );
-}
+    showDialog(
+      context: context,
+      barrierColor: Colors.transparent,
+      builder: (_) => const HalfDrawerMenu(), // TANPA PARAMETER
+    );
+  }
 
   Widget _buildMainWalletPage(BuildContext context) {
     return Column(
@@ -452,7 +464,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
                     Icon(Icons.arrow_downward, size: 20, color: Colors.red),
                     const SizedBox(width: 4),
                     Text(
-                      "Rp250.000",
+                      "Rp10.000.000",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 14,

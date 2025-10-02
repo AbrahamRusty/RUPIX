@@ -20,14 +20,14 @@ class _PLNPageState extends State<Jumlahtoken> {
     "10juta",
   ];
 
-  int? selectedIndex; // index pilihan yang dipilih
+  int? selectedIndex;
 
-  // Widget logo PLN sederhana dengan Icon dan warna
+  // Widget logo PLN untuk dark mode
   Widget _plnLogo() {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Icon(Icons.flash_on, size: 60, color: Colors.red),
+        Icon(Icons.flash_on, size: 60, color: const Color.fromARGB(255, 255, 230, 0)),
         Positioned(
           bottom: 3,
           child: Container(
@@ -35,8 +35,8 @@ class _PLNPageState extends State<Jumlahtoken> {
             height: 10,
             decoration: BoxDecoration(
               border: Border(
-                top: BorderSide(width: 3, color: Colors.blue),
-                bottom: BorderSide(width: 3, color: Colors.blue),
+                top: BorderSide(width: 3, color: Colors.blueAccent),
+                bottom: BorderSide(width: 3, color: Colors.blueAccent),
               ),
               borderRadius: BorderRadius.circular(2),
             ),
@@ -49,11 +49,18 @@ class _PLNPageState extends State<Jumlahtoken> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0), // Background dark
       appBar: AppBar(
         leading: BackButton(
           onPressed: () => Navigator.of(context).pop(),
+          color: Colors.white,
         ),
-        backgroundColor: const Color(0xFF2196F3),
+        title: Text(
+          'Pilih Nominal',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 0, 76, 184),
         elevation: 0,
       ),
       body: Padding(
@@ -64,25 +71,33 @@ class _PLNPageState extends State<Jumlahtoken> {
             // Logo PLN + nomor
             Column(
               children: [
-                _plnLogo(),
-                SizedBox(height: 8),
+                CircleAvatar(
+                  radius: 40,
+                  backgroundColor: const Color.fromARGB(77, 111, 111, 111),
+                  child: _plnLogo(),
+                ),
+                SizedBox(height: 12),
                 Text(
                   "PLN",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 18, 
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
                 SizedBox(height: 4),
                 Text("14522133652",
-                    style: TextStyle(fontSize: 14, color: Colors.black54)),
+                    style: TextStyle(fontSize: 14, color: Colors.grey.shade400)),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
 
             // Grid pilihan nominal
             Expanded(
               child: GridView.builder(
                 itemCount: nominalList.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // 2 kolom
+                  crossAxisCount: 2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
                   childAspectRatio: 2.8,
@@ -99,17 +114,17 @@ class _PLNPageState extends State<Jumlahtoken> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: isSelected ? Colors.blue : Colors.grey.shade300,
+                          color: isSelected ? Colors.blueAccent : const Color.fromARGB(77, 111, 111, 111),
                           width: 2,
                         ),
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        color: const Color.fromARGB(77, 111, 111, 111),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            blurRadius: 3,
+                            color: Colors.black.withOpacity(0.3),
+                            blurRadius: 6,
                             spreadRadius: 1,
-                            offset: const Offset(0, 2),
+                            offset: const Offset(0, 3),
                           )
                         ],
                       ),
@@ -118,7 +133,7 @@ class _PLNPageState extends State<Jumlahtoken> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
-                          color: isSelected ? Colors.blue : Colors.black,
+                          color: isSelected ? Colors.blueAccent : Colors.white,
                         ),
                       ),
                     ),
@@ -133,33 +148,45 @@ class _PLNPageState extends State<Jumlahtoken> {
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
+                color: const Color.fromARGB(77, 111, 111, 111),
+                borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    blurRadius: 3,
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 6,
                     spreadRadius: 1,
-                    offset: const Offset(0, 2),
+                    offset: const Offset(0, 3),
                   )
                 ],
+                border: Border.all(
+                  color: Colors.grey.shade800,
+                  width: 1,
+                ),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text("Tabungan",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 4),
-                  Text("1172734473287178",
-                      style: TextStyle(fontSize: 14, color: Colors.black54)),
+                children: [
+                  Text(
+                    "Tabungan",
+                    style: TextStyle(
+                      fontSize: 16, 
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 6),
+                  Text(
+                    "1172734473287178",
+                    style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                  ),
                   SizedBox(height: 8),
                   Text(
                     "Rp100.000.000",
                     style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),
@@ -168,13 +195,20 @@ class _PLNPageState extends State<Jumlahtoken> {
             // Tombol Selanjutnya
             SizedBox(
               width: double.infinity,
+              height: 52,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: Colors.black,
+                  backgroundColor: selectedIndex == null 
+                      ? Colors.grey.shade600 
+                      : const Color.fromARGB(255, 0, 76, 184),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
+                  elevation: 4,
+                  shadowColor: selectedIndex == null 
+                      ? Colors.transparent 
+                      : Colors.blue.withOpacity(0.3),
                 ),
                 onPressed: selectedIndex == null
                     ? null
@@ -192,9 +226,13 @@ class _PLNPageState extends State<Jumlahtoken> {
                           ),
                         );
                       },
-                child: const Text(
+                child: Text(
                   "SELANJUTNYA",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),              
+                  style: TextStyle(
+                    fontSize: 16, 
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),              
                 ),
               ),
             )

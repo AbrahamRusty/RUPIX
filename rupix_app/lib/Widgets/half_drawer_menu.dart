@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rupix_app/widgets/logout_dialog.dart';
 
 class HalfDrawerMenu extends StatefulWidget {
   const HalfDrawerMenu({super.key});
@@ -14,6 +15,12 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu>
 
   double dragStartX = 0;
   double drawerWidth = 0;
+
+  // Dark Mode Colors
+  final Color _drawerColor = Color(0xFF1E1E1E);
+  final Color _textColor = Colors.white;
+  final Color _iconColor = Colors.white;
+  final Color _logoutColor = Color(0xFFD32F2F);
 
   @override
   void initState() {
@@ -35,6 +42,22 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu>
     _controller.reverse().then((_) {
       if (mounted) Navigator.of(context).pop();
     });
+  }
+
+  // Fungsi untuk menampilkan dialog logout
+  Future<void> _showLogoutDialog() async {
+    final result = await showDialog(
+      context: context,
+      builder: (context) => LogoutDialog(), // HAPUS CONST
+    );
+    
+    if (result == true) {
+      // Logout logic - navigasi ke login screen
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        '/login',
+        (Route<dynamic> route) => false,
+      );
+    }
   }
 
   @override
@@ -75,17 +98,17 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu>
                 child: Container(
                   width: drawerWidth,
                   height: double.infinity,
-                  color: const Color(0xFF3C8DFF),
+                  color: _drawerColor,
                   padding:
                       const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           "Menu",
                           style: TextStyle(
-                            color: Colors.black,
+                            color: _textColor,
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                           ),
@@ -100,23 +123,29 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu>
                         _menuItem(Icons.chat, "Chat Bot"),
                         _menuItem(Icons.settings, "Settings"),
                         const SizedBox(height: 40),
+                        // Logout Button dengan dialog
                         InkWell(
-                          onTap: () => debugPrint("Logout tapped"),
+                          onTap: _showLogoutDialog,
                           borderRadius: BorderRadius.circular(8),
                           child: Container(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 12, horizontal: 16),
                             decoration: BoxDecoration(
-                                color: Colors.red.withOpacity(0.2),
-                                borderRadius: BorderRadius.circular(8)),
+                              color: _logoutColor.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: _logoutColor),
+                            ),
                             child: Row(
-                              children: const [
-                                Icon(Icons.logout, color: Colors.white),
-                                SizedBox(width: 12),
-                                Text("Logout",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold)),
+                              children: [
+                                Icon(Icons.logout, color: _logoutColor),
+                                const SizedBox(width: 12),
+                                Text(
+                                  "Logout",
+                                  style: TextStyle(
+                                    color: _logoutColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -142,12 +171,15 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu>
         padding: const EdgeInsets.symmetric(vertical: 12),
         child: Row(
           children: [
-            Icon(icon, color: Colors.black, size: 22),
+            Icon(icon, color: _iconColor, size: 22),
             const SizedBox(width: 16),
             Text(
               label,
-              style: const TextStyle(
-                  color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                color: _textColor,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ],
         ),

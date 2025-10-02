@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:rupix_app/Pages/WalletHomePage.dart'; // Import file WalletHomePage
 
 class TransferReceiptScreen extends StatelessWidget {
   final String amount;
@@ -118,7 +119,12 @@ class TransferReceiptScreen extends StatelessWidget {
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.popUntil(context, (route) => route.isFirst);
+                  // Navigasi kembali ke WalletHomePage
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => WalletHomePage()),
+                    (route) => false, // Hapus semua route sebelumnya
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,

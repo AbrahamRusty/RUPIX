@@ -20,9 +20,19 @@ class _WalletHomePageState extends State<WalletHomePage> {
   String _selectedWallet = "Rupiah Wallet";
   final List<String> _walletOptions = ["Rupiah Wallet", "Crypto Wallet"];
 
+  // Colors for Dark Mode
+  final Color _backgroundColor = Color.fromARGB(255, 0, 0, 0);
+  final Color _cardColor = Color(0xFF1A1A1A);
+  final Color _textColor = Colors.white;
+  final Color _secondaryTextColor = Colors.grey[400]!;
+  final Color _iconColor = Colors.white;
+  final Color _buttonColor = Color(0xFF2D2D2D);
+  final Color _progressBackground = Color(0xFF404040);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _backgroundColor,
       body: Stack(
         children: [
           // Background 50:50
@@ -30,11 +40,11 @@ class _WalletHomePageState extends State<WalletHomePage> {
             children: [
               Expanded(
                 flex: 1,
-                child: Container(color: const Color(0xFF3C8DFF)),
+                child: Container(color: _backgroundColor),
               ),
               Expanded(
                 flex: 1,
-                child: Container(color: const Color(0xFFF1F0F0)),
+                child: Container(color: _backgroundColor),
               ),
             ],
           ),
@@ -51,10 +61,10 @@ class _WalletHomePageState extends State<WalletHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.menu,
                           size: 28,
-                          color: Colors.black,
+                          color: _iconColor,
                         ),
                         onPressed: () => _openHalfDrawer(context),
                       ),
@@ -62,15 +72,15 @@ class _WalletHomePageState extends State<WalletHomePage> {
                       DropdownButtonHideUnderline(
                         child: DropdownButton<String>(
                           value: _selectedWallet,
-                          dropdownColor: Colors.white,
-                          style: const TextStyle(
+                          dropdownColor: _buttonColor,
+                          style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
-                            color: Colors.black,
+                            color: _textColor,
                           ),
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.arrow_drop_down,
-                            color: Colors.black,
+                            color: _textColor,
                           ),
                           items: _walletOptions.map((wallet) {
                             return DropdownMenuItem<String>(
@@ -107,10 +117,10 @@ class _WalletHomePageState extends State<WalletHomePage> {
                       ),
 
                       IconButton(
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.person,
                           size: 28,
-                          color: Colors.black,
+                          color: _iconColor,
                         ),
                         onPressed: () => debugPrint("User tapped"),
                       ),
@@ -128,12 +138,12 @@ class _WalletHomePageState extends State<WalletHomePage> {
   }
 
   void _openHalfDrawer(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierColor: Colors.transparent,
-      builder: (_) => const HalfDrawerMenu(),
-    );
-  }
+  showDialog(
+    context: context,
+    barrierColor: Colors.transparent,
+    builder: (_) => const HalfDrawerMenu(), // TANPA PARAMETER
+  );
+}
 
   Widget _buildMainWalletPage(BuildContext context) {
     return Column(
@@ -153,11 +163,11 @@ class _WalletHomePageState extends State<WalletHomePage> {
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: _cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black12,
+            color: Colors.black.withOpacity(0.3),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -165,12 +175,12 @@ class _WalletHomePageState extends State<WalletHomePage> {
       ),
       child: Column(
         children: [
-          const Text(
+          Text(
             'SALDO',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Colors.black87,
+              color: _textColor,
             ),
           ),
           const SizedBox(height: 8),
@@ -179,7 +189,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
               IconButton(
                 icon: Icon(
                   _isHidden ? Icons.visibility_off : Icons.visibility,
-                  color: Colors.grey[700],
+                  color: _secondaryTextColor,
                 ),
                 onPressed: () => setState(() => _isHidden = !_isHidden),
               ),
@@ -187,15 +197,16 @@ class _WalletHomePageState extends State<WalletHomePage> {
                 child: Center(
                   child: Text(
                     _isHidden ? "••••••••••" : balance,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
+                      color: _textColor,
                     ),
                   ),
                 ),
               ),
               IconButton(
-                icon: const Icon(Icons.qr_code_scanner, color: Colors.black87),
+                icon: Icon(Icons.qr_code_scanner, color: _textColor),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -226,7 +237,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: _buttonColor,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -239,21 +250,21 @@ class _WalletHomePageState extends State<WalletHomePage> {
                 children: [
                   CircularProgressIndicator(
                     value: percent,
-                    backgroundColor: Colors.grey[700],
+                    backgroundColor: _progressBackground,
                     color: Colors.green,
                     strokeWidth: 4,
                   ),
                   Center(
                     child: Text(
                       "${(percent * 100).toInt()}%",
-                      style: const TextStyle(color: Colors.white, fontSize: 10),
+                      style: TextStyle(color: Colors.white, fontSize: 10),
                     ),
                   ),
                 ],
               ),
             ),
             const SizedBox(width: 12),
-            const Expanded(
+            Expanded(
               child: Text(
                 'Rp50.000.000 terpakai di Agustus',
                 style: TextStyle(
@@ -263,7 +274,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
                 ),
               ),
             ),
-            const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
+            Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
           ],
         ),
       ),
@@ -299,13 +310,16 @@ class _WalletHomePageState extends State<WalletHomePage> {
         Container(
           width: 50,
           height: 50,
-          decoration: const BoxDecoration(
-            color: Colors.yellow,
+          decoration: BoxDecoration(
+            color: _buttonColor,
             shape: BoxShape.circle,
           ),
           child: IconButton(
             onPressed: () => debugPrint("MORE tapped"),
-            icon: const Icon(Icons.more_horiz, color: Colors.black),
+            icon: Icon(
+              Icons.more_horiz, 
+              color: Colors.white
+            ),
           ),
         ),
       ],
@@ -321,7 +335,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
     return Container(
       height: 50,
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: _buttonColor,
         borderRadius: BorderRadius.circular(30),
       ),
       child: InkWell(
@@ -345,7 +359,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
               padding: const EdgeInsets.only(right: 16),
               child: Text(
                 label,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -370,11 +384,11 @@ class _WalletHomePageState extends State<WalletHomePage> {
         margin: const EdgeInsets.symmetric(horizontal: 16),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: _cardColor,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black12,
+              color: Colors.black.withOpacity(0.3),
               blurRadius: 6,
               offset: const Offset(0, 3),
             ),
@@ -383,7 +397,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
         child: Column(
           children: [
             Row(
-              children: const [
+              children: [
                 Expanded(
                   child: Center(
                     child: Text(
@@ -391,11 +405,12 @@ class _WalletHomePageState extends State<WalletHomePage> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
+                        color: _textColor,
                       ),
                     ),
                   ),
                 ),
-                Icon(Icons.expand_more, color: Colors.black54),
+                Icon(Icons.expand_more, color: _secondaryTextColor),
               ],
             ),
             const SizedBox(height: 12),
@@ -406,32 +421,33 @@ class _WalletHomePageState extends State<WalletHomePage> {
                   children: [
                     CircleAvatar(
                       radius: 18,
-                      backgroundColor: Colors.grey[200],
-                      child: const Icon(Icons.flash_on, color: Colors.orange),
+                      backgroundColor: _buttonColor,
+                      child: Icon(Icons.flash_on, color: Colors.orange),
                     ),
                     const SizedBox(width: 12),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           "Listrik PLN",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
+                            color: _textColor,
                           ),
                         ),
                         Text(
                           "Kemarin 19.00",
-                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                          style: TextStyle(color: _secondaryTextColor, fontSize: 12),
                         ),
                       ],
                     ),
                   ],
                 ),
                 Row(
-                  children: const [
+                  children: [
                     Icon(Icons.arrow_downward, size: 20, color: Colors.red),
-                    SizedBox(width: 4),
+                    const SizedBox(width: 4),
                     Text(
                       "Rp250.000",
                       style: TextStyle(
@@ -476,18 +492,20 @@ class _WalletHomePageState extends State<WalletHomePage> {
       borderRadius: BorderRadius.circular(12),
       child: Card(
         elevation: 3,
+        color: _cardColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon, size: 28, color: Colors.blueAccent),
+              Icon(icon, size: 28, color: Colors.blue[200]),
               const SizedBox(height: 8),
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
+                  color: _textColor,
                 ),
               ),
             ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'Pln/nomet.dart';
 import 'EWallet/Ewallet_main.dart';
 import 'Pulsa/notelp.dart';
-import 'PDAM/nominalpdam.dart';
+import 'PDAM/no_virtualpdam.dart';
 
 class TopUpPage extends StatefulWidget {
   const TopUpPage({super.key});
@@ -38,7 +38,7 @@ class _TopUpPageState extends State<TopUpPage> {
       'label': 'PDAM',
       'icon': null,
       'image': 'assets/Environment/Water_Drop.png',
-      'widget': const NominalpdamPage(),
+      'widget': const NoVirtualpdamPage(),
     },
   ];
 

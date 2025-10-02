@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'no_virtualpdam.dart';
+import 'konfirmasipdam.dart';
 
 class NominalpdamPage extends StatefulWidget {
-  const NominalpdamPage({Key? key}) : super(key: key);
+  final String customerId;
+
+  const NominalpdamPage({Key? key, required this.customerId}) : super(key: key);
 
   @override
   _NominalpdamPageState createState() => _NominalpdamPageState();
@@ -185,8 +187,9 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => NoVirtualpdamPage(
+                            builder: (context) => KonfirmasipdamPage(
                               nominal: nominalList[selectedIndex!],
+                              customerId: widget.customerId,
                             ),
                           ),
                         );

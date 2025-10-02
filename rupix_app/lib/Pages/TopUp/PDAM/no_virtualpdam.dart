@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'konfirmasipdam.dart';
+import 'nominalpdam.dart';
 
 class NoVirtualpdamPage extends StatefulWidget {
-  final String nominal;
-
-  const NoVirtualpdamPage({Key? key, required this.nominal}) : super(key: key);
+  const NoVirtualpdamPage({Key? key}) : super(key: key);
 
   @override
   _NoVirtualpdamPageState createState() => _NoVirtualpdamPageState();
@@ -80,28 +78,6 @@ class _NoVirtualpdamPageState extends State<NoVirtualpdamPage> {
                 ),
               ],
             ),
-            SizedBox(height: 24),
-            Container(
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade300,
-                    blurRadius: 3,
-                    offset: Offset(0, 1),
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Nominal', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text('Rp ${widget.nominal}', style: TextStyle(fontWeight: FontWeight.bold)),
-                ],
-              ),
-            ),
             Spacer(),
             SizedBox(
               width: double.infinity,
@@ -118,10 +94,7 @@ class _NoVirtualpdamPageState extends State<NoVirtualpdamPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => KonfirmasipdamPage(
-                        nominal: widget.nominal,
-                        customerId: customerId,
-                      ),
+                      builder: (context) => NominalpdamPage(customerId: customerId),
                     ),
                   );
                 },

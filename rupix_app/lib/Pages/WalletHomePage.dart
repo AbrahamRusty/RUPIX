@@ -6,7 +6,7 @@ import 'package:rupix_app/Pages/Login/welcomecrypto.dart';
 import 'package:rupix_app/Widgets/half_drawer_menu.dart';
 import 'package:rupix_app/Pages/Transfer/transfer_screen.dart';
 import 'package:rupix_app/Pages/TopUp/Pln/nomet.dart';
-import 'package:rupix_app/Pages/TopUp/PDAM/nominalpdam.dart';
+import 'package:rupix_app/Pages/TopUp/PDAM/no_virtualpdam.dart';
 import 'package:rupix_app/Pages/TopUp/EWallet/Ewallet_main.dart';
 
 class WalletHomePage extends StatefulWidget {
@@ -490,7 +490,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
         _serviceCard("Air", Icons.water_drop, onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (_) => const NominalpdamPage()),
+            MaterialPageRoute(builder: (_) => const NoVirtualpdamPage()),
           );
         }),
         _serviceCard("Listrik", Icons.flash_on, onTap: () {

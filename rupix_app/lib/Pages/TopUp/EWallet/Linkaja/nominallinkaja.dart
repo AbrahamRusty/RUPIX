@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'konfirmasidana.dart';
+import 'konfirmasilinkaja.dart';
 
-class NominalDanaPage extends StatefulWidget {
+class NominallinkajaPage extends StatefulWidget {
   final String virtualNumber;
 
-  const NominalDanaPage({Key? key, this.virtualNumber = ''}) : super(key: key);
+  const NominallinkajaPage({Key? key, this.virtualNumber = ''}) : super(key: key);
 
   @override
-  _NominalDanaPageState createState() => _NominalDanaPageState();
+  _NominallinkajaPageState createState() => _NominallinkajaPageState();
 }
 
-class _NominalDanaPageState extends State<NominalDanaPage> {
+class _NominallinkajaPageState extends State<NominallinkajaPage> {
   TextEditingController _nominalController = TextEditingController(text: '0');
 
   @override
@@ -29,9 +29,9 @@ class _NominalDanaPageState extends State<NominalDanaPage> {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
-        title: Text('Dana', style: TextStyle(color: Colors.white)),
+        title: Text('LinkAja', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0066CC),
+        backgroundColor: const Color(0xFFE52B2B),
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -42,7 +42,11 @@ class _NominalDanaPageState extends State<NominalDanaPage> {
             // Virtual Number Always On Top
             Row(
               children: [
-                Image.asset('assets/Environment/dana.png', width: 20, height: 20),
+                CircleAvatar(
+                  radius: 16,
+                  backgroundColor: Colors.blue.shade100,
+                  child: Image.asset('assets/Environment/linkaja.png', width: 20, height: 20),
+                ),
                 SizedBox(width: 8),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +125,7 @@ class _NominalDanaPageState extends State<NominalDanaPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => KonfirmasiDanaPage(
+                      builder: (context) => KonfirmasilinkajaPage(
                         virtualNumber: widget.virtualNumber,
                         nominal: nominal,
                         customerName: maskedName,
@@ -131,7 +135,7 @@ class _NominalDanaPageState extends State<NominalDanaPage> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0066CC),
+                  backgroundColor: const Color(0xFFE52B2B),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

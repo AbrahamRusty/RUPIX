@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'pindana.dart';
+import 'pinshopee.dart';
 
-class KonfirmasiDanaPage extends StatelessWidget {
+class KonfirmasishopeePage extends StatelessWidget {
   final String virtualNumber;
   final int nominal;
   final String customerName;
   final String phoneNumber;
 
-  const KonfirmasiDanaPage({
+  const KonfirmasishopeePage({
     Key? key,
     required this.virtualNumber,
     required this.nominal,
@@ -18,7 +18,7 @@ class KonfirmasiDanaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int biayaAdmin = 1000;
-    String tipePembayaran = "DanaTopup";
+    String tipePembayaran = "ShopeePayTopup";
 
     String formatRupiah(int value) {
       return 'Rp ' + value.toString().replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]}.');
@@ -29,7 +29,7 @@ class KonfirmasiDanaPage extends StatelessWidget {
         leading: BackButton(),
         title: Text('KONFIRMASI TRANSAKSI', style: TextStyle(color: Colors.black)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0066CC),
+        backgroundColor: const Color(0xFFFF5722),
         foregroundColor: Colors.black,
         elevation: 0,
       ),
@@ -42,13 +42,13 @@ class KonfirmasiDanaPage extends StatelessWidget {
                 CircleAvatar(
                   radius: 20,
                   backgroundColor: Colors.blue.shade100,
-                  child: Image.asset('assets/Environment/dana.png', width: 28, height: 28),
+                  child: Image.asset('assets/Environment/shopeepay.png', width: 28, height: 28),
                 ),
                 SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('DanaTopup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                    Text('ShopeePayTopup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                     Text(phoneNumber, style: TextStyle(fontSize: 14)),
                   ],
                 )
@@ -134,13 +134,13 @@ class KonfirmasiDanaPage extends StatelessWidget {
               height: 48,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
+                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pindana()),
+                    MaterialPageRoute(builder: (context) => Pinshopee()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0066CC),
+                  backgroundColor: const Color(0xFFFF5722),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 ),
                 child: Text(

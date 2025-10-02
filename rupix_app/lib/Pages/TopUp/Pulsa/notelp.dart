@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../Dana/nominaldana.dart';
+import 'jumlahpulsa.dart';
 
-class NoVirtualDanaPage extends StatefulWidget {
+class Notelp extends StatefulWidget {
   @override
-  _NoVirtualDanaPageState createState() => _NoVirtualDanaPageState();
+  _notelp createState() => _notelp();
 }
 
-class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
+class _notelp extends State<Notelp> {
   TextEditingController _vaController = TextEditingController();
 
   @override
@@ -15,15 +15,26 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
     super.dispose();
   }
 
+  // Widget logo PLN sederhana dengan Icon dan warna
+  Widget _plnLogo() {
+    return Icon(
+      Icons.phone_android,
+      size: 28,
+      color: Colors.black54,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
-        title: Text('Dana', style: TextStyle(color: Colors.white)),
+        leading: BackButton(
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text('Pulsa', style: TextStyle(color: Colors.black)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0066CC),
-        foregroundColor: Colors.white,
+        backgroundColor: const Color(0xFF2196F3),
+        foregroundColor: Colors.black,
         elevation: 0,
       ),
       body: Padding(
@@ -33,12 +44,12 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
             SizedBox(height: 24),
             CircleAvatar(
               radius: 28,
-              backgroundColor: Colors.blue.shade100,
-              child: Image.asset('assets/Environment/dana.png', width: 40, height: 40),
+              backgroundColor: const Color.fromRGBO(187, 222, 251, 1),
+              child: _plnLogo(),
             ),
             SizedBox(height: 20),
             Text(
-              'MASUKKAN NOMOR TIRTUAL',
+              'MASUKKAN NOMOR TELEPON ANDA',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 12),
@@ -84,14 +95,14 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => NominalDanaPage()),
+                    MaterialPageRoute(builder: (context) => Jumlahpulsa()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0066CC),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
+                  backgroundColor: Colors.black,
                 ),
                 child: Text(
                   'SELANJUTNYA',

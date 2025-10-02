@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../Dana/nominaldana.dart';
+import '../Gopay/nominalgopay.dart';
 
-class NoVirtualDanaPage extends StatefulWidget {
+class NoVirtualgopayPage extends StatefulWidget {
   @override
-  _NoVirtualDanaPageState createState() => _NoVirtualDanaPageState();
+  _NoVirtualgopayPageState createState() => _NoVirtualgopayPageState();
 }
 
-class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
+class _NoVirtualgopayPageState extends State<NoVirtualgopayPage> {
   TextEditingController _vaController = TextEditingController();
 
   @override
@@ -20,9 +20,9 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
-        title: Text('Dana', style: TextStyle(color: Colors.white)),
+        title: Text('GoPay', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0066CC),
+        backgroundColor: const Color(0xFF00AA13),
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -34,7 +34,7 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
             CircleAvatar(
               radius: 28,
               backgroundColor: Colors.blue.shade100,
-              child: Image.asset('assets/Environment/dana.png', width: 40, height: 40),
+              child: Image.asset('assets/Environment/gopay.png', width: 40, height: 40),
             ),
             SizedBox(height: 20),
             Text(
@@ -82,16 +82,22 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
               height: 48,
               child: ElevatedButton(
                 onPressed: () {
+                  if (_vaController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Masukkan nomor virtual')),
+                    );
+                    return;
+                  }
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => NominalDanaPage()),
+                    MaterialPageRoute(builder: (context) => NominalgopayPage(virtualNumber: _vaController.text)),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0066CC),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
+                  backgroundColor: const Color(0xFF00AA13),
                 ),
                 child: Text(
                   'SELANJUTNYA',

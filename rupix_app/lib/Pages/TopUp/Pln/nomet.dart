@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../Dana/nominaldana.dart';
+import 'jumlahtoken.dart';
 
-class NoVirtualDanaPage extends StatefulWidget {
+class Nometpln extends StatefulWidget {
   @override
-  _NoVirtualDanaPageState createState() => _NoVirtualDanaPageState();
+  _Nometpln createState() => _Nometpln();
 }
 
-class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
+class _Nometpln extends State<Nometpln> {
   TextEditingController _vaController = TextEditingController();
 
   @override
@@ -15,15 +15,41 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
     super.dispose();
   }
 
+  // Widget logo PLN sederhana dengan Icon dan warna
+  Widget _plnLogo() {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Icon(Icons.flash_on, size: 28, color: Colors.red),
+        Positioned(
+          bottom: 2,
+          child: Container(
+            width: 20,
+            height: 6,
+            decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(width: 2, color: const Color(0xFF2196F3)),
+                bottom: BorderSide(width: 2, color: Colors.blue),
+              ),
+              borderRadius: BorderRadius.circular(1),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
-        title: Text('Dana', style: TextStyle(color: Colors.white)),
+        leading: BackButton(
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text('PLN', style: TextStyle(color: Colors.black)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0066CC),
-        foregroundColor: Colors.white,
+        backgroundColor: const Color(0xFF2196F3),
+        foregroundColor: Colors.black,
         elevation: 0,
       ),
       body: Padding(
@@ -33,12 +59,12 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
             SizedBox(height: 24),
             CircleAvatar(
               radius: 28,
-              backgroundColor: Colors.blue.shade100,
-              child: Image.asset('assets/Environment/dana.png', width: 40, height: 40),
+              backgroundColor: const Color.fromRGBO(187, 222, 251, 1),
+              child: _plnLogo(),
             ),
             SizedBox(height: 20),
             Text(
-              'MASUKKAN NOMOR TIRTUAL',
+              'IDPEL/No Meter',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 12),
@@ -80,18 +106,19 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
             SizedBox(
               width: double.infinity,
               height: 48,
-              child: ElevatedButton(
+              child: OutlinedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => NominalDanaPage()),
+                    MaterialPageRoute(builder: (context) => Jumlahtoken()),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0066CC),
+                style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
+                  side: BorderSide(color: Colors.black, width: 2),
+                  backgroundColor: Colors.black,
                 ),
                 child: Text(
                   'SELANJUTNYA',

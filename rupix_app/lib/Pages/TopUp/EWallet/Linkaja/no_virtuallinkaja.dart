@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../Dana/nominaldana.dart';
+import '../Linkaja/nominallinkaja.dart';
 
-class NoVirtualDanaPage extends StatefulWidget {
+class NoVirtuallinkajaPage extends StatefulWidget {
   @override
-  _NoVirtualDanaPageState createState() => _NoVirtualDanaPageState();
+  _NoVirtuallinkajaPageState createState() => _NoVirtuallinkajaPageState();
 }
 
-class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
+class _NoVirtuallinkajaPageState extends State<NoVirtuallinkajaPage> {
   TextEditingController _vaController = TextEditingController();
 
   @override
@@ -20,9 +20,9 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
-        title: Text('Dana', style: TextStyle(color: Colors.white)),
+        title: Text('LinkAja', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0066CC),
+        backgroundColor: const Color(0xFFE52B2B),
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -34,7 +34,7 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
             CircleAvatar(
               radius: 28,
               backgroundColor: Colors.blue.shade100,
-              child: Image.asset('assets/Environment/dana.png', width: 40, height: 40),
+              child: Image.asset('assets/Environment/linkaja.png', width: 40, height: 40),
             ),
             SizedBox(height: 20),
             Text(
@@ -84,11 +84,11 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => NominalDanaPage()),
+                    MaterialPageRoute(builder: (context) => NominallinkajaPage()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0066CC),
+                  backgroundColor: const Color(0xFFE52B2B),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

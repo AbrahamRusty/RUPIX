@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
-import 'pindana.dart';
+import 'pinpdam.dart';
 
-class KonfirmasiDanaPage extends StatelessWidget {
-  final String virtualNumber;
-  final int nominal;
-  final String customerName;
-  final String phoneNumber;
+class KonfirmasipdamPage extends StatelessWidget {
+  final String nominal;
+  final String customerId;
 
-  const KonfirmasiDanaPage({
+  const KonfirmasipdamPage({
     Key? key,
-    required this.virtualNumber,
     required this.nominal,
-    required this.customerName,
-    required this.phoneNumber,
+    required this.customerId,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     int biayaAdmin = 1000;
-    String tipePembayaran = "DanaTopup";
+    String tipePembayaran = "PDAMTopup";
 
     String formatRupiah(int value) {
       return 'Rp ' + value.toString().replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]}.');
     }
+
+    // Parse nominal to int for calculation
+    int nominalValue = int.tryParse(nominal.replaceAll('ribu', '000').replaceAll('juta', '000000')) ?? 0;
 
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
         title: Text('KONFIRMASI TRANSAKSI', style: TextStyle(color: Colors.black)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0066CC),
+        backgroundColor: const Color(0xFF2196F3),
         foregroundColor: Colors.black,
         elevation: 0,
       ),
@@ -42,14 +41,14 @@ class KonfirmasiDanaPage extends StatelessWidget {
                 CircleAvatar(
                   radius: 20,
                   backgroundColor: Colors.blue.shade100,
-                  child: Image.asset('assets/Environment/dana.png', width: 28, height: 28),
+                  child: Icon(Icons.water_drop, color: Colors.blue, size: 28),
                 ),
                 SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('DanaTopup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                    Text(phoneNumber, style: TextStyle(fontSize: 14)),
+                    Text('PDAMTopup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                    Text('Bayar Tagihan Air', style: TextStyle(fontSize: 14)),
                   ],
                 )
               ],
@@ -66,22 +65,7 @@ class KonfirmasiDanaPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Nominal', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(formatRupiah(nominal), style: TextStyle(fontWeight: FontWeight.bold)),
-                ],
-              ),
-            ),
-            SizedBox(height: 8),
-            Container(
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                  boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 3, offset: Offset(0, 1))]),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Biaya Admin', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(formatRupiah(biayaAdmin), style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(formatRupiah(nominalValue), style: TextStyle(fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
@@ -103,16 +87,16 @@ class KonfirmasiDanaPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('No VA'),
-                      Text(virtualNumber),
+                      Text('ID Pelanggan'),
+                      Text(customerId),
                     ],
                   ),
                   SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Pelanggan'),
-                      Text(customerName),
+                      Text('Biaya Admin'),
+                      Text(formatRupiah(biayaAdmin)),
                     ],
                   ),
                   SizedBox(height: 8),
@@ -134,13 +118,13 @@ class KonfirmasiDanaPage extends StatelessWidget {
               height: 48,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
+                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pindana()),
+                    MaterialPageRoute(builder: (context) => Pinpdam()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0066CC),
+                  backgroundColor: const Color.fromARGB(255, 0, 0, 0),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 ),
                 child: Text(

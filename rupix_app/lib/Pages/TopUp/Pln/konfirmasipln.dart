@@ -1,35 +1,58 @@
 import 'package:flutter/material.dart';
-import 'pindana.dart';
+import 'pinpln.dart';
 
-class KonfirmasiDanaPage extends StatelessWidget {
-  final String virtualNumber;
-  final int nominal;
-  final String customerName;
-  final String phoneNumber;
+class KonfirmasiTransaksiplnPage extends StatelessWidget {
+  final String nominal;
+  final String biayaAdmin;
+  final String noMeter;
+  final String pelanggan;
+  final String tarifDaya;
 
-  const KonfirmasiDanaPage({
+  const KonfirmasiTransaksiplnPage({
     Key? key,
-    required this.virtualNumber,
     required this.nominal,
-    required this.customerName,
-    required this.phoneNumber,
+    required this.biayaAdmin,
+    required this.noMeter,
+    required this.pelanggan,
+    required this.tarifDaya,
   }) : super(key: key);
+
+  // Widget logo PLN sederhana dengan Icon dan warna
+  Widget _plnLogo() {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Icon(Icons.flash_on, size: 28, color: Colors.red),
+        Positioned(
+          bottom: 2,
+          child: Container(
+            width: 20,
+            height: 6,
+            decoration: BoxDecoration(
+              border: Border(
+                top: BorderSide(width: 2, color: Colors.blue),
+                bottom: BorderSide(width: 2, color: Colors.blue),
+              ),
+              borderRadius: BorderRadius.circular(1),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    int biayaAdmin = 1000;
-    String tipePembayaran = "DanaTopup";
-
-    String formatRupiah(int value) {
-      return 'Rp ' + value.toString().replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (match) => '${match[1]}.');
-    }
+    String tipePembayaran = "PLNTopup";
 
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(),
+        leading: BackButton(
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         title: Text('KONFIRMASI TRANSAKSI', style: TextStyle(color: Colors.black)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0066CC),
+        backgroundColor: const Color(0xFF2196F3),
         foregroundColor: Colors.black,
         elevation: 0,
       ),
@@ -42,14 +65,14 @@ class KonfirmasiDanaPage extends StatelessWidget {
                 CircleAvatar(
                   radius: 20,
                   backgroundColor: Colors.blue.shade100,
-                  child: Image.asset('assets/Environment/dana.png', width: 28, height: 28),
+                  child: _plnLogo(),
                 ),
                 SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('DanaTopup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                    Text(phoneNumber, style: TextStyle(fontSize: 14)),
+                    Text('PLN TopUp', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                    Text(noMeter, style: TextStyle(fontSize: 14)),
                   ],
                 )
               ],
@@ -66,7 +89,7 @@ class KonfirmasiDanaPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Nominal', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(formatRupiah(nominal), style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text('Rp $nominal', style: TextStyle(fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
@@ -81,7 +104,7 @@ class KonfirmasiDanaPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Biaya Admin', style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(formatRupiah(biayaAdmin), style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text('Rp $biayaAdmin', style: TextStyle(fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
@@ -103,8 +126,8 @@ class KonfirmasiDanaPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('No VA'),
-                      Text(virtualNumber),
+                      Text('No Meter'),
+                      Text(noMeter),
                     ],
                   ),
                   SizedBox(height: 8),
@@ -112,14 +135,22 @@ class KonfirmasiDanaPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Pelanggan'),
-                      Text(customerName),
+                      Text(pelanggan),
                     ],
                   ),
                   SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('TIpe Pembayaran'),
+                      Text('Tarif/Daya'),
+                      Text(tarifDaya),
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Tipe Pembayaran'),
                       Text(tipePembayaran),
                     ],
                   ),
@@ -136,11 +167,11 @@ class KonfirmasiDanaPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pindana()),
+                    MaterialPageRoute(builder: (context) => Pinpln()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0066CC),
+                  backgroundColor: Colors.black,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 ),
                 child: Text(

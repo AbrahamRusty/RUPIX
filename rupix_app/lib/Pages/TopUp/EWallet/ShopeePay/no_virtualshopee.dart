@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../Dana/nominaldana.dart';
+import '../ShopeePay/nominalshopee.dart';
 
-class NoVirtualDanaPage extends StatefulWidget {
+class NoVirtualshopeePage extends StatefulWidget {
   @override
-  _NoVirtualDanaPageState createState() => _NoVirtualDanaPageState();
+  _NoVirtualshopeePageState createState() => _NoVirtualshopeePageState();
 }
 
-class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
+class _NoVirtualshopeePageState extends State<NoVirtualshopeePage> {
   TextEditingController _vaController = TextEditingController();
 
   @override
@@ -20,9 +20,9 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
-        title: Text('Dana', style: TextStyle(color: Colors.white)),
+        title: Text('ShopeePay', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0066CC),
+        backgroundColor: const Color(0xFFFF5722),
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -34,7 +34,7 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
             CircleAvatar(
               radius: 28,
               backgroundColor: Colors.blue.shade100,
-              child: Image.asset('assets/Environment/dana.png', width: 40, height: 40),
+              child: Image.asset('assets/Environment/shopeepay.png', width: 40, height: 40),
             ),
             SizedBox(height: 20),
             Text(
@@ -84,16 +84,16 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => NominalDanaPage()),
+                    MaterialPageRoute(builder: (context) => NominalshopeePage()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0066CC),
+                  backgroundColor: const Color(0xFFFF5722),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'SELANJUTNYA',
                   style: TextStyle(
                     color: Colors.white,

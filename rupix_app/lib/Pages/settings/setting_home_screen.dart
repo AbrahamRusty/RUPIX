@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rupix_app/Pages/Settings/about_screen.dart';
 import 'package:rupix_app/Pages/Settings/change_email_screen.dart';
 import 'package:rupix_app/Pages/Settings/change_password_screen.dart';
 import 'package:rupix_app/Pages/Settings/change_username_screen.dart';
@@ -38,11 +37,6 @@ class SettingsHomeScreen extends StatelessWidget {
       'title': 'Help Center', 
       'icon': Icons.help, 
       'screen': HelpCenterScreen()
-    },
-    {
-      'title': 'About', 
-      'icon': Icons.info, 
-      'screen': AboutScreen()
     },
   ];
 

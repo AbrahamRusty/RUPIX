@@ -56,7 +56,7 @@ class RiwayatTransaksiPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: isDarkMode ? const Color.fromARGB(255, 0, 76, 184) : const Color.fromARGB(255, 0, 76, 184),
+        backgroundColor: isDarkMode ? Color.fromARGB(255, 0, 60, 144) : Color.fromARGB(255, 0, 60, 144),
         elevation: 0,
         centerTitle: true,
         title: Text(

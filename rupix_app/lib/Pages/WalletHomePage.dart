@@ -25,7 +25,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
 
   // Colors for Dark Mode
   final Color _backgroundColor = Color.fromARGB(255, 0, 0, 0);
-  final Color _headerBackgroundColor = Color.fromARGB(255, 0, 76, 184); // Warna biru untuk header
+  final Color _headerBackgroundColor = Color.fromARGB(255, 0, 60, 144); // Warna biru untuk header
   final Color _cardColor = Color(0xFF1A1A1A);
   final Color _textColor = Colors.white;
   final Color _secondaryTextColor = Colors.grey[400]!;

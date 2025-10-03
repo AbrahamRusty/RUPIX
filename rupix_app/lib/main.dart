@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Pages/Login/login.dart';
 import 'Pages/WalletHomePage.dart';
-import 'Pages/settings/about_screen.dart';
+import 'Pages/settings/about_pages.dart';
 import 'Pages/settings/change_email_screen.dart' as change_email_screen;
 import 'Pages/settings/change_password_screen.dart' as change_password_screen;
 import 'Pages/settings/change_username_screen.dart' as change_username_screen;
@@ -36,7 +36,7 @@ class RupiahWalletApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const WalletHomePage(),
 
-        '/about': (context) => const AboutScreen(),
+        '/about': (context) => const AboutPage(),
         '/help_center': (context) => const HelpCenterScreen(),
         '/privacy_policy': (context) => const PrivacyPolicyScreen(),
 

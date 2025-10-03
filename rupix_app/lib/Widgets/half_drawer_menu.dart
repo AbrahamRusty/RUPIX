@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rupix_app/Pages/Settings/privacy_policy_screen.dart';
-import 'package:rupix_app/Pages/settings/change_email_screen.dart';
-import 'package:rupix_app/Pages/settings/change_password_screen.dart';
-import 'package:rupix_app/Pages/settings/email_support_screen.dart';
-import 'package:rupix_app/Pages/settings/help_center_screen.dart';
 import 'package:rupix_app/Pages/settings/setting_home_screen.dart';
 import 'package:rupix_app/widgets/logout_dialog.dart';
-import 'package:rupix_app/Pages/Settings/about_pages.dart';
-import 'package:rupix_app/Pages/settings/chat_bot_screen.dart';
 
 class HalfDrawerMenu extends StatefulWidget {
   const HalfDrawerMenu({super.key});
@@ -71,41 +64,6 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu>
         // Tunggu sebentar untuk memastikan drawer sudah tertutup
         Future.delayed(Duration(milliseconds: 100), () {
           switch (label) {
-            case "About":
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => AboutPage()),
-              );
-              break;
-            case "Privacy Policy":
-             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => PrivacyPolicyScreen()),
-              );
-              break;
-            case "Email Support":
-             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => EmailSupportScreen()),
-              );
-              break;
-            case "Change Email":
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ChangeEmailScreen()),
-              );
-              break;
-            case "Change Password":
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ChangePasswordScreen()),
-              );
-              break;
-            case "Help Center":
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => HelpCenterScreen()),
-              );
-              break;
-            case "Chat Bot":
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ChatBotScreen()),
-              );
-              break;
             case "Settings":
              Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => SettingsHomeScreen()),
@@ -180,13 +138,6 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu>
                           ),
                         ),
                         const SizedBox(height: 30),
-                        _menuItem(Icons.privacy_tip, "Privacy Policy", iconColor, textColor),
-                        _menuItem(Icons.email, "Email Support", iconColor, textColor),
-                        _menuItem(Icons.info, "About", iconColor, textColor),
-                        _menuItem(Icons.email_outlined, "Change Email", iconColor, textColor),
-                        _menuItem(Icons.lock, "Change Password", iconColor, textColor),
-                        _menuItem(Icons.help, "Help Center", iconColor, textColor),
-                        _menuItem(Icons.chat, "Chat Bot", iconColor, textColor),
                         _menuItem(Icons.settings, "Settings", iconColor, textColor),
                         const SizedBox(height: 40),
                         // Logout Button

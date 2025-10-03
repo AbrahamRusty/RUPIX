@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:rupix_app/Pages/Settings/privacy_policy_screen.dart';
+import 'package:rupix_app/Pages/settings/change_email_screen.dart';
+import 'package:rupix_app/Pages/settings/change_password_screen.dart';
+import 'package:rupix_app/Pages/settings/email_support_screen.dart';
+import 'package:rupix_app/Pages/settings/help_center_screen.dart';
+import 'package:rupix_app/Pages/settings/setting_home_screen.dart';
 import 'package:rupix_app/widgets/logout_dialog.dart';
 import 'package:rupix_app/Pages/Settings/about_pages.dart';
+import 'package:rupix_app/Pages/settings/chat_bot_screen.dart';
 
 class HalfDrawerMenu extends StatefulWidget {
   const HalfDrawerMenu({super.key});
@@ -70,32 +77,39 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu>
               );
               break;
             case "Privacy Policy":
-              // Navigate to Privacy Policy page
-              debugPrint("Privacy Policy tapped");
+             Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => PrivacyPolicyScreen()),
+              );
               break;
             case "Email Support":
-              // Navigate to Email Support
-              debugPrint("Email Support tapped");
+             Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => EmailSupportScreen()),
+              );
               break;
             case "Change Email":
-              // Navigate to Change Email page
-              debugPrint("Change Email tapped");
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ChangeEmailScreen()),
+              );
               break;
             case "Change Password":
-              // Navigate to Change Password page
-              debugPrint("Change Password tapped");
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ChangePasswordScreen()),
+              );
               break;
             case "Help Center":
-              // Navigate to Help Center page
-              debugPrint("Help Center tapped");
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => HelpCenterScreen()),
+              );
               break;
             case "Chat Bot":
-              // Navigate to Chat Bot page
-              debugPrint("Chat Bot tapped");
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ChatBotScreen()),
+              );
               break;
             case "Settings":
-              // Navigate to Settings page
-              debugPrint("Settings tapped");
+             Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => SettingsHomeScreen()),
+              );
               break;
             default:
               debugPrint("$label tapped");

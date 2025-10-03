@@ -6,19 +6,33 @@ class TransaksiBerhasilovoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    
+    // Color definitions
+    final backgroundColor = isDarkMode ? Color(0xFF121212) : Color(0xFF121212);
+    final containerColor = isDarkMode ? Color(0xFF2D2D2D) : Color(0xFF2D2D2D);
+    final primaryColor = isDarkMode ? Colors.white : Colors.white;
+    final secondaryColor = isDarkMode ? Colors.grey.shade300 : Colors.grey.shade300;
+    final tertiaryColor = isDarkMode ? Colors.grey.shade400 : Colors.grey.shade400;
+    final accentColor = isDarkMode ? Color(0xFF8B2F8F) : Color(0xFF8B2F8F);
+    final dividerColor = isDarkMode ? Colors.grey.shade700 : Colors.grey.shade700;
+    final shadowColor = isDarkMode ? Colors.black.withOpacity(0.5) : Colors.black.withOpacity(0.5);
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 30),
+            
             // Judul
-            const Text(
+            Text(
               "BERHASIL",
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
+                color: primaryColor,
               ),
             ),
 
@@ -26,18 +40,20 @@ class TransaksiBerhasilovoPage extends StatelessWidget {
 
             // Gambar ceklis
             Image.asset(
-              "assets/Environment/ceklis.png", // Pastikan path sesuai dengan project Anda
+              "assets/Environment/ceklis.png",
               width: 120,
               height: 120,
+              color: accentColor,
             ),
 
             const SizedBox(height: 10),
 
-            const Text(
+            Text(
               "Detail",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
+                color: primaryColor,
               ),
             ),
 
@@ -48,10 +64,10 @@ class TransaksiBerhasilovoPage extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 16),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: containerColor,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
+                    color: shadowColor,
                     blurRadius: 4,
                     offset: const Offset(0, 3),
                   ),
@@ -62,58 +78,64 @@ class TransaksiBerhasilovoPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Nominal
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("Nominal"),
-                      Text(
-                        "Rp 10.000,100",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                  _buildDetailRow(
+                    "Nominal", 
+                    "Rp 10.000,100", 
+                    isBold: true,
+                    primaryColor: primaryColor,
+                    secondaryColor: secondaryColor,
                   ),
                   const SizedBox(height: 8),
 
                   // Biaya Admin
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("Biaya Admin"),
-                      Text("Rp 1.000"),
-                    ],
+                  _buildDetailRow(
+                    "Biaya Admin", 
+                    "Rp 1.000", 
+                    primaryColor: secondaryColor,
+                    secondaryColor: secondaryColor,
                   ),
-                  const Divider(thickness: 1),
+                  
+                  Divider(
+                    thickness: 1,
+                    color: dividerColor,
+                  ),
 
                   // Total Transaksi
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "TOTAL TRANSAKSI",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        "Rp 10.001,100",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                  _buildDetailRow(
+                    "TOTAL TRANSAKSI", 
+                    "Rp 10.001,100", 
+                    isBold: true,
+                    primaryColor: primaryColor,
+                    secondaryColor: primaryColor,
                   ),
 
                   const SizedBox(height: 16),
-                  const Divider(thickness: 1),
+                  
+                  Divider(
+                    thickness: 1,
+                    color: dividerColor,
+                  ),
 
-                  const Text("Rekening Sumber"),
+                  Text(
+                    "Rekening Sumber",
+                    style: TextStyle(
+                      color: secondaryColor,
+                    ),
+                  ),
                   const SizedBox(height: 4),
-                  const Text(
+                  Text(
                     "Isakndar Udin",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
+                      color: primaryColor,
                     ),
                   ),
-                  const Text(
+                  Text(
                     "Bank RupiX --------8469",
-                    style: TextStyle(color: Colors.black54),
+                    style: TextStyle(
+                      color: tertiaryColor,
+                    ),
                   ),
                 ],
               ),
@@ -128,7 +150,7 @@ class TransaksiBerhasilovoPage extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
+                    backgroundColor: accentColor,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -140,7 +162,7 @@ class TransaksiBerhasilovoPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => WalletHomePage()),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     "KEMBALI KE BERANDA",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -153,6 +175,32 @@ class TransaksiBerhasilovoPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildDetailRow(String label, String value, {
+    bool isBold = false, 
+    required Color primaryColor, 
+    required Color secondaryColor
+  }) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            color: secondaryColor,
+            fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
+        Text(
+          value,
+          style: TextStyle(
+            color: primaryColor,
+            fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
+      ],
     );
   }
 }

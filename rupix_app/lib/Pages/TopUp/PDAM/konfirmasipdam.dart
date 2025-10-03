@@ -28,15 +28,16 @@ class KonfirmasipdamPage extends StatelessWidget {
         0;
 
     return Scaffold(
+      backgroundColor: Color(0xFF121212), // Dark background
       appBar: AppBar(
-        leading: BackButton(),
+        leading: BackButton(color: Colors.white),
         title: Text(
           'KONFIRMASI TRANSAKSI',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white), // White text
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xFF2196F3),
-        foregroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Tetap biru PDAM
+        foregroundColor: Colors.white,
         elevation: 0,
       ),
       body: Padding(
@@ -59,23 +60,31 @@ class KonfirmasipdamPage extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
+                        color: Colors.white, // White text
                       ),
                     ),
-                    Text('Bayar Tagihan Air', style: TextStyle(fontSize: 14)),
+                    Text(
+                      'Bayar Tagihan Air', 
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey[400], // Light grey
+                      ),
+                    ),
                   ],
                 ),
               ],
             ),
             SizedBox(height: 24),
 
+            // Nominal Card
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xFF1E1E1E), // Dark card
                 borderRadius: BorderRadius.circular(4),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade300,
+                    color: Colors.black.withOpacity(0.3), // Dark shadow
                     blurRadius: 3,
                     offset: Offset(0, 1),
                   ),
@@ -86,11 +95,17 @@ class KonfirmasipdamPage extends StatelessWidget {
                 children: [
                   Text(
                     'Nominal',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, // White text
+                    ),
                   ),
                   Text(
                     formatRupiah(nominalValue),
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, // White text
+                    ),
                   ),
                 ],
               ),
@@ -98,15 +113,16 @@ class KonfirmasipdamPage extends StatelessWidget {
 
             SizedBox(height: 24),
 
+            // Detail Card
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xFF1E1E1E), // Dark card
                 borderRadius: BorderRadius.circular(4),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade300,
+                    color: Colors.black.withOpacity(0.3), // Dark shadow
                     blurRadius: 3,
                     offset: Offset(0, 1),
                   ),
@@ -117,26 +133,36 @@ class KonfirmasipdamPage extends StatelessWidget {
                 children: [
                   Text(
                     'Detail',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold, 
+                      fontSize: 16,
+                      color: Colors.white, // White text
+                    ),
                   ),
                   SizedBox(height: 12),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('ID Pelanggan'), Text(customerId)],
-                  ),
-                  SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Biaya Admin'),
-                      Text(formatRupiah(biayaAdmin)),
+                      Text('ID Pelanggan', style: TextStyle(color: Colors.grey[400])),
+                      Text(customerId, style: TextStyle(color: Colors.white))
                     ],
                   ),
                   SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('TIpe Pembayaran'), Text(tipePembayaran)],
+                    children: [
+                      Text('Biaya Admin', style: TextStyle(color: Colors.grey[400])),
+                      Text(formatRupiah(biayaAdmin), style: TextStyle(color: Colors.white))
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Tipe Pembayaran', style: TextStyle(color: Colors.grey[400])),
+                      Text(tipePembayaran, style: TextStyle(color: Colors.white))
+                    ],
                   ),
                 ],
               ),
@@ -144,6 +170,7 @@ class KonfirmasipdamPage extends StatelessWidget {
 
             Spacer(),
 
+            // Top Up Button
             SizedBox(
               width: double.infinity,
               height: 48,
@@ -155,7 +182,7 @@ class KonfirmasipdamPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+                  backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Biru PDAM
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

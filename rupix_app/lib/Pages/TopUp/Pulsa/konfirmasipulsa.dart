@@ -29,6 +29,7 @@ class KonfirmasiTransaksipulsaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     String tipePembayaran = "PulsaTopup";
 
     return Scaffold(

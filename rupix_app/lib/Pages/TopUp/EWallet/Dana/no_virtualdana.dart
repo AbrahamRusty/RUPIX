@@ -20,11 +20,12 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF121212), // Dark background
       appBar: AppBar(
-        leading: BackButton(),
+        leading: BackButton(color: Colors.white),
         title: Text('Dana', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0066CC),
+        backgroundColor: const Color(0xFF0066CC), // Tetap biru Dana
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -44,8 +45,11 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
             ),
             SizedBox(height: 20),
             Text(
-              'MASUKKAN NOMOR TIRTUAL',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              'MASUKKAN NOMOR VIRTUAL',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white, // White text
+              ),
             ),
             SizedBox(height: 12),
             Stack(
@@ -53,13 +57,16 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
                 TextField(
                   controller: _vaController,
                   keyboardType: TextInputType.number,
+                  style: TextStyle(color: Colors.white), // White text input
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.grey.shade300,
+                    fillColor: Color(0xFF1E1E1E), // Dark input background
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                       borderSide: BorderSide.none,
                     ),
+                    hintText: 'Masukkan nomor virtual',
+                    hintStyle: TextStyle(color: Colors.grey[400]), // Light grey hint
                   ),
                 ),
                 Positioned(
@@ -73,7 +80,7 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.grey.shade500,
+                        color: Colors.grey[600], // Darker grey
                       ),
                       padding: EdgeInsets.all(4),
                       child: Icon(Icons.close, color: Colors.white),
@@ -94,7 +101,7 @@ class _NoVirtualDanaPageState extends State<NoVirtualDanaPage> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0066CC),
+                  backgroundColor: const Color(0xFF0066CC), // Tetap biru Dana
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

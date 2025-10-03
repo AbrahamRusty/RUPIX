@@ -11,6 +11,7 @@ class TransferEWalletScreen extends StatefulWidget {
 
 class _TransferEWalletScreenState extends State<TransferEWalletScreen> {
   String? _selectedEWallet;
+  // ignore: unused_field
   String? _selectedEWalletLogoPath;
 
   final List<Map<String, String>> _eWallets = const [

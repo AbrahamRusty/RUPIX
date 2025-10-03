@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rupix_app/Pages/Transfer/transfer_bank_form_screen.dart';
+// ignore: unused_import
 import 'package:rupix_app/Widgets/bank_list_tile.dart';
 
 class TransferBankScreen extends StatefulWidget {
@@ -11,6 +12,7 @@ class TransferBankScreen extends StatefulWidget {
 
 class _TransferBankScreenState extends State<TransferBankScreen> {
   String? _selectedBank;
+  // ignore: unused_field
   String? _selectedBankLogoPath;
   String _searchQuery = '';
 

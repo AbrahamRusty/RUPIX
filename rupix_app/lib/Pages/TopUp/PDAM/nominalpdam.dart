@@ -51,11 +51,15 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF121212), // Dark background
       appBar: AppBar(
-        leading: BackButton(onPressed: () => Navigator.of(context).pop()),
+        leading: BackButton(
+          onPressed: () => Navigator.of(context).pop(),
+          color: Colors.white,
+        ),
         title: Text('PDAM', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF2196F3),
+        backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Tetap biru PDAM
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -71,12 +75,19 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
                 SizedBox(height: 8),
                 Text(
                   "PDAM",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 18, 
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white, // White text
+                  ),
                 ),
                 SizedBox(height: 4),
                 Text(
                   "1234567890",
-                  style: TextStyle(fontSize: 14, color: Colors.black54),
+                  style: TextStyle(
+                    fontSize: 14, 
+                    color: Colors.grey[400], // Light grey
+                  ),
                 ),
               ],
             ),
@@ -106,14 +117,14 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
                         border: Border.all(
                           color: isSelected
                               ? Colors.blue
-                              : Colors.grey.shade300,
+                              : Colors.grey[700]!, // Darker grey border
                           width: 2,
                         ),
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.white,
+                        color: Color(0xFF1E1E1E), // Dark card
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
+                            color: Colors.black.withOpacity(0.3), // Dark shadow
                             blurRadius: 3,
                             spreadRadius: 1,
                             offset: const Offset(0, 2),
@@ -125,7 +136,7 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
-                          color: isSelected ? Colors.blue : Colors.black,
+                          color: isSelected ? Colors.blue : Colors.white, // White text
                         ),
                       ),
                     ),
@@ -140,11 +151,11 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
               padding: const EdgeInsets.all(16),
               margin: const EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xFF1E1E1E), // Dark card
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
+                    color: Colors.black.withOpacity(0.3), // Dark shadow
                     blurRadius: 3,
                     spreadRadius: 1,
                     offset: const Offset(0, 2),
@@ -153,15 +164,22 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
                     "Tabungan",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 16, 
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, // White text
+                    ),
                   ),
                   SizedBox(height: 4),
                   Text(
                     "1172734473287178",
-                    style: TextStyle(fontSize: 14, color: Colors.black54),
+                    style: TextStyle(
+                      fontSize: 14, 
+                      color: Colors.grey[400], // Light grey
+                    ),
                   ),
                   SizedBox(height: 8),
                   Text(
@@ -169,7 +187,7 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: Colors.white, // White text
                     ),
                   ),
                 ],
@@ -182,7 +200,7 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: Colors.black,
+                  backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Biru PDAM
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -202,7 +220,11 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
                       },
                 child: const Text(
                   "SELANJUTNYA",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 16, 
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

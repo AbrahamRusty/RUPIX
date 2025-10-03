@@ -7,7 +7,7 @@ class TransaksiBerhasilpdamPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFF121212), // Dark background
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -15,11 +15,12 @@ class TransaksiBerhasilpdamPage extends StatelessWidget {
             const SizedBox(height: 30),
 
             // Judul
-            const Text(
+            Text(
               "BERHASIL",
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
+                color: Colors.white, // White text
               ),
             ),
 
@@ -27,18 +28,19 @@ class TransaksiBerhasilpdamPage extends StatelessWidget {
 
             // Gambar ceklis
             Image.asset(
-              "assets/Environment/ceklis.png", // Pastikan path sesuai dengan project Anda
+              "assets/Environment/ceklis.png",
               width: 120,
               height: 120,
             ),
 
             const SizedBox(height: 10),
 
-            const Text(
+            Text(
               "Detail",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
+                color: Colors.white, // White text
               ),
             ),
 
@@ -49,10 +51,10 @@ class TransaksiBerhasilpdamPage extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 16),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xFF1E1E1E), // Dark card
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
+                    color: Colors.black.withOpacity(0.5), // Dark shadow
                     blurRadius: 4,
                     offset: const Offset(0, 3),
                   ),
@@ -65,11 +67,14 @@ class TransaksiBerhasilpdamPage extends StatelessWidget {
                   // Nominal
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("Nominal"),
+                    children: [
+                      Text("Nominal", style: TextStyle(color: Colors.white)),
                       Text(
                         "Rp 100.000",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
@@ -78,46 +83,59 @@ class TransaksiBerhasilpdamPage extends StatelessWidget {
                   // Biaya Admin
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("Biaya Admin"),
+                    children: [
+                      Text("Biaya Admin", style: TextStyle(color: Colors.white)),
                       Text(
                         "Rp 1.000",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
-                  const Divider(thickness: 1),
+                  Divider(thickness: 1, color: Colors.grey[700]),
 
                   // Total Transaksi
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text(
                         "TOTAL TRANSAKSI",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                       Text(
                         "Rp 101.000",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
 
                   const SizedBox(height: 16),
-                  const Divider(thickness: 1),
+                  Divider(thickness: 1, color: Colors.grey[700]),
 
-                  const Text("ID Pelanggan"),
+                  Text(
+                    "ID Pelanggan",
+                    style: TextStyle(color: Colors.grey[400]), // Light grey
+                  ),
                   const SizedBox(height: 4),
-                  const Text(
+                  Text(
                     "1234567890",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
+                      color: Colors.white, // White text
                     ),
                   ),
-                  const Text(
+                  Text(
                     "PDAM Jakarta",
-                    style: TextStyle(color: Colors.black54),
+                    style: TextStyle(color: Colors.grey[400]), // Light grey
                   ),
                 ],
               ),
@@ -132,7 +150,7 @@ class TransaksiBerhasilpdamPage extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+                    backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Biru PDAM
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),

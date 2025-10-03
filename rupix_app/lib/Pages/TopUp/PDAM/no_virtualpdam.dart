@@ -20,11 +20,12 @@ class _NoVirtualpdamPageState extends State<NoVirtualpdamPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF121212), // Dark background
       appBar: AppBar(
-        leading: BackButton(),
+        leading: BackButton(color: Colors.white),
         title: Text('PDAM', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF2196F3),
+        backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Tetap biru PDAM
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -41,7 +42,10 @@ class _NoVirtualpdamPageState extends State<NoVirtualpdamPage> {
             SizedBox(height: 20),
             Text(
               'MASUKKAN ID PELANGGAN',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white, // White text
+              ),
             ),
             SizedBox(height: 12),
             Stack(
@@ -49,13 +53,16 @@ class _NoVirtualpdamPageState extends State<NoVirtualpdamPage> {
                 TextField(
                   controller: _customerIdController,
                   keyboardType: TextInputType.number,
+                  style: TextStyle(color: Colors.white), // White text input
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.grey.shade300,
+                    fillColor: Color(0xFF1E1E1E), // Dark input background
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                       borderSide: BorderSide.none,
                     ),
+                    hintText: 'Masukkan ID Pelanggan',
+                    hintStyle: TextStyle(color: Colors.grey[400]), // Light grey hint
                   ),
                 ),
                 Positioned(
@@ -69,7 +76,7 @@ class _NoVirtualpdamPageState extends State<NoVirtualpdamPage> {
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.grey.shade500,
+                        color: Colors.grey[600], // Darker grey
                       ),
                       padding: EdgeInsets.all(4),
                       child: Icon(Icons.close, color: Colors.white),
@@ -87,7 +94,10 @@ class _NoVirtualpdamPageState extends State<NoVirtualpdamPage> {
                   String customerId = _customerIdController.text.trim();
                   if (customerId.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Masukkan ID Pelanggan')),
+                      SnackBar(
+                        content: Text('Masukkan ID Pelanggan'),
+                        backgroundColor: Color(0xFF1E1E1E), // Dark snackbar
+                      ),
                     );
                     return;
                   }
@@ -100,7 +110,7 @@ class _NoVirtualpdamPageState extends State<NoVirtualpdamPage> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+                  backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Biru PDAM untuk button
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

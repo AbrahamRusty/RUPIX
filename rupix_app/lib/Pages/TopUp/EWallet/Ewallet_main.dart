@@ -24,12 +24,16 @@ class EwalletMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFF121212), // Dark background
       appBar: AppBar(
-        backgroundColor: const Color(0xFF2196F3),
+        backgroundColor: const Color.fromARGB( 255,0,76,184), // Dark app bar
         title: const Text(
           'TOP UP',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 18,
+          ),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -44,14 +48,14 @@ class EwalletMain extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(
                 'PILIH E-WALLET',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.white, // White text
                 ),
               ),
             ),
@@ -76,7 +80,7 @@ class EwalletMain extends StatelessWidget {
                       );
                     },
                   ),
-                  const Divider(indent: 20, endIndent: 20, height: 0),
+                  Divider(indent: 20, endIndent: 20, height: 0, color: Colors.grey[700]),
                   _EWalletListTile(
                     leading: Image.asset(
                       'assets/Environment/dana.png',
@@ -94,7 +98,7 @@ class EwalletMain extends StatelessWidget {
                       );
                     },
                   ),
-                  const Divider(indent: 20, endIndent: 20, height: 0),
+                  Divider(indent: 20, endIndent: 20, height: 0, color: Colors.grey[700]),
                   _EWalletListTile(
                     leading: Image.asset(
                       'assets/Environment/ovo.png',
@@ -112,7 +116,7 @@ class EwalletMain extends StatelessWidget {
                       );
                     },
                   ),
-                  const Divider(indent: 20, endIndent: 20, height: 0),
+                  Divider(indent: 20, endIndent: 20, height: 0, color: Colors.grey[700]),
                   _EWalletListTile(
                     leading: Image.asset(
                       "assets/Environment/shopeepay.png",
@@ -130,7 +134,7 @@ class EwalletMain extends StatelessWidget {
                       );
                     },
                   ),
-                  const Divider(indent: 20, endIndent: 20, height: 0),
+                  Divider(indent: 20, endIndent: 20, height: 0, color: Colors.grey[700]),
                   _EWalletListTile(
                     leading: Image.asset(
                       "assets/Environment/linkaja.png",
@@ -178,18 +182,30 @@ class _EWalletListTile extends StatelessWidget {
       leading: Container(
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          color: Color.fromARGB(255, 177, 177, 177), // Dark container
           borderRadius: BorderRadius.circular(10),
         ),
         child: leading,
       ),
       title: Text(
         name,
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        style: TextStyle(
+          fontWeight: FontWeight.bold, 
+          fontSize: 16,
+          color: Colors.white, // White text
+        ),
       ),
       subtitle: Text(
         'saldo : Rp $balance',
-        style: const TextStyle(color: Colors.grey, fontSize: 14),
+        style: TextStyle(
+          color: Colors.grey[400], // Light grey text
+          fontSize: 14
+        ),
+      ),
+      trailing: Icon(
+        Icons.arrow_forward_ios,
+        color: Colors.grey[400], // Light grey arrow
+        size: 16,
       ),
       onTap: onTap,
     );

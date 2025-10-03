@@ -20,11 +20,12 @@ class _NoVirtualgopayPageState extends State<NoVirtualgopayPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF121212), // Dark background
       appBar: AppBar(
-        leading: BackButton(),
+        leading: BackButton(color: Colors.white),
         title: Text('GoPay', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF00AA13),
+        backgroundColor: const Color(0xFF00AA13), // Tetap hijau GoPay
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -44,8 +45,11 @@ class _NoVirtualgopayPageState extends State<NoVirtualgopayPage> {
             ),
             SizedBox(height: 20),
             Text(
-              'MASUKKAN NOMOR TIRTUAL',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              'MASUKKAN NOMOR VIRTUAL',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white, // White text
+              ),
             ),
             SizedBox(height: 12),
             Stack(
@@ -53,13 +57,16 @@ class _NoVirtualgopayPageState extends State<NoVirtualgopayPage> {
                 TextField(
                   controller: _vaController,
                   keyboardType: TextInputType.number,
+                  style: TextStyle(color: Colors.white), // White text input
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.grey.shade300,
+                    fillColor: Color(0xFF1E1E1E), // Dark input background
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                       borderSide: BorderSide.none,
                     ),
+                    hintText: 'Masukkan nomor virtual',
+                    hintStyle: TextStyle(color: Colors.grey[400]), // Light grey hint
                   ),
                 ),
                 Positioned(
@@ -73,7 +80,7 @@ class _NoVirtualgopayPageState extends State<NoVirtualgopayPage> {
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.grey.shade500,
+                        color: Colors.grey[600], // Darker grey
                       ),
                       padding: EdgeInsets.all(4),
                       child: Icon(Icons.close, color: Colors.white),
@@ -90,7 +97,10 @@ class _NoVirtualgopayPageState extends State<NoVirtualgopayPage> {
                 onPressed: () {
                   if (_vaController.text.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Masukkan nomor virtual')),
+                      SnackBar(
+                        content: Text('Masukkan nomor virtual'),
+                        backgroundColor: Color(0xFF1E1E1E), // Dark snackbar
+                      ),
                     );
                     return;
                   }
@@ -106,7 +116,7 @@ class _NoVirtualgopayPageState extends State<NoVirtualgopayPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  backgroundColor: const Color(0xFF00AA13),
+                  backgroundColor: const Color(0xFF00AA13), // Tetap hijau GoPay
                 ),
                 child: Text(
                   'SELANJUTNYA',

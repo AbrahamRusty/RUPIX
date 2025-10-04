@@ -8,6 +8,7 @@ import 'package:rupix_app/Pages/Transfer/transfer_screen.dart';
 import 'package:rupix_app/Pages/TopUp/Pln/nomet.dart';
 import 'package:rupix_app/Pages/TopUp/PDAM/no_virtualpdam.dart';
 import 'package:rupix_app/Pages/TopUp/EWallet/Ewallet_main.dart';
+import 'package:rupix_app/Pages/dummy_notification.dart'; // Import halaman notifikasi
 
 class WalletHomePage extends StatefulWidget {
   const WalletHomePage({super.key});
@@ -130,13 +131,14 @@ class _WalletHomePageState extends State<WalletHomePage> {
                           ),
                         ),
 
+                        // GANTI ICON PROFILE MENJADI ICON NOTIFIKASI
                         IconButton(
                           icon: Icon(
-                            Icons.person,
+                            Icons.notifications, // Icon notifikasi
                             size: 28,
                             color: _iconColor,
                           ),
-                          onPressed: () => debugPrint("User tapped"),
+                          onPressed: () => _openNotificationPage(context), // Navigasi ke halaman notifikasi
                         ),
                       ],
                     ),
@@ -156,7 +158,15 @@ class _WalletHomePageState extends State<WalletHomePage> {
     showDialog(
       context: context,
       barrierColor: Colors.transparent,
-      builder: (_) => const HalfDrawerMenu(), // TANPA PARAMETER
+      builder: (_) => const HalfDrawerMenu(),
+    );
+  }
+
+  // Fungsi untuk membuka halaman notifikasi
+  void _openNotificationPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const DummyNotificationPage()),
     );
   }
 

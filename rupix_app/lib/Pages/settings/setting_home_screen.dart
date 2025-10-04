@@ -412,43 +412,7 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
                       ],
                     ),
                   ),
-
                   SizedBox(height: 20),
-
-                  // Logout Button
-                  Container(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red.withOpacity(0.1),
-                        foregroundColor: Colors.red,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          side: BorderSide(color: Colors.red.withOpacity(0.3)),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                      ),
-                      onPressed: () {
-                        _showLogoutDialog(context, primaryColor, cardColor);
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.logout, size: 20),
-                          SizedBox(width: 8),
-                          Text(
-                            'Keluar dari Akun',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
                   SizedBox(height: 30),
                 ],
               ),

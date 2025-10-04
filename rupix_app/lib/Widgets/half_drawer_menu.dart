@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rupix_app/Pages/settings/setting_home_screen.dart';
 import 'package:rupix_app/widgets/logout_dialog.dart';
+import 'package:rupix_app/Pages/profile/profile_page.dart';
 
 class HalfDrawerMenu extends StatefulWidget {
   const HalfDrawerMenu({super.key});
@@ -64,8 +65,13 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu>
         // Tunggu sebentar untuk memastikan drawer sudah tertutup
         Future.delayed(Duration(milliseconds: 100), () {
           switch (label) {
+            case "Profile":
+  Navigator.of(context).push(
+    MaterialPageRoute(builder: (context) => ProfilePage()),
+  );
+  break;
             case "Settings":
-             Navigator.of(context).push(
+              Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => SettingsHomeScreen()),
               );
               break;
@@ -138,6 +144,9 @@ class _HalfDrawerMenuState extends State<HalfDrawerMenu>
                           ),
                         ),
                         const SizedBox(height: 30),
+                        // Tambahkan menu Profile di sini
+                        _menuItem(Icons.person, "Profile", iconColor, textColor),
+                        const SizedBox(height: 12),
                         _menuItem(Icons.settings, "Settings", iconColor, textColor),
                         const SizedBox(height: 40),
                         // Logout Button

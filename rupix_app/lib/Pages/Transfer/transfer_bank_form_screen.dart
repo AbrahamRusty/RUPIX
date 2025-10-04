@@ -24,7 +24,7 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFF000000),
       appBar: AppBar(
         backgroundColor: const Color(0xFF0088FF),
         elevation: 0,
@@ -49,15 +49,16 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
           children: [
             const Text(
               'Enter Account Number',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: _accountNumberController,
+              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 hintText: 'ex: 11222333',
                 filled: true,
-                fillColor: Colors.grey.withOpacity(0.1),
+                fillColor: const Color(0xFF2D2D2D),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
@@ -68,14 +69,15 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
             const SizedBox(height: 20),
             const Text(
               'Payment Purpose',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
             ),
             const SizedBox(height: 10),
             TextField(
+              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 hintText: 'Optional',
                 filled: true,
-                fillColor: Colors.grey.withOpacity(0.1),
+                fillColor: const Color(0xFF2D2D2D),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
@@ -85,20 +87,21 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
             const SizedBox(height: 20),
             const Text(
               'Enter Amount',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
             ),
             const SizedBox(height: 10),
             TextField(
               controller: _amountController,
+              style: const TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 prefixText: 'Rp',
                 prefixStyle: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
                 filled: true,
-                fillColor: Colors.grey.withOpacity(0.1),
+                fillColor: const Color(0xFF2D2D2D),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
@@ -160,13 +163,13 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
         _amountController.text = amount.toString();
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.grey.withOpacity(0.1),
-        foregroundColor: Colors.black,
+        backgroundColor: const Color(0xFF2D2D2D),
+        foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
       child: Text(
         'Rp${amount.toString()}',
-        style: const TextStyle(fontSize: 14),
+        style: const TextStyle(fontSize: 14, color: Colors.white),
       ),
     );
   }

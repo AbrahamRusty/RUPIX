@@ -23,8 +23,8 @@ class EWalletListTile extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           color: isSelected
-              ? Colors.blue.withOpacity(0.05)
-              : Colors.grey.withOpacity(0.1),
+              ? const Color(0xFF0088FF).withOpacity(0.1)
+              : const Color(0xFF2D2D2D),
           borderRadius: BorderRadius.circular(10),
           border: isSelected
               ? Border.all(color: const Color(0xFF0088FF), width: 1.5)
@@ -40,12 +40,13 @@ class EWalletListTile extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
             ),
             Icon(
               isSelected ? Icons.check_circle : Icons.circle_outlined,
-              color: isSelected ? const Color(0xFF0088FF) : Colors.grey,
+              color: isSelected ? const Color(0xFF0088FF) : Colors.grey[400],
               size: 24,
             ),
           ],

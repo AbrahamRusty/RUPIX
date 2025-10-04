@@ -17,22 +17,20 @@ class ContactItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       decoration: BoxDecoration(
-        color: const Color(0x21D9D9D9),
+        color: const Color(0xFF2D2D2D),
         borderRadius: BorderRadius.circular(15),
         border: isSelected
-            ? Border.all(color: const Color(0xFF0088FF), width: 1)
+            ? Border.all(color: Colors.blue, width: 1)
             : Border.all(color: Colors.transparent),
       ),
       child: Row(
         children: [
           CircleAvatar(
-            backgroundColor: Theme.of(
-              context,
-            ).colorScheme.primary.withOpacity(0.1),
+            backgroundColor: Colors.blue.withOpacity(0.1),
             child: Text(
               name.substring(0, 1),
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
+              style: const TextStyle(
+                color: Colors.blue,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -45,7 +43,7 @@ class ContactItem extends StatelessWidget {
                 Text(
                   name,
                   style: const TextStyle(
-                    color: Color(0xFF23303B),
+                    color: Colors.white,
                     fontSize: 16,
                     fontFamily: 'Aoboshi One',
                     fontWeight: FontWeight.w400,
@@ -54,7 +52,7 @@ class ContactItem extends StatelessWidget {
                 Text(
                   details,
                   style: TextStyle(
-                    color: Colors.black.withOpacity(0.35),
+                    color: Colors.grey[400],
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
                   ),

@@ -20,6 +20,12 @@ class TransferScreen extends StatefulWidget {
 }
 
 class _TransferScreenState extends State<TransferScreen> {
+  // Colors for Dark Mode
+  final Color _backgroundColor = const Color.fromARGB(255, 0, 0, 0);
+  final Color _textColor = Colors.white;
+  final Color _cardColor = const Color(0xFF1A1A1A);
+  final Color _buttonColor = const Color(0xFF2D2D2D);
+
   final List<Contact> _allContacts = [
     Contact(name: 'Patricia Natania', details: 'RupiX - 0011 2000 3456'),
     Contact(name: 'Lyvia Reva', details: 'BCA - 8******20'),
@@ -78,16 +84,17 @@ class _TransferScreenState extends State<TransferScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: _backgroundColor,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          icon: Icon(Icons.arrow_back_ios, color: _textColor),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
+        title: Text(
           'Transfer',
           style: TextStyle(
-            color: Colors.black,
+            color: _textColor,
             fontSize: 24,
             fontWeight: FontWeight.w700,
           ),
@@ -95,114 +102,118 @@ class _TransferScreenState extends State<TransferScreen> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            const Text(
-              'Choose your method',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const SizedBox(height: 15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                TransferMethodButton(
-                  label: 'Bank',
-                  imagePath: 'assets/Transfer/bank.png',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const TransferBankScreen(),
-                      ),
-                    );
-                  },
-                ),
-                TransferMethodButton(
-                  label: 'E-Wallet',
-                  imagePath: 'assets/Transfer/ewallet.png',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const TransferEWalletScreen(),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Search contact',
-                hintStyle: const TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 0.4),
-                  fontSize: 15,
-                ),
-                prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                filled: true,
-                fillColor: const Color.fromRGBO(128, 128, 128, 0.2),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide.none,
+      body: Container(
+        color: _backgroundColor,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              Text(
+                'Choose your method',
+                style: TextStyle(
+                  color: _textColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Recent Contacts',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Expanded(
-              child: ListView.builder(
-                itemCount: _filteredContacts.length,
-                itemBuilder: (context, index) {
-                  final contact = _filteredContacts[index];
-
-                  return GestureDetector(
+              const SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TransferMethodButton(
+                    label: 'Bank',
+                    imagePath: 'assets/Transfer/bank.png',
                     onTap: () {
-                      final finalDetails = _getRupiXDetails(contact);
-                      setState(() {
-                        _selectedContact = contact;
-                      });
-
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => RupiXTransferAmountScreen(
-                            contactName: contact.name,
-                            contactDetails: finalDetails,
-                          ),
+                          builder: (context) => const TransferBankScreen(),
                         ),
                       );
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: ContactItem(
-                        name: contact.name,
-                        details: contact.details,
-                        isSelected: contact.name == _selectedContact?.name,
-                      ),
-                    ),
-                  );
-                },
+                  ),
+                  TransferMethodButton(
+                    label: 'E-Wallet',
+                    imagePath: 'assets/Transfer/ewallet.png',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const TransferEWalletScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
-            ),
-          ],
+              const SizedBox(height: 30),
+              TextField(
+                controller: _searchController,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: 'Search contact',
+                  hintStyle: TextStyle(
+                    color: Colors.grey[400]!.withOpacity(0.6),
+                    fontSize: 15,
+                  ),
+                  prefixIcon: Icon(Icons.search, color: Colors.grey),
+                  filled: true,
+                  fillColor: _buttonColor,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'Recent Contacts',
+                style: TextStyle(
+                  color: _textColor,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _filteredContacts.length,
+                  itemBuilder: (context, index) {
+                    final contact = _filteredContacts[index];
+
+                    return GestureDetector(
+                      onTap: () {
+                        final finalDetails = _getRupiXDetails(contact);
+                        setState(() {
+                          _selectedContact = contact;
+                        });
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RupiXTransferAmountScreen(
+                              contactName: contact.name,
+                              contactDetails: finalDetails,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: ContactItem(
+                          name: contact.name,
+                          details: contact.details,
+                          isSelected: contact.name == _selectedContact?.name,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

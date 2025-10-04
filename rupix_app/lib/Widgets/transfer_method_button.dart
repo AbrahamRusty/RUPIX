@@ -20,7 +20,7 @@ class TransferMethodButton extends StatelessWidget {
         width: 152,
         height: 168,
         decoration: BoxDecoration(
-          color: const Color(0x28D9D9D9),
+          color: const Color(0xFF2D2D2D),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
@@ -35,7 +35,7 @@ class TransferMethodButton extends StatelessWidget {
             Text(
               label,
               style: const TextStyle(
-                color: Color(0xFF0088FF),
+                color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
               ),

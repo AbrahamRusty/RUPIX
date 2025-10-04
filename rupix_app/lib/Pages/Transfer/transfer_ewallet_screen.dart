@@ -26,7 +26,7 @@ class _TransferEWalletScreenState extends State<TransferEWalletScreen> {
     final bool isContinueEnabled = _selectedEWallet != null;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFF000000),
       appBar: AppBar(
         backgroundColor: const Color(0xFF0088FF),
         elevation: 0,
@@ -54,23 +54,24 @@ class _TransferEWalletScreenState extends State<TransferEWalletScreen> {
                 children: [
                   const Text(
                     'Transfer to e-wallet',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                   const SizedBox(height: 5),
-                  const Text(
+                  Text(
                     'Search or select recipients e-wallet',
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                    style: TextStyle(fontSize: 14, color: Colors.grey[400]),
                   ),
                   const SizedBox(height: 15),
                   TextField(
+                    style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       hintText: 'Search for e-wallet',
                       hintStyle: TextStyle(
-                        color: Colors.black.withOpacity(0.4),
+                        color: Colors.grey[400],
                       ),
                       prefixIcon: const Icon(Icons.search, color: Colors.grey),
                       filled: true,
-                      fillColor: Colors.grey.withOpacity(0.2),
+                      fillColor: const Color(0xFF2D2D2D),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
@@ -121,7 +122,7 @@ class _TransferEWalletScreenState extends State<TransferEWalletScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: isContinueEnabled
                       ? const Color(0xFF0088FF)
-                      : Colors.grey, // Warna abu-abu jika disabled
+                      : const Color(0xFF2D2D2D), // Warna abu-abu jika disabled
 
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),

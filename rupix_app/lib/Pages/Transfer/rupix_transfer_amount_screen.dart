@@ -135,7 +135,7 @@ class _RupiXTransferAmountScreenState extends State<RupiXTransferAmountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0088FF),
+      backgroundColor: const Color(0xFF000000),
       appBar: AppBar(
         backgroundColor: const Color(0xFF0088FF),
         elevation: 0,
@@ -163,7 +163,7 @@ class _RupiXTransferAmountScreenState extends State<RupiXTransferAmountScreen> {
               child: Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.1),
+                  color: const Color(0xFF2D2D2D),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -174,8 +174,8 @@ class _RupiXTransferAmountScreenState extends State<RupiXTransferAmountScreen> {
                         children: [
                           Text(
                             _currentContactName,
-                            style: TextStyle(
-                              color: Colors.white.withOpacity(0.8),
+                            style: const TextStyle(
+                              color: Colors.white,
                               fontSize: 16,
                             ),
                           ),
@@ -183,7 +183,7 @@ class _RupiXTransferAmountScreenState extends State<RupiXTransferAmountScreen> {
                           Text(
                             _currentContactDetails,
                             style: TextStyle(
-                              color: Colors.white.withOpacity(0.6),
+                              color: Colors.grey[400],
                               fontSize: 14,
                             ),
                           ),

@@ -44,7 +44,7 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
     final bool isContinueEnabled = _selectedBank != null;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFF000000),
       appBar: AppBar(
         backgroundColor: const Color(0xFF0088FF),
         elevation: 0,
@@ -76,12 +76,13 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 5),
-                    const Text(
+                    Text(
                       'Search or select recipients bank',
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                      style: TextStyle(fontSize: 14, color: Colors.grey[400]),
                     ),
                     const SizedBox(height: 15),
                     TextField(
@@ -90,17 +91,18 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
                           _searchQuery = value;
                         });
                       },
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         hintText: 'Search bank',
                         hintStyle: TextStyle(
-                          color: Colors.black.withOpacity(0.4),
+                          color: Colors.grey[400],
                         ),
                         prefixIcon: const Icon(
                           Icons.search,
                           color: Colors.grey,
                         ),
                         filled: true,
-                        fillColor: Colors.grey.withOpacity(0.2),
+                        fillColor: const Color(0xFF2D2D2D),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide.none,
@@ -162,6 +164,7 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
                                     fontWeight: isSelected
                                         ? FontWeight.w600
                                         : FontWeight.w400,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
@@ -189,7 +192,7 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: const Color(0xFF1A1A1A),
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.2),
@@ -218,8 +221,8 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: isContinueEnabled
                       ? const Color(0xFF0088FF)
-                      : Colors.grey[300],
-                  disabledBackgroundColor: Colors.grey[300],
+                      : const Color(0xFF2D2D2D),
+                  disabledBackgroundColor: const Color(0xFF2D2D2D),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -230,7 +233,7 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: isContinueEnabled ? Colors.white : Colors.grey[500],
+                    color: isContinueEnabled ? Colors.white : Colors.grey[400],
                   ),
                 ),
               ),

@@ -20,7 +20,7 @@ class TransferReceiptScreen extends StatelessWidget {
     final time = DateFormat('HH:mm a').format(now);
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0088FF),
+      backgroundColor: const Color(0xFF000000),
       appBar: AppBar(
         backgroundColor: const Color(0xFF0088FF),
         elevation: 0,
@@ -56,7 +56,7 @@ class TransferReceiptScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: const Color(0xFF1A1A1A),
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
@@ -79,7 +79,7 @@ class TransferReceiptScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -88,7 +88,7 @@ class TransferReceiptScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 13,
-                            color: Colors.grey[600],
+                            color: Colors.grey[400],
                           ),
                         ),
                         const Divider(height: 40),
@@ -107,13 +107,13 @@ class TransferReceiptScreen extends StatelessWidget {
                               'See Detail',
                               style: TextStyle(
                                 fontSize: 15,
-                                color: Colors.grey[700],
+                                color: Colors.grey[400],
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            const Icon(
+                            Icon(
                               Icons.keyboard_arrow_down,
-                              color: Colors.grey,
+                              color: Colors.grey[400],
                             ),
                           ],
                         ),
@@ -155,13 +155,13 @@ class TransferReceiptScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: TextStyle(fontSize: 15, color: Colors.grey[700])),
+        Text(title, style: TextStyle(fontSize: 15, color: Colors.grey[400])),
         Text(
           value,
           style: const TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
       ],

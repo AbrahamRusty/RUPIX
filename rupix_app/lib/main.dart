@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rupix_app/providers/business_provider.dart';
 import 'Pages/Login/login.dart';
 import 'Pages/WalletHomePage.dart';
 import 'Pages/settings/about_pages.dart';
@@ -10,6 +12,7 @@ import 'Pages/settings/help_center_screen.dart';
 import 'Pages/settings/email_support_screen.dart';
 import 'Pages/settings/chat_bot_screen.dart';
 import 'Pages/settings/success_screen.dart';
+import 'Pages/Profile/profile.dart';
 // ignore: unused_import
 import 'Pages/settings/setting_home_screen.dart';
 
@@ -22,36 +25,40 @@ class RupiahWalletApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Rupiah Wallet',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
-        scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
+    return ChangeNotifierProvider(
+      create: (context) => BusinessProvider(),
+      child: MaterialApp(
+        title: 'Rupiah Wallet',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.lightBlue,
+          scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        ),
+
+        initialRoute: '/login',
+
+        routes: {
+          '/login': (context) => const LoginPage(),
+          '/home': (context) => const WalletHomePage(),
+
+          '/about': (context) => const AboutPage(),
+          '/help_center': (context) => const HelpCenterScreen(),
+          '/privacy_policy': (context) => const PrivacyPolicyScreen(),
+
+          '/change_email': (context) =>
+              const change_email_screen.ChangeEmailScreen(),
+          '/change_password': (context) =>
+              const change_password_screen.ChangePasswordScreen(),
+          '/change_username': (context) =>
+              const change_username_screen.ChangeUsernameScreen(),
+
+          '/email_support': (context) => const EmailSupportScreen(),
+          '/chatbot': (context) => const ChatBotScreen(),
+
+          '/success': (context) => const SuccessScreen(),
+          '/profile': (context) => const Profile(),
+        },
       ),
-
-      initialRoute: '/login',
-
-      routes: {
-        '/login': (context) => const LoginPage(),
-        '/home': (context) => const WalletHomePage(),
-
-        '/about': (context) => const AboutPage(),
-        '/help_center': (context) => const HelpCenterScreen(),
-        '/privacy_policy': (context) => const PrivacyPolicyScreen(),
-
-        '/change_email': (context) =>
-            const change_email_screen.ChangeEmailScreen(),
-        '/change_password': (context) =>
-            const change_password_screen.ChangePasswordScreen(),
-        '/change_username': (context) =>
-            const change_username_screen.ChangeUsernameScreen(),
-
-        '/email_support': (context) => const EmailSupportScreen(),
-        '/chatbot': (context) => const ChatBotScreen(),
-
-        '/success': (context) => const SuccessScreen(),
-      },
     );
   }
 }

@@ -138,7 +138,9 @@ class _WalletHomePageState extends State<WalletHomePage> {
                             size: 28,
                             color: _iconColor,
                           ),
-                          onPressed: () => _openNotificationPage(context), // Navigasi ke halaman notifikasi
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/profile');
+                          },
                         ),
                       ],
                     ),

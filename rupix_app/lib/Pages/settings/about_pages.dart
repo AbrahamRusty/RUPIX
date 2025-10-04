@@ -96,6 +96,7 @@ class AboutPage extends StatelessWidget {
                         fontSize: 14,
                         color: secondaryColor,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-// Definisi variabel warna untuk konsistensi
-const Color customBlue = Color(0xFF0088FF);
+// Global ValueNotifier untuk dark mode
+ValueNotifier<bool> isDarkModeNotifier = ValueNotifier<bool>(false);
 
 class HelpCenterScreen extends StatefulWidget {
   const HelpCenterScreen({super.key});
@@ -14,66 +14,81 @@ class HelpCenterScreenState extends State<HelpCenterScreen> {
   // Data FAQ
   final List<Item> _data = [
     Item(
-      headerValue: 'Account & Registration',
+      headerValue: 'Akun & Registrasi',
       faqContent: [
-        'Q: How do I register for a RupiX account?',
-        'A: Download the RupiX app, open , and select “Sign Up.” Fill in your personal details, verify your phone number, and set a secure PIN.',
-        'Q: Why do I need to complete KYC verification?',
-        'A: KYC (Know Your Customer) is required by regulation to ensure the security of your account and enable you to use all RupiX features (such as top-up, transfer, and withdrawals).',
-        'Q: I forgot my PIN, what should I do?',
-        'A: Tap on “Forgot PIN” at the login screen, follow the verification steps, and create a new PIN.',
+        'Q: Bagaimana cara mendaftar akun RupiX?',
+        'A: Download aplikasi RupiX, buka, dan pilih "Daftar". Isi detail pribadi Anda, verifikasi nomor telepon, dan atur PIN yang aman.',
+        'Q: Mengapa saya perlu menyelesaikan verifikasi KYC?',
+        'A: KYC (Know Your Customer) diperlukan oleh regulasi untuk memastikan keamanan akun Anda dan memungkinkan Anda menggunakan semua fitur RupiX (seperti top-up, transfer, dan penarikan).',
+        'Q: Saya lupa PIN, apa yang harus dilakukan?',
+        'A: Ketuk "Lupa PIN" di layar login, ikuti langkah verifikasi, dan buat PIN baru.',
       ],
     ),
     Item(
-      headerValue: 'Transaction & Payments',
+      headerValue: 'Transaksi & Pembayaran',
       faqContent: [
-        'Q: Where can I use RupiX to pay?',
-        'A: RupixX can be used to pay at online merchants, offline stores, and bill payments (electricity, water, internet, etc.) listed in the app.',
-        'Q: Can I transfer money to another RupixX user?',
-        'A: Yes. Go to “Transfer,” enter the recipient’s phone number or RupiX ID, input the amount, and confirm with your PIN.',
-        'Q: Is there a transaction fee?',
-        'A: Transactions within RupiX are generally free. Some services (e.g., interbank transfers) may apply a small fee depending on the partner bank.',
+        'Q: Di mana saya bisa menggunakan RupiX untuk membayar?',
+        'A: RupiX dapat digunakan untuk membayar di merchant online, toko offline, dan pembayaran tagihan (listrik, air, internet, dll.) yang terdaftar di aplikasi.',
+        'Q: Bisakah saya transfer uang ke pengguna RupiX lain?',
+        'A: Ya. Pergi ke "Transfer", masukkan nomor telepon atau ID RupiX penerima, input jumlah, dan konfirmasi dengan PIN Anda.',
+        'Q: Apakah ada biaya transaksi?',
+        'A: Transaksi dalam RupiX umumnya gratis. Beberapa layanan (misalnya transfer antar bank) mungkin dikenakan biaya kecil tergantung bank mitra.',
       ],
     ),
     Item(
-      headerValue: 'Security',
+      headerValue: 'Keamanan',
       faqContent: [
-        'Q: How do I keep my account safe?',
-        'A: Never share your PIN or OTP with anyone, even if they claim to be from RupixX. Always use the official app and enable device security features.',
-        'Q: What should I do if I suspect unauthorized activity?',
-        'A: Immediately change your PIN and contact RupiX Customer Service to secure your account.',
+        'Q: Bagaimana cara menjaga keamanan akun saya?',
+        'A: Jangan pernah berbagi PIN atau OTP dengan siapa pun, bahkan jika mereka mengaku dari RupiX. Selalu gunakan aplikasi resmi dan aktifkan fitur keamanan perangkat.',
+        'Q: Apa yang harus saya lakukan jika mencurigai aktivitas tidak sah?',
+        'A: Segera ubah PIN Anda dan hubungi Layanan Pelanggan RupiX untuk mengamankan akun Anda.',
       ],
     ),
     Item(
-      headerValue: 'Promotions & Rewards',
+      headerValue: 'Promo & Hadiah',
       faqContent: [
-        'Q: How do I participate in promotions?',
-        'A: Stay tuned to our in-app announcements and social media for the latest promotions and rewards programs. Follow the specific terms and conditions for each promotion.',
-        'Q: How do I redeem my rewards?',
-        'A: Rewards can be redeemed through the "Rewards" section in your app. Follow the instructions for each reward type.',
+        'Q: Bagaimana cara berpartisipasi dalam promo?',
+        'A: Pantau pengumuman dalam aplikasi dan media sosial kami untuk program promo dan hadiah terbaru. Ikuti syarat dan ketentuan khusus untuk setiap promo.',
+        'Q: Bagaimana cara menukar hadiah saya?',
+        'A: Hadiah dapat ditukarkan melalui bagian "Hadiah" di aplikasi Anda. Ikuti instruksi untuk setiap jenis hadiah.',
       ],
     ),
   ];
+
+  // Fungsi untuk mendapatkan warna berdasarkan dark mode
+  Color _getBackgroundColor(bool isDark) => isDark ? Color(0xFF121212) : Color(0xFF121212);
+  Color _getPrimaryColor(bool isDark) => isDark ? Colors.white : Colors.white;
+  Color _getSecondaryColor(bool isDark) => isDark ? Colors.grey.shade400 : Colors.grey.shade400;
+  Color _getCardColor(bool isDark) => isDark ? Color(0xFF1E1E1E) : Color(0xFF1E1E1E);
+  Color _getBorderColor(bool isDark) => isDark ? Colors.grey.shade800 : Colors.grey.shade800;
+  final Color accentColor = Color.fromARGB(255, 0, 60, 144);
+  final Color appBarColor = Color.fromARGB(255, 0, 60, 144);
 
   // Fungsi untuk menampilkan dialog pop-up FAQ
   void _showFaqDialog(
     BuildContext context,
     String title,
     List<String> content,
+    bool isDarkMode,
   ) {
     showDialog(
       context: context,
       builder: (BuildContext dialogContext) {
+        final dialogBackgroundColor = isDarkMode ? Color(0xFF1E1E1E) : Color(0xFF1E1E1E);
+        final dialogTextColor = isDarkMode ? Colors.white : Colors.white;
+        final dialogSecondaryColor = isDarkMode ? Colors.grey.shade400 : Colors.grey.shade400;
+
         return AlertDialog(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(16),
           ),
-          backgroundColor: customBlue, // Menggunakan customBlue
+          backgroundColor: dialogBackgroundColor,
           title: Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 247, 251, 254),
+              color: dialogTextColor,
+              fontSize: 18,
             ),
           ),
           content: SingleChildScrollView(
@@ -81,16 +96,14 @@ class HelpCenterScreenState extends State<HelpCenterScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: content.map((text) {
                 return Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
+                  padding: const EdgeInsets.only(bottom: 12.0),
                   child: Text(
                     text,
                     style: TextStyle(
-                      color: text.startsWith('Q:')
-                          ? Colors.black87
-                          : Colors.black54,
-                      fontWeight: text.startsWith('Q:')
-                          ? FontWeight.w600
-                          : FontWeight.normal,
+                      color: text.startsWith('Q:') ? dialogTextColor : dialogSecondaryColor,
+                      fontWeight: text.startsWith('Q:') ? FontWeight.w600 : FontWeight.normal,
+                      fontSize: 14,
+                      height: 1.4,
                     ),
                   ),
                 );
@@ -99,11 +112,12 @@ class HelpCenterScreenState extends State<HelpCenterScreen> {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text(
-                'Close',
+              child: Text(
+                'Tutup',
                 style: TextStyle(
-                  color: Colors.white,
-                ), // Sesuaikan warna teks tombol
+                  color: accentColor,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               onPressed: () {
                 Navigator.of(dialogContext).pop();
@@ -117,110 +131,298 @@ class HelpCenterScreenState extends State<HelpCenterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // PERUBAHAN: Warna judul dan background disesuaikan
-        title: const Text('Help Center', style: TextStyle(color: Colors.white)),
-        backgroundColor: customBlue,
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ), // Ikon kembali putih
-        // BARIS DI BAWAH INI DIHILANGKAN UNTUK MENGHILANGKAN IKON SEARCH
-        /*
-        actions: const [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Icon(Icons.search),
-          ),
-        ],
-        */
-        // Ganti dengan actions: const [], atau hapus properti actions:
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            // Bagian FAQ
-            ..._data.map<Widget>((Item item) {
-              return Card(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 8.0,
-                ),
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: ListTile(
-                  title: Text(
-                    item.headerValue,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  trailing: const Icon(Icons.keyboard_arrow_right),
-                  onTap: () {
-                    _showFaqDialog(context, item.headerValue, item.faqContent);
-                  },
-                ),
-              );
-            }),
+    return ValueListenableBuilder<bool>(
+      valueListenable: isDarkModeNotifier,
+      builder: (context, isDarkMode, child) {
+        // Color definitions berdasarkan dark mode
+        final backgroundColor = _getBackgroundColor(isDarkMode);
+        final primaryColor = _getPrimaryColor(isDarkMode);
+        final secondaryColor = _getSecondaryColor(isDarkMode);
+        final cardColor = _getCardColor(isDarkMode);
+        final borderColor = _getBorderColor(isDarkMode);
 
-            const SizedBox(height: 24),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        return Theme(
+          data: isDarkMode ? ThemeData.dark() : ThemeData.light(),
+          child: Scaffold(
+            backgroundColor: backgroundColor,
+            appBar: AppBar(
+              title: Text(
+                'Pusat Bantuan',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              backgroundColor: appBarColor,
+              iconTheme: IconThemeData(color: Colors.white),
+              elevation: 0,
+            ),
+            body: SingleChildScrollView(
+              padding: EdgeInsets.all(16),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Contact Us',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8),
-
-                  // 3. PERBAIKAN: ListTile Email - Navigasi
-                  Card(
-                    elevation: 2,
-                    child: ListTile(
-                      leading: const Icon(Icons.email, color: customBlue),
-                      title: const Text('Email'),
-                      subtitle: const Text('your.email@gmail.com'),
-                      onTap: () {
-                        Navigator.pushNamed(context, '/email_support');
-                      },
+                children: <Widget>[
+                  // Header Section
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: cardColor,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: borderColor),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: accentColor,
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          child: Icon(
+                            Icons.help_outline,
+                            color: Colors.white,
+                            size: 24,
+                          ),
+                        ),
+                        SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Butuh Bantuan?',
+                                style: TextStyle(
+                                  color: primaryColor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                'Temukan jawaban untuk pertanyaan umum atau hubungi kami',
+                                style: TextStyle(
+                                  color: secondaryColor,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
 
-                  const SizedBox(height: 8),
+                  SizedBox(height: 24),
 
-                  // 4. PERBAIKAN: ListTile Customer Service - Navigasi & Hapus Duplikat
-                  Card(
-                    elevation: 2,
-                    child: ListTile(
-                      leading: const Icon(
-                        Icons.support_agent,
-                        color: customBlue,
+                  // FAQ Section
+                  Text(
+                    'Pertanyaan Umum',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: primaryColor,
+                    ),
+                  ),
+                  SizedBox(height: 16),
+
+                  // Bagian FAQ
+                  ..._data.map<Widget>((Item item) {
+                    return Container(
+                      margin: EdgeInsets.only(bottom: 12),
+                      decoration: BoxDecoration(
+                        color: cardColor,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: borderColor),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            blurRadius: 4,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
                       ),
-                      title: const Text('Customer Service'),
-                      subtitle: const Text('Call RupiX Support'),
-                      onTap: () {
-                        Navigator.pushNamed(context, '/chatbot');
-                      },
+                      child: ListTile(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        leading: Icon(
+                          Icons.help_outline,
+                          color: accentColor,
+                        ),
+                        title: Text(
+                          item.headerValue,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: primaryColor,
+                          ),
+                        ),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: secondaryColor,
+                        ),
+                        onTap: () {
+                          _showFaqDialog(context, item.headerValue, item.faqContent, isDarkMode);
+                        },
+                      ),
+                    );
+                  }),
+
+                  SizedBox(height: 32),
+
+                  // Contact Section
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: cardColor,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: borderColor),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Hubungi Kami',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: primaryColor,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Tim support kami siap membantu Anda 24/7',
+                          style: TextStyle(
+                            color: secondaryColor,
+                            fontSize: 14,
+                          ),
+                        ),
+                        SizedBox(height: 16),
+
+                        // Email Support
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: borderColor),
+                          ),
+                          child: ListTile(
+                            leading: Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: accentColor.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Icon(Icons.email, color: accentColor),
+                            ),
+                            title: Text(
+                              'Email Support',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: primaryColor,
+                              ),
+                            ),
+                            subtitle: Text(
+                              'support@rupix-wallet.com',
+                              style: TextStyle(color: secondaryColor),
+                            ),
+                            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: secondaryColor),
+                            onTap: () {
+                              Navigator.pushNamed(context, '/email_support');
+                            },
+                          ),
+                        ),
+
+                        SizedBox(height: 12),
+
+                        // Chat Bot
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: borderColor),
+                          ),
+                          child: ListTile(
+                            leading: Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: accentColor.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Icon(Icons.chat, color: accentColor),
+                            ),
+                            title: Text(
+                              'Chat Bot AI',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: primaryColor,
+                              ),
+                            ),
+                            subtitle: Text(
+                              'Bantuan instan 24/7',
+                              style: TextStyle(color: secondaryColor),
+                            ),
+                            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: secondaryColor),
+                            onTap: () {
+                              Navigator.pushNamed(context, '/chatbot');
+                            },
+                          ),
+                        ),
+
+                        SizedBox(height: 12),
+
+                        // Phone Support
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: borderColor),
+                          ),
+                          child: ListTile(
+                            leading: Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: accentColor.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Icon(Icons.phone, color: accentColor),
+                            ),
+                            title: Text(
+                              'Call Center',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: primaryColor,
+                              ),
+                            ),
+                            subtitle: Text(
+                              '1500-123 (24 Jam)',
+                              style: TextStyle(color: secondaryColor),
+                            ),
+                            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: secondaryColor),
+                            onTap: () {
+                              // TODO: Implement phone call
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+
+                  SizedBox(height: 20),
                 ],
               ),
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
 
-// Ubah kelas Item agar menyimpan daftar string FAQ
+// Kelas Item untuk menyimpan data FAQ
 class Item {
   Item({
     required this.headerValue,
-    required this.faqContent, // Sekarang list of strings
+    required this.faqContent,
   });
   String headerValue;
-  List<String> faqContent; // Mengganti expandedValue
+  List<String> faqContent;
 }

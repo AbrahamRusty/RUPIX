@@ -25,15 +25,16 @@ class KonfirmasishopeePage extends StatelessWidget {
     }
 
     return Scaffold(
+      backgroundColor: Color(0xFF121212), // Dark background
       appBar: AppBar(
-        leading: BackButton(),
+        leading: BackButton(color: Colors.white), // White back button
         title: Text(
           'KONFIRMASI TRANSAKSI',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white), // White text
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xFFFF5722),
-        foregroundColor: Colors.black,
+        backgroundColor: const Color(0xFFFF5722), // Tetap orange ShopeePay
+        foregroundColor: Colors.white, // White icons
         elevation: 0,
       ),
       body: Padding(
@@ -60,23 +61,31 @@ class KonfirmasishopeePage extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
+                        color: Colors.white, // White text
                       ),
                     ),
-                    Text(phoneNumber, style: TextStyle(fontSize: 14)),
+                    Text(
+                      phoneNumber, 
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey[400], // Light grey
+                      ),
+                    ),
                   ],
                 ),
               ],
             ),
             SizedBox(height: 24),
 
+            // Nominal Card
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xFF1E1E1E), // Dark card
                 borderRadius: BorderRadius.circular(4),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade300,
+                    color: Colors.black.withOpacity(0.3),
                     blurRadius: 3,
                     offset: Offset(0, 1),
                   ),
@@ -87,24 +96,32 @@ class KonfirmasishopeePage extends StatelessWidget {
                 children: [
                   Text(
                     'Nominal',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, // White text
+                    ),
                   ),
                   Text(
                     formatRupiah(nominal),
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, // White text
+                    ),
                   ),
                 ],
               ),
             ),
             SizedBox(height: 8),
+            
+            // Biaya Admin Card
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xFF1E1E1E), // Dark card
                 borderRadius: BorderRadius.circular(4),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade300,
+                    color: Colors.black.withOpacity(0.3),
                     blurRadius: 3,
                     offset: Offset(0, 1),
                   ),
@@ -115,11 +132,17 @@ class KonfirmasishopeePage extends StatelessWidget {
                 children: [
                   Text(
                     'Biaya Admin',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, // White text
+                    ),
                   ),
                   Text(
                     formatRupiah(biayaAdmin),
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, // White text
+                    ),
                   ),
                 ],
               ),
@@ -127,15 +150,16 @@ class KonfirmasishopeePage extends StatelessWidget {
 
             SizedBox(height: 24),
 
+            // Detail Card
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xFF1E1E1E), // Dark card
                 borderRadius: BorderRadius.circular(4),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade300,
+                    color: Colors.black.withOpacity(0.3),
                     blurRadius: 3,
                     offset: Offset(0, 1),
                   ),
@@ -146,23 +170,54 @@ class KonfirmasishopeePage extends StatelessWidget {
                 children: [
                   Text(
                     'Detail',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold, 
+                      fontSize: 16,
+                      color: Colors.white, // White text
+                    ),
                   ),
                   SizedBox(height: 12),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('No VA'), Text(virtualNumber)],
+                    children: [
+                      Text(
+                        'No VA', 
+                        style: TextStyle(color: Colors.grey[400]) // Light grey
+                      ),
+                      Text(
+                        virtualNumber, 
+                        style: TextStyle(color: Colors.white) // White
+                      ),
+                    ],
                   ),
                   SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('Pelanggan'), Text(customerName)],
+                    children: [
+                      Text(
+                        'Pelanggan', 
+                        style: TextStyle(color: Colors.grey[400]) // Light grey
+                      ),
+                      Text(
+                        customerName, 
+                        style: TextStyle(color: Colors.white) // White
+                      ),
+                    ],
                   ),
                   SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('TIpe Pembayaran'), Text(tipePembayaran)],
+                    children: [
+                      Text(
+                        'Tipe Pembayaran', 
+                        style: TextStyle(color: Colors.grey[400]) // Light grey
+                      ),
+                      Text(
+                        tipePembayaran, 
+                        style: TextStyle(color: Colors.white) // White
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -170,6 +225,7 @@ class KonfirmasishopeePage extends StatelessWidget {
 
             Spacer(),
 
+            // Top Up Button - Tetap orange ShopeePay
             SizedBox(
               width: double.infinity,
               height: 48,
@@ -181,7 +237,7 @@ class KonfirmasishopeePage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFFF5722),
+                  backgroundColor: const Color(0xFFFF5722), // Tetap orange ShopeePay
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

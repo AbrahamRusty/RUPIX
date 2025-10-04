@@ -29,8 +29,9 @@ class _NominallinkajaPageState extends State<NominallinkajaPage> {
     String tabunganSaldo = 'Rp100.000.000';
 
     return Scaffold(
+      backgroundColor: Color(0xFF121212), // Dark background
       appBar: AppBar(
-        leading: BackButton(),
+        leading: BackButton(color: Colors.white),
         title: Text('LinkAja', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: const Color(0xFFE52B2B),
@@ -59,9 +60,18 @@ class _NominallinkajaPageState extends State<NominallinkajaPage> {
                   children: [
                     Text(
                       maskedName,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white, // White text
+                      ),
                     ),
-                    Text(phoneNumber, style: TextStyle(fontSize: 12)),
+                    Text(
+                      phoneNumber, 
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey[400], // Light grey
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -73,11 +83,11 @@ class _NominallinkajaPageState extends State<NominallinkajaPage> {
             Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.grey.shade100,
+                color: Color(0xFF1E1E1E), // Dark card
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade300,
+                    color: Colors.black.withOpacity(0.3),
                     blurRadius: 3,
                     offset: Offset(0, 1),
                   ),
@@ -88,15 +98,28 @@ class _NominallinkajaPageState extends State<NominallinkajaPage> {
                 children: [
                   Text(
                     'MASUKKAN NOMINAL',
-                    style: TextStyle(fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white, // White text
+                    ),
                   ),
                   TextField(
                     controller: _nominalController,
                     keyboardType: TextInputType.number,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold, 
+                      fontSize: 20,
+                      color: Colors.white, // White text input
+                    ),
                     decoration: InputDecoration(
                       prefixText: 'Rp ',
-                      border: UnderlineInputBorder(),
+                      prefixStyle: TextStyle(
+                        color: Colors.white, // White prefix
+                        fontWeight: FontWeight.bold,
+                      ),
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey[400]!), // Light grey border
+                      ),
                       isDense: true,
                     ),
                   ),
@@ -111,11 +134,11 @@ class _NominallinkajaPageState extends State<NominallinkajaPage> {
               width: double.infinity,
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xFF1E1E1E), // Dark card
                 borderRadius: BorderRadius.circular(4),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade300,
+                    color: Colors.black.withOpacity(0.3),
                     blurRadius: 3,
                     offset: Offset(0, 1),
                   ),
@@ -126,16 +149,26 @@ class _NominallinkajaPageState extends State<NominallinkajaPage> {
                 children: [
                   Text(
                     'Tabungan',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, // White text
+                    ),
                   ),
                   Text(
                     tabunganNumber,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white, // White text
+                    ),
                   ),
                   SizedBox(height: 4),
                   Text(
                     tabunganSaldo,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold, 
+                      fontSize: 18,
+                      color: Colors.white, // White text
+                    ),
                   ),
                 ],
               ),
@@ -155,7 +188,10 @@ class _NominallinkajaPageState extends State<NominallinkajaPage> {
                       0;
                   if (nominal <= 0) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Masukkan nominal yang valid')),
+                      SnackBar(
+                        content: Text('Masukkan nominal yang valid'),
+                        backgroundColor: Color(0xFF1E1E1E), // Dark snackbar
+                      ),
                     );
                     return;
                   }

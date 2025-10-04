@@ -56,28 +56,32 @@ class _PinEntryPageState extends State<PinEntryPage> {
       height: 14,
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
-        color: filled ? const Color(0xFFFF5722) : const Color(0xFFE0E0E0),
+        color: filled ? const Color(0xFFFF5722) : Color(0xFF2D2D2D), // Dark unfilled dot
         shape: BoxShape.circle,
+        border: filled ? null : Border.all(color: Colors.grey[700]!), // Border for unfilled
       ),
     );
   }
 
   Widget _buildNumberButton(String label, {void Function()? onTap, Widget? child}) {
-    // design: numbers are simple text (no filled circle), centered with big spacing
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
-      child: SizedBox(
+      child: Container(
         height: 76,
         width: 76,
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(38),
+        ),
         child: Center(
           child: child ??
               Text(
                 label,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w400,
-                  color: Colors.black87,
+                  color: Colors.white, // White numbers
                 ),
               ),
         ),
@@ -87,9 +91,8 @@ class _PinEntryPageState extends State<PinEntryPage> {
 
   @override
   Widget build(BuildContext context) {
-    // screen padding like reference: lots of top space
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFF121212), // Dark background
       body: SafeArea(
         child: Column(
           children: [
@@ -99,7 +102,7 @@ class _PinEntryPageState extends State<PinEntryPage> {
               child: Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.black),
+                    icon: const Icon(Icons.arrow_back, color: Colors.white),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ],
@@ -110,20 +113,21 @@ class _PinEntryPageState extends State<PinEntryPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
-                children: const [
+                children: [
                   Text(
                     'Masukkan PIN',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
+                      color: Colors.white, // White title
                     ),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
                     "Gunakan PIN ShopeePay Anda.",
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.black54,
+                      color: Colors.grey[400], // Light grey subtitle
                     ),
                   ),
                 ],
@@ -183,10 +187,10 @@ class _PinEntryPageState extends State<PinEntryPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      // an empty place to balance layout (you can put Biometric icon here)
+                      // an empty place to balance layout
                       _buildNumberButton('', onTap: null, child: const SizedBox.shrink()),
                       _buildNumberButton('0', onTap: () => _onNumberPressed(0)),
-                      _buildNumberButton('', onTap: _onDeletePressed, child: const Icon(Icons.backspace_outlined, size: 22, color: Colors.black54)),
+                      _buildNumberButton('', onTap: _onDeletePressed, child: Icon(Icons.backspace_outlined, size: 22, color: Colors.grey[400])), // Light grey backspace
                     ],
                   ),
                   const SizedBox(height: 48),

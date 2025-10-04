@@ -136,7 +136,9 @@ class _WalletHomePageState extends State<WalletHomePage> {
                             size: 28,
                             color: _iconColor,
                           ),
-                          onPressed: () => debugPrint("User tapped"),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/profile');
+                          },
                         ),
                       ],
                     ),

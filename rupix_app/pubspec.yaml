@@ -40,6 +40,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   simple_icons: ^14.6.1
+  provider: ^6.1.4
 
 dev_dependencies:
   flutter_test:
@@ -117,6 +118,10 @@ flutter:
 
     # File PNG di root assets
     - assets/tree.png
+
+    # Profile
+    - assets/img/profile.jpg
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

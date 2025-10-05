@@ -18,16 +18,20 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
   bool _deviceManagement = true;
   bool _suspiciousActivityAlerts = true;
   bool _autoLogout = true;
-  
+
   final Color appBarColor = Color.fromARGB(255, 0, 60, 144);
   final Color accentColor = Color.fromARGB(255, 0, 60, 144);
 
   // Fungsi untuk mendapatkan warna berdasarkan dark mode
-  Color _getBackgroundColor(bool isDark) => isDark ? Color(0xFF121212) : Color(0xFF121212);
+  Color _getBackgroundColor(bool isDark) =>
+      isDark ? Color(0xFF121212) : Color(0xFF121212);
   Color _getPrimaryColor(bool isDark) => isDark ? Colors.white : Colors.white;
-  Color _getSecondaryColor(bool isDark) => isDark ? Colors.grey.shade400 : Colors.grey.shade400;
-  Color _getCardColor(bool isDark) => isDark ? Color(0xFF1E1E1E) : Color(0xFF1E1E1E);
-  Color _getBorderColor(bool isDark) => isDark ? Colors.grey.shade800 : Colors.grey.shade800;
+  Color _getSecondaryColor(bool isDark) =>
+      isDark ? Colors.grey.shade400 : Colors.grey.shade400;
+  Color _getCardColor(bool isDark) =>
+      isDark ? Color(0xFF1E1E1E) : Color(0xFF1E1E1E);
+  Color _getBorderColor(bool isDark) =>
+      isDark ? Colors.grey.shade800 : Colors.grey.shade800;
 
   void _enableAllSecurityFeatures() {
     setState(() {
@@ -39,7 +43,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
       _suspiciousActivityAlerts = true;
       _autoLogout = true;
     });
-    
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Semua fitur keamanan diaktifkan'),
@@ -145,7 +149,11 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                     ),
                     child: Row(
                       children: [
-                        Icon(Icons.assessment_outlined, color: Colors.blue, size: 24),
+                        Icon(
+                          Icons.assessment_outlined,
+                          color: Colors.blue,
+                          size: 24,
+                        ),
                         SizedBox(width: 12),
                         Expanded(
                           child: Column(
@@ -162,7 +170,9 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                               LinearProgressIndicator(
                                 value: 0.85,
                                 backgroundColor: Colors.blue.withOpacity(0.2),
-                                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.blue,
+                                ),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ],
@@ -272,7 +282,8 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                           'Peringatan untuk aktivitas tidak biasa',
                           Icons.warning_outlined,
                           _suspiciousActivityAlerts,
-                          (value) => setState(() => _suspiciousActivityAlerts = value),
+                          (value) =>
+                              setState(() => _suspiciousActivityAlerts = value),
                           primaryColor,
                           secondaryColor,
                         ),
@@ -282,7 +293,8 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                           'Verifikasi PIN untuk setiap transaksi',
                           Icons.account_balance_wallet_outlined,
                           _transactionConfirmation,
-                          (value) => setState(() => _transactionConfirmation = value),
+                          (value) =>
+                              setState(() => _transactionConfirmation = value),
                           primaryColor,
                           secondaryColor,
                         ),
@@ -305,7 +317,11 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.devices_outlined, color: accentColor, size: 20),
+                            Icon(
+                              Icons.devices_outlined,
+                              color: accentColor,
+                              size: 20,
+                            ),
                             SizedBox(width: 12),
                             Text(
                               'Manajemen Perangkat',
@@ -320,10 +336,7 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                         SizedBox(height: 12),
                         Text(
                           'Kelola perangkat yang terhubung dengan akun Anda',
-                          style: TextStyle(
-                            color: secondaryColor,
-                            fontSize: 14,
-                          ),
+                          style: TextStyle(color: secondaryColor, fontSize: 14),
                         ),
                         SizedBox(height: 16),
                         Row(
@@ -333,7 +346,9 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
                                 onPressed: () {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text('Membuka manajemen perangkat'),
+                                      content: Text(
+                                        'Membuka manajemen perangkat',
+                                      ),
                                       backgroundColor: Colors.blue,
                                       duration: Duration(seconds: 2),
                                     ),
@@ -472,12 +487,18 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
   ) {
     return ListTile(
       leading: Icon(icon, color: primaryColor),
-      title: Text(title, style: TextStyle(color: primaryColor, fontWeight: FontWeight.w500)),
-      subtitle: Text(subtitle, style: TextStyle(color: secondaryColor, fontSize: 12)),
+      title: Text(
+        title,
+        style: TextStyle(color: primaryColor, fontWeight: FontWeight.w500),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: TextStyle(color: secondaryColor, fontSize: 12),
+      ),
       trailing: Switch(
         value: value,
         onChanged: onChanged,
-        activeColor: Colors.green,
+        activeThumbColor: Colors.green,
       ),
       contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     );
@@ -500,8 +521,14 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
         ),
         child: Icon(icon, color: accentColor, size: 20),
       ),
-      title: Text(title, style: TextStyle(color: primaryColor, fontWeight: FontWeight.w500)),
-      subtitle: Text(subtitle, style: TextStyle(color: secondaryColor, fontSize: 12)),
+      title: Text(
+        title,
+        style: TextStyle(color: primaryColor, fontWeight: FontWeight.w500),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: TextStyle(color: secondaryColor, fontSize: 12),
+      ),
       trailing: Icon(Icons.arrow_forward_ios, size: 16, color: secondaryColor),
       onTap: () {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -521,19 +548,12 @@ class _SecuritySettingsScreenState extends State<SecuritySettingsScreen> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            Icons.security,
-            size: 14,
-            color: Colors.green,
-          ),
+          Icon(Icons.security, size: 14, color: Colors.green),
           SizedBox(width: 8),
           Expanded(
             child: Text(
               text,
-              style: TextStyle(
-                color: secondaryColor,
-                fontSize: 12,
-              ),
+              style: TextStyle(color: secondaryColor, fontSize: 12),
             ),
           ),
         ],

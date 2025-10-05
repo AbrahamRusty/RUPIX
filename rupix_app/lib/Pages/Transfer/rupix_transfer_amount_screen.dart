@@ -30,7 +30,7 @@ class _RupiXTransferAmountScreenState extends State<RupiXTransferAmountScreen> {
 
   // Menggunakan final untuk data statis
   final List<Contact> _allContacts = [
-    Contact(name: 'Patricia Natania', details: 'RupiX - 0011 2000 3456'),
+    Contact(name: 'Patricia N', details: 'RupiX - 0011 2000 3456'),
     Contact(name: 'Lyvia Reva', details: 'BCA - 8******20'),
     Contact(name: 'Jessica W', details: 'Gopay - 08*******98'),
     Contact(name: 'Abraham', details: 'RupiX - 2333 9090 8785'),

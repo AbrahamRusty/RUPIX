@@ -8,11 +8,8 @@ import 'package:image/image.dart' as img;
 
 class CameraPage extends StatefulWidget {
   final Function(String) onQRScanned;
-  
-  const CameraPage({
-    Key? key,
-    required this.onQRScanned,
-  }) : super(key: key);
+
+  const CameraPage({super.key, required this.onQRScanned});
 
   @override
   _CameraPageState createState() => _CameraPageState();
@@ -49,7 +46,7 @@ class _CameraPageState extends State<CameraPage> {
     if (_cameras == null || cameraIndex >= _cameras!.length) return;
 
     final camera = _cameras![cameraIndex];
-    
+
     if (_controller != null) {
       await _controller!.dispose();
     }
@@ -67,10 +64,9 @@ class _CameraPageState extends State<CameraPage> {
           _isCameraInitialized = true;
         });
       }
-      
+
       // Start image stream for continuous scanning
       _startImageStream();
-      
     } catch (e) {
       if (mounted) {
         _showErrorDialog('Failed to initialize camera: $e');
@@ -91,16 +87,15 @@ class _CameraPageState extends State<CameraPage> {
       // Convert CameraImage to Image format for processing
       // ignore: unused_local_variable
       final imageBytes = await _convertImage(image);
-      
+
       // TODO: Add QR code detection logic here
       // You can use a QR detection library like:
       // - google_ml_kit
       // - firebase_ml_vision
       // - custom QR decoder
-      
+
       // For now, we'll simulate QR detection
       await _simulateQRDetection();
-      
     } catch (e) {
       debugPrint('Error processing image: $e');
     }
@@ -130,10 +125,10 @@ class _CameraPageState extends State<CameraPage> {
     // In production, use a proper image processing library
     final int width = image.width;
     final int height = image.height;
-    
+
     // Create a simple placeholder image
     final imageData = img.Image(width: width, height: height);
-    
+
     // Fill with gradient for demonstration
     for (int y = 0; y < height; y++) {
       for (int x = 0; x < width; x++) {
@@ -143,21 +138,21 @@ class _CameraPageState extends State<CameraPage> {
         imageData.setPixel(x, y, img.ColorRgb8(r, g, b));
       }
     }
-    
+
     return Uint8List.fromList(img.encodeJpg(imageData));
   }
 
   Uint8List _convertBGRAtoJPEG(CameraImage image) {
     final int width = image.width;
     final int height = image.height;
-    
+
     final imageData = img.Image(width: width, height: height);
     final planes = image.planes;
-    
-    if (planes.length >= 1) {
+
+    if (planes.isNotEmpty) {
       final bytes = planes[0].bytes;
       int byteIndex = 0;
-      
+
       for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
           if (byteIndex + 3 < bytes.length) {
@@ -170,17 +165,17 @@ class _CameraPageState extends State<CameraPage> {
         }
       }
     }
-    
+
     return Uint8List.fromList(img.encodeJpg(imageData));
   }
 
   Future<void> _simulateQRDetection() async {
     // Simulate QR detection delay
     await Future.delayed(const Duration(milliseconds: 1000));
-    
+
     // Simulate finding a QR code (replace with actual QR detection)
     const simulatedQRData = "https://rupix.app/payment/123456";
-    
+
     if (mounted) {
       widget.onQRScanned(simulatedQRData);
     }
@@ -193,9 +188,7 @@ class _CameraPageState extends State<CameraPage> {
       _isFlashOn = !_isFlashOn;
     });
 
-    _controller!.setFlashMode(
-      _isFlashOn ? FlashMode.torch : FlashMode.off,
-    );
+    _controller!.setFlashMode(_isFlashOn ? FlashMode.torch : FlashMode.off);
   }
 
   void _switchCamera() {
@@ -203,7 +196,8 @@ class _CameraPageState extends State<CameraPage> {
 
     setState(() {
       _selectedCameraIndex = (_selectedCameraIndex + 1) % _cameras!.length;
-      _isFrontCamera = _cameras![_selectedCameraIndex].lensDirection == 
+      _isFrontCamera =
+          _cameras![_selectedCameraIndex].lensDirection ==
           CameraLensDirection.front;
     });
 
@@ -236,11 +230,7 @@ class _CameraPageState extends State<CameraPage> {
           if (_isCameraInitialized && _controller != null)
             CameraPreview(_controller!)
           else
-            const Center(
-              child: CircularProgressIndicator(
-                color: Colors.white,
-              ),
-            ),
+            const Center(child: CircularProgressIndicator(color: Colors.white)),
 
           // Scanner Overlay
           _buildScannerOverlay(),
@@ -269,7 +259,10 @@ class _CameraPageState extends State<CameraPage> {
                       ),
                     if (_cameras != null && _cameras!.length > 1)
                       IconButton(
-                        icon: const Icon(Icons.cameraswitch, color: Colors.white),
+                        icon: const Icon(
+                          Icons.cameraswitch,
+                          color: Colors.white,
+                        ),
                         onPressed: _switchCamera,
                       ),
                   ],
@@ -299,10 +292,7 @@ class _CameraPageState extends State<CameraPage> {
                   Text(
                     'Position the QR code within the frame',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: Colors.white70, fontSize: 14),
                   ),
                 ],
               ),
@@ -332,7 +322,7 @@ class _CameraPageState extends State<CameraPage> {
       child: Column(
         children: [
           const Expanded(flex: 2, child: SizedBox()),
-          
+
           // Scanner Frame
           Expanded(
             flex: 3,
@@ -343,21 +333,16 @@ class _CameraPageState extends State<CameraPage> {
                   width: 250,
                   height: 250,
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2,
-                    ),
+                    border: Border.all(color: Colors.white, width: 2),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: CustomPaint(
-                    painter: _ScannerCornerPainter(),
-                  ),
+                  child: CustomPaint(painter: _ScannerCornerPainter()),
                 ),
                 const Expanded(child: SizedBox()),
               ],
             ),
           ),
-          
+
           const Expanded(flex: 2, child: SizedBox()),
         ],
       ),
@@ -386,16 +371,8 @@ class _ScannerCornerPainter extends CustomPainter {
     const cornerLength = 20.0;
 
     // Top left corner
-    canvas.drawLine(
-      const Offset(0, 0),
-      const Offset(cornerLength, 0),
-      paint,
-    );
-    canvas.drawLine(
-      const Offset(0, 0),
-      const Offset(0, cornerLength),
-      paint,
-    );
+    canvas.drawLine(const Offset(0, 0), const Offset(cornerLength, 0), paint);
+    canvas.drawLine(const Offset(0, 0), const Offset(0, cornerLength), paint);
 
     // Top right corner
     canvas.drawLine(

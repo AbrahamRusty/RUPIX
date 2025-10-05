@@ -33,19 +33,19 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
       'title': 'Ubah Email',
       'icon': Icons.email_outlined,
       'screen': ChangeEmailScreen(),
-      'description': 'Ganti alamat email akun Anda'
+      'description': 'Ganti alamat email akun Anda',
     },
     {
       'title': 'Ubah Password',
       'icon': Icons.lock_outline,
       'screen': ChangePasswordScreen(),
-      'description': 'Perbarui kata sandi keamanan'
+      'description': 'Perbarui kata sandi keamanan',
     },
     {
       'title': 'Ubah Username',
       'icon': Icons.person_outline,
       'screen': ChangeUsernameScreen(),
-      'description': 'Ubah nama pengguna Anda'
+      'description': 'Ubah nama pengguna Anda',
     },
   ];
 
@@ -54,13 +54,13 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
       'title': 'Bahasa',
       'icon': Icons.language_outlined,
       'screen': LanguageSettingsScreen(),
-      'description': 'Pilih bahasa aplikasi'
+      'description': 'Pilih bahasa aplikasi',
     },
     {
       'title': 'Notifikasi',
       'icon': Icons.notifications_outlined,
       'screen': NotificationSettingsScreen(),
-      'description': 'Kelola pemberitahuan'
+      'description': 'Kelola pemberitahuan',
     },
   ];
 
@@ -69,13 +69,13 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
       'title': 'Keamanan',
       'icon': Icons.security_outlined,
       'screen': SecuritySettingsScreen(),
-      'description': 'Pengaturan keamanan akun'
+      'description': 'Pengaturan keamanan akun',
     },
     {
       'title': 'Kebijakan Privasi',
       'icon': Icons.privacy_tip_outlined,
       'screen': PrivacyPolicyScreen(),
-      'description': 'Baca kebijakan privasi kami'
+      'description': 'Baca kebijakan privasi kami',
     },
   ];
 
@@ -84,22 +84,19 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
       'title': 'Pusat Bantuan',
       'icon': Icons.help_outline,
       'screen': HelpCenterScreen(),
-      'description': 'Bantuan dan dukungan'
+      'description': 'Bantuan dan dukungan',
     },
     {
       'title': 'Chat Bot',
       'icon': Icons.chat_outlined,
       'screen': ChatBotScreen(),
-      'description': 'Bantuan AI 24/7'
+      'description': 'Bantuan AI 24/7',
     },
   ];
 
   void _navigateTo(BuildContext context, dynamic screen) {
     if (screen is Widget) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => screen),
-      );
+      Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
     } else if (screen == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -117,11 +114,15 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
   }
 
   // Fungsi untuk mendapatkan warna berdasarkan dark mode
-  Color _getBackgroundColor(bool isDark) => isDark ? Color(0xFF121212) : Colors.white;
+  Color _getBackgroundColor(bool isDark) =>
+      isDark ? Color(0xFF121212) : Colors.white;
   Color _getPrimaryColor(bool isDark) => isDark ? Colors.white : Colors.black;
-  Color _getSecondaryColor(bool isDark) => isDark ? Colors.grey.shade400 : Colors.grey.shade600;
-  Color _getCardColor(bool isDark) => isDark ? Color(0xFF1E1E1E) : Color(0xFFF8F9FA);
-  Color _getBorderColor(bool isDark) => isDark ? Colors.grey.shade800 : Colors.grey.shade200;
+  Color _getSecondaryColor(bool isDark) =>
+      isDark ? Colors.grey.shade400 : Colors.grey.shade600;
+  Color _getCardColor(bool isDark) =>
+      isDark ? Color(0xFF1E1E1E) : Color(0xFFF8F9FA);
+  Color _getBorderColor(bool isDark) =>
+      isDark ? Colors.grey.shade800 : Colors.grey.shade200;
 
   @override
   Widget build(BuildContext context) {
@@ -206,11 +207,16 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
                               ),
                               SizedBox(height: 8),
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 4,
+                                ),
                                 decoration: BoxDecoration(
                                   color: Colors.green.withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(color: Colors.green.withOpacity(0.3)),
+                                  border: Border.all(
+                                    color: Colors.green.withOpacity(0.3),
+                                  ),
                                 ),
                                 child: Text(
                                   'Terverifikasi',
@@ -224,11 +230,7 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
                             ],
                           ),
                         ),
-                        Icon(
-                          Icons.verified,
-                          color: Colors.green,
-                          size: 20,
-                        ),
+                        Icon(Icons.verified, color: Colors.green, size: 20),
                       ],
                     ),
                   ),
@@ -360,7 +362,10 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
                     child: Column(
                       children: [
                         ListTile(
-                          leading: Icon(Icons.info_outline, color: secondaryColor),
+                          leading: Icon(
+                            Icons.info_outline,
+                            color: secondaryColor,
+                          ),
                           title: Text(
                             'Tentang Aplikasi',
                             style: TextStyle(color: primaryColor),
@@ -369,7 +374,11 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
                             'RupiX Wallet v1.0.0',
                             style: TextStyle(color: secondaryColor),
                           ),
-                          trailing: Icon(Icons.arrow_forward_ios, size: 16, color: secondaryColor),
+                          trailing: Icon(
+                            Icons.arrow_forward_ios,
+                            size: 16,
+                            color: secondaryColor,
+                          ),
                           onTap: () {
                             _navigateTo(context, AboutPage());
                           },
@@ -386,7 +395,10 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
                             style: TextStyle(color: Colors.green),
                           ),
                           trailing: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.green.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
@@ -435,11 +447,14 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
     return ListTile(
       leading: Icon(icon, color: primaryColor),
       title: Text(title, style: TextStyle(color: primaryColor)),
-      subtitle: Text(subtitle, style: TextStyle(color: secondaryColor, fontSize: 12)),
+      subtitle: Text(
+        subtitle,
+        style: TextStyle(color: secondaryColor, fontSize: 12),
+      ),
       trailing: Switch(
         value: value,
         onChanged: onChanged,
-        activeColor: Color.fromARGB(255, 0, 60, 144),
+        activeThumbColor: Color.fromARGB(255, 0, 60, 144),
       ),
       contentPadding: EdgeInsets.zero,
     );
@@ -486,7 +501,11 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
                       item['description'] as String,
                       style: TextStyle(color: secondaryColor, fontSize: 12),
                     ),
-                    trailing: Icon(Icons.arrow_forward_ios, size: 16, color: secondaryColor),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: secondaryColor,
+                    ),
                     onTap: () {
                       _navigateTo(context, item['screen']);
                     },
@@ -502,7 +521,11 @@ class _SettingsHomeScreenState extends State<SettingsHomeScreen> {
     );
   }
 
-  void _showLogoutDialog(BuildContext context, Color primaryColor, Color cardColor) {
+  void _showLogoutDialog(
+    BuildContext context,
+    Color primaryColor,
+    Color cardColor,
+  ) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(

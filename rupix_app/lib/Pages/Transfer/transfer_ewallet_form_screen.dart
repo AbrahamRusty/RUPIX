@@ -49,7 +49,11 @@ class _TransferEWalletFormScreenState extends State<TransferEWalletFormScreen> {
           children: [
             const Text(
               'Enter Name/Contact',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(height: 10),
             TextField(
@@ -68,7 +72,11 @@ class _TransferEWalletFormScreenState extends State<TransferEWalletFormScreen> {
             const SizedBox(height: 20),
             const Text(
               'Enter Amount',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(height: 10),
             TextField(
@@ -112,7 +120,7 @@ class _TransferEWalletFormScreenState extends State<TransferEWalletFormScreen> {
                         builder: (context) => TransferReceiptScreen(
                           amount: _amountController.text,
                           recipientName: _contactController.text,
-                          recipientDetails: 'Gopay - 08*****12',
+                          recipientDetails: widget.ewalletName,
                         ),
                       ),
                     );

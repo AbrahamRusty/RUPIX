@@ -94,9 +94,7 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         hintText: 'Search bank',
-                        hintStyle: TextStyle(
-                          color: Colors.grey[400],
-                        ),
+                        hintStyle: TextStyle(color: Colors.grey[400]),
                         prefixIcon: const Icon(
                           Icons.search,
                           color: Colors.grey,
@@ -183,7 +181,7 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
                           ),
                         ),
                       );
-                    }).toList(),
+                    }),
                   ],
                 ),
               ),

@@ -18,7 +18,7 @@ class TransferBankConfirmScreen extends StatelessWidget {
     final double transferAmount = double.tryParse(amount) ?? 0;
     const double transferFee = 2500;
     final double totalAmount = transferAmount + transferFee;
-    final String recipientName = 'Patricia Natania';
+    final String recipientName = 'Patricia N';
 
     return Scaffold(
       backgroundColor: const Color(0xFF000000),
@@ -46,21 +46,33 @@ class TransferBankConfirmScreen extends StatelessWidget {
           children: [
             const Text(
               'Recipient',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(height: 10),
             _buildInfoRow(recipientName, accountNumber),
             const SizedBox(height: 20),
             const Text(
               'Bank',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(height: 10),
             _buildInfoRow(bankName, 'assets/Transfer/bca.png'),
             const SizedBox(height: 20),
             const Text(
               'Transfer Details',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(height: 10),
             _buildDetailRow('Transfer Amount', 'Rp$amount'),
@@ -117,7 +129,11 @@ class TransferBankConfirmScreen extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
           if (value.contains('assets'))
             Image.asset(value, width: 40)
@@ -137,10 +153,17 @@ class TransferBankConfirmScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: const TextStyle(fontSize: 16, color: Colors.white)),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 16, color: Colors.white),
+          ),
           Text(
             value,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
         ],
       ),

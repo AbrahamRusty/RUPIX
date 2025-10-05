@@ -1,4 +1,4 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 // Global ValueNotifier untuk dark mode
 ValueNotifier<bool> isDarkModeNotifier = ValueNotifier<bool>(false);
@@ -7,10 +7,12 @@ class NotificationSettingsScreen extends StatefulWidget {
   const NotificationSettingsScreen({super.key});
 
   @override
-  State<NotificationSettingsScreen> createState() => _NotificationSettingsScreenState();
+  State<NotificationSettingsScreen> createState() =>
+      _NotificationSettingsScreenState();
 }
 
-class _NotificationSettingsScreenState extends State<NotificationSettingsScreen> {
+class _NotificationSettingsScreenState
+    extends State<NotificationSettingsScreen> {
   bool _pushNotifications = true;
   bool _emailNotifications = true;
   bool _transactionAlerts = true;
@@ -20,16 +22,20 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
   bool _newsUpdates = false;
   bool _vibration = true;
   bool _sound = true;
-  
+
   final Color appBarColor = Color.fromARGB(255, 0, 60, 144);
   final Color accentColor = Color.fromARGB(255, 0, 60, 144);
 
   // Fungsi untuk mendapatkan warna berdasarkan dark mode
-  Color _getBackgroundColor(bool isDark) => isDark ? Color(0xFF121212) : Color(0xFF121212);
+  Color _getBackgroundColor(bool isDark) =>
+      isDark ? Color(0xFF121212) : Color(0xFF121212);
   Color _getPrimaryColor(bool isDark) => isDark ? Colors.white : Colors.white;
-  Color _getSecondaryColor(bool isDark) => isDark ? Colors.grey.shade400 : Colors.grey.shade400;
-  Color _getCardColor(bool isDark) => isDark ? Color(0xFF1E1E1E) : Color(0xFF1E1E1E);
-  Color _getBorderColor(bool isDark) => isDark ? Colors.grey.shade800 : Colors.grey.shade800;
+  Color _getSecondaryColor(bool isDark) =>
+      isDark ? Colors.grey.shade400 : Colors.grey.shade400;
+  Color _getCardColor(bool isDark) =>
+      isDark ? Color(0xFF1E1E1E) : Color(0xFF1E1E1E);
+  Color _getBorderColor(bool isDark) =>
+      isDark ? Colors.grey.shade800 : Colors.grey.shade800;
 
   void _toggleAllNotifications(bool value) {
     setState(() {
@@ -199,7 +205,8 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                           'Kirim notifikasi ke email Anda',
                           Icons.email_outlined,
                           _emailNotifications,
-                          (value) => setState(() => _emailNotifications = value),
+                          (value) =>
+                              setState(() => _emailNotifications = value),
                           primaryColor,
                           secondaryColor,
                         ),
@@ -219,7 +226,8 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                           'Info promo dan penawaran khusus',
                           Icons.local_offer_outlined,
                           _promoNotifications,
-                          (value) => setState(() => _promoNotifications = value),
+                          (value) =>
+                              setState(() => _promoNotifications = value),
                           primaryColor,
                           secondaryColor,
                         ),
@@ -338,7 +346,11 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.nightlight_outlined, color: accentColor, size: 20),
+                            Icon(
+                              Icons.nightlight_outlined,
+                              color: accentColor,
+                              size: 20,
+                            ),
                             SizedBox(width: 12),
                             Text(
                               'Jam Tenang',
@@ -353,10 +365,7 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                         SizedBox(height: 12),
                         Text(
                           'Nonaktifkan notifikasi selama jam tertentu untuk tidak mengganggu',
-                          style: TextStyle(
-                            color: secondaryColor,
-                            fontSize: 14,
-                          ),
+                          style: TextStyle(color: secondaryColor, fontSize: 14),
                         ),
                         SizedBox(height: 16),
                         Row(
@@ -366,7 +375,9 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
                                 onPressed: () {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text('Fitur Jam Tenang akan segera hadir'),
+                                      content: Text(
+                                        'Fitur Jam Tenang akan segera hadir',
+                                      ),
                                       backgroundColor: Colors.blue,
                                       duration: Duration(seconds: 2),
                                     ),
@@ -451,12 +462,18 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
   ) {
     return ListTile(
       leading: Icon(icon, color: primaryColor),
-      title: Text(title, style: TextStyle(color: primaryColor, fontWeight: FontWeight.w500)),
-      subtitle: Text(subtitle, style: TextStyle(color: secondaryColor, fontSize: 12)),
+      title: Text(
+        title,
+        style: TextStyle(color: primaryColor, fontWeight: FontWeight.w500),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: TextStyle(color: secondaryColor, fontSize: 12),
+      ),
       trailing: Switch(
         value: value,
         onChanged: onChanged,
-        activeColor: accentColor,
+        activeThumbColor: accentColor,
       ),
       contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     );
@@ -468,19 +485,12 @@ class _NotificationSettingsScreenState extends State<NotificationSettingsScreen>
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            Icons.circle,
-            size: 6,
-            color: secondaryColor,
-          ),
+          Icon(Icons.circle, size: 6, color: secondaryColor),
           SizedBox(width: 8),
           Expanded(
             child: Text(
               text,
-              style: TextStyle(
-                color: secondaryColor,
-                fontSize: 12,
-              ),
+              style: TextStyle(color: secondaryColor, fontSize: 12),
             ),
           ),
         ],

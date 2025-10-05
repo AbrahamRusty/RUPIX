@@ -51,16 +51,18 @@ class _PinEntryPageState extends State<PinEntryPage> {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    
+
     // Color definitions
     final backgroundColor = isDarkMode ? Color(0xFF121212) : Color(0xFF121212);
     final primaryColor = isDarkMode ? Colors.white : Colors.white;
-    final secondaryColor = isDarkMode ? Colors.grey.shade400 : Colors.grey.shade400;
+    final secondaryColor = isDarkMode
+        ? Colors.grey.shade400
+        : Colors.grey.shade400;
     final buttonColor = isDarkMode ? Color(0xFF2D2D2D) : Color(0xFF2D2D2D);
     final filledDotColor = isDarkMode ? Color(0xFF8B2F8F) : Color(0xFF8B2F8F);
     final emptyDotColor = isDarkMode ? Color(0xFF424242) : Color(0xFF424242);
 
-    Widget _buildDot(bool filled) {
+    Widget buildDot(bool filled) {
       return AnimatedContainer(
         duration: const Duration(milliseconds: 150),
         width: 14,
@@ -73,26 +75,29 @@ class _PinEntryPageState extends State<PinEntryPage> {
       );
     }
 
-    Widget _buildNumberButton(String label, {void Function()? onTap, Widget? child}) {
+    Widget buildNumberButton(
+      String label, {
+      void Function()? onTap,
+      Widget? child,
+    }) {
       return GestureDetector(
         onTap: onTap,
         behavior: HitTestBehavior.opaque,
         child: Container(
           height: 76,
           width: 76,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: buttonColor,
-          ),
+          decoration: BoxDecoration(shape: BoxShape.circle, color: buttonColor),
           child: Center(
-            child: child ?? Text(
-              label,
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w400,
-                color: primaryColor,
-              ),
-            ),
+            child:
+                child ??
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w400,
+                    color: primaryColor,
+                  ),
+                ),
           ),
         ),
       );
@@ -105,7 +110,10 @@ class _PinEntryPageState extends State<PinEntryPage> {
           children: [
             // Back button
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
               child: Row(
                 children: [
                   IconButton(
@@ -115,9 +123,9 @@ class _PinEntryPageState extends State<PinEntryPage> {
                 ],
               ),
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             // Title & subtitle
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -134,17 +142,14 @@ class _PinEntryPageState extends State<PinEntryPage> {
                   const SizedBox(height: 8),
                   Text(
                     "Gunakan PIN OVO Anda.",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: secondaryColor,
-                    ),
+                    style: TextStyle(fontSize: 14, color: secondaryColor),
                   ),
                 ],
               ),
             ),
 
             const SizedBox(height: 28),
-            
+
             // Dot indicators
             SizedBox(
               height: 32,
@@ -152,64 +157,68 @@ class _PinEntryPageState extends State<PinEntryPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   pinLength,
-                  (i) => _buildDot(i < _pin.length),
+                  (i) => buildDot(i < _pin.length),
                 ),
               ),
             ),
 
             const SizedBox(height: 28),
-            
+
             // Keypad
             Expanded(
               child: Column(
                 children: [
                   const Spacer(),
-                  
+
                   // Row 1-3
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildNumberButton('1', onTap: () => _onNumberPressed(1)),
-                      _buildNumberButton('2', onTap: () => _onNumberPressed(2)),
-                      _buildNumberButton('3', onTap: () => _onNumberPressed(3)),
+                      buildNumberButton('1', onTap: () => _onNumberPressed(1)),
+                      buildNumberButton('2', onTap: () => _onNumberPressed(2)),
+                      buildNumberButton('3', onTap: () => _onNumberPressed(3)),
                     ],
                   ),
                   const SizedBox(height: 6),
-                  
+
                   // Row 4-6
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildNumberButton('4', onTap: () => _onNumberPressed(4)),
-                      _buildNumberButton('5', onTap: () => _onNumberPressed(5)),
-                      _buildNumberButton('6', onTap: () => _onNumberPressed(6)),
+                      buildNumberButton('4', onTap: () => _onNumberPressed(4)),
+                      buildNumberButton('5', onTap: () => _onNumberPressed(5)),
+                      buildNumberButton('6', onTap: () => _onNumberPressed(6)),
                     ],
                   ),
                   const SizedBox(height: 6),
-                  
+
                   // Row 7-9
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildNumberButton('7', onTap: () => _onNumberPressed(7)),
-                      _buildNumberButton('8', onTap: () => _onNumberPressed(8)),
-                      _buildNumberButton('9', onTap: () => _onNumberPressed(9)),
+                      buildNumberButton('7', onTap: () => _onNumberPressed(7)),
+                      buildNumberButton('8', onTap: () => _onNumberPressed(8)),
+                      buildNumberButton('9', onTap: () => _onNumberPressed(9)),
                     ],
                   ),
                   const SizedBox(height: 6),
-                  
+
                   // Bottom row: empty / 0 / delete
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildNumberButton('', onTap: null, child: const SizedBox.shrink()),
-                      _buildNumberButton('0', onTap: () => _onNumberPressed(0)),
-                      _buildNumberButton(
-                        '', 
-                        onTap: _onDeletePressed, 
+                      buildNumberButton(
+                        '',
+                        onTap: null,
+                        child: const SizedBox.shrink(),
+                      ),
+                      buildNumberButton('0', onTap: () => _onNumberPressed(0)),
+                      buildNumberButton(
+                        '',
+                        onTap: _onDeletePressed,
                         child: Icon(
-                          Icons.backspace_outlined, 
-                          size: 22, 
+                          Icons.backspace_outlined,
+                          size: 22,
                           color: secondaryColor,
                         ),
                       ),

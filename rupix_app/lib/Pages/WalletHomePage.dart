@@ -7,8 +7,14 @@ import 'package:rupix_app/Widgets/half_drawer_menu.dart';
 import 'package:rupix_app/Pages/Transfer/transfer_screen.dart';
 import 'package:rupix_app/Pages/TopUp/Pln/nomet.dart';
 import 'package:rupix_app/Pages/TopUp/PDAM/no_virtualpdam.dart';
-import 'package:rupix_app/Pages/TopUp/EWallet/Ewallet_main.dart';
-import 'package:rupix_app/Pages/dummy_notification.dart';
+  import 'package:rupix_app/Pages/TopUp/EWallet/Ewallet_main.dart';
+  import 'package:rupix_app/Pages/dummy_notification.dart';
+  // Import halaman baru
+import 'package:rupix_app/Pages/actionbutton/split_bill_page.dart';
+import 'package:rupix_app/Pages/actionbutton/tarik_dana_page.dart';
+import 'package:rupix_app/Pages/actionbutton/promo_page.dart';
+import 'package:rupix_app/Pages/actionbutton/tabungan_page.dart';
+import 'package:rupix_app/Pages/actionbutton/kesehatan_page.dart';
 
 class WalletHomePage extends StatefulWidget {
   const WalletHomePage({super.key});
@@ -132,7 +138,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
                           ),
                         ),
 
-                        // Icon Notifikasi - DIPERBAIKI
+                        // Icon Notifikasi
                         IconButton(
                           icon: Icon(
                             Icons.notifications,
@@ -163,7 +169,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
     );
   }
 
-  // Fungsi untuk membuka halaman notifikasi - DIPERBAIKI
+  // Fungsi untuk membuka halaman notifikasi
   void _openNotificationPage(BuildContext context) {
     Navigator.push(
       context,
@@ -341,7 +347,7 @@ class _WalletHomePageState extends State<WalletHomePage> {
             shape: BoxShape.circle,
           ),
           child: IconButton(
-            onPressed: () => debugPrint("MORE tapped"),
+            onPressed: () => _showMoreOptions(context),
             icon: const Icon(
               Icons.more_horiz, 
               color: Colors.white
@@ -349,6 +355,108 @@ class _WalletHomePageState extends State<WalletHomePage> {
           ),
         ),
       ],
+    );
+  }
+
+  void _showMoreOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: const Color(0xFF1A1A1A),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) => Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.grey[600],
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Lainnya',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 4,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              children: [
+                _moreOptionItem(Icons.download, 'Tarik Dana', () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const TarikDanaPage()),
+                  );
+                }),
+                _moreOptionItem(Icons.group, 'Split Bill', () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const SplitBillPage()),
+                  );
+                }),
+                _moreOptionItem(Icons.credit_card, 'Tabungan', () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const TabunganPage()),
+                  );
+                }),
+                _moreOptionItem(Icons.health_and_safety, 'Kesehatan', () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const KesehatanPage()),
+                  );
+                }),
+              ],
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _moreOptionItem(IconData icon, String label, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Column(
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Colors.blue.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icon, color: Colors.blue, size: 24),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 10,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -499,17 +607,39 @@ class _WalletHomePageState extends State<WalletHomePage> {
       crossAxisSpacing: 16,
       mainAxisSpacing: 16,
       children: [
-        _serviceCard("Split Bill", Icons.group),
-        _serviceCard("E-Banking", Icons.account_balance),
-        _serviceCard("Tarik Dana", Icons.download),
+        _serviceCard("Split Bill", Icons.group, onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const SplitBillPage()),
+          );
+        }),
+        _serviceCard("E-Banking", Icons.account_balance, onTap: () {
+          _showComingSoon("E-Banking");
+        }),
+        _serviceCard("Tarik Dana", Icons.download, onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const TarikDanaPage()),
+          );
+        }),
         _serviceCard("E-Wallet", Icons.account_balance_wallet, onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (_) => const EwalletMain()),
           );
         }),
-        _serviceCard("Promo", Icons.local_offer),
-        _serviceCard("Tabungan", Icons.credit_card),
+        _serviceCard("Promo", Icons.local_offer, onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const PromoPage()),
+          );
+        }),
+        _serviceCard("Tabungan", Icons.credit_card, onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const TabunganPage()),
+          );
+        }),
         _serviceCard("Air", Icons.water_drop, onTap: () {
           Navigator.push(
             context,
@@ -522,14 +652,19 @@ class _WalletHomePageState extends State<WalletHomePage> {
             MaterialPageRoute(builder: (_) => Nometpln()),
           );
         }),
-        _serviceCard("Kesehatan", Icons.health_and_safety),
+        _serviceCard("Kesehatan", Icons.health_and_safety, onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const KesehatanPage()),
+          );
+        }),
       ],
     );
   }
 
   Widget _serviceCard(String title, IconData icon, {VoidCallback? onTap}) {
     return InkWell(
-      onTap: onTap ?? () => debugPrint("Service $title tapped"),
+      onTap: onTap ?? () => _showComingSoon(title),
       borderRadius: BorderRadius.circular(12),
       child: Card(
         elevation: 3,
@@ -552,6 +687,16 @@ class _WalletHomePageState extends State<WalletHomePage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void _showComingSoon(String feature) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Fitur $feature akan segera hadir'),
+        duration: const Duration(seconds: 2),
+        backgroundColor: Colors.blue,
       ),
     );
   }

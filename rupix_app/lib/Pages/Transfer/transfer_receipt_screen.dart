@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:rupix_app/Pages/WalletHomePage.dart';
 
 class TransferReceiptScreen extends StatelessWidget {
   final String amount;
@@ -22,7 +23,7 @@ class TransferReceiptScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF000000),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF0088FF),
+        backgroundColor: const Color.fromARGB(255, 0, 60, 144),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
@@ -99,7 +100,7 @@ class TransferReceiptScreen extends StatelessWidget {
                         _buildReceiptRow('Date & Time', '$date, $time'),
                         const SizedBox(height: 14),
                         _buildReceiptRow('No. Ref', '117886900281'),
-                        const SizedBox(height: 14), //
+                        const SizedBox(height: 14),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -123,12 +124,12 @@ class TransferReceiptScreen extends StatelessWidget {
                   const SizedBox(height: 30),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
+                      // Navigasi kembali ke WalletHomePage
+                      _navigateToWalletHomePage(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: const Color(0xFF0088FF),
+                      backgroundColor: const Color.fromARGB(255, 0, 60, 144),
+                      foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -165,6 +166,14 @@ class TransferReceiptScreen extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  void _navigateToWalletHomePage(BuildContext context) {
+    Navigator.pushAndRemoveUntil(
+     context,
+      MaterialPageRoute(builder: (context) => WalletHomePage()),
+      (route) => false,
     );
   }
 }

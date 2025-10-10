@@ -46,7 +46,7 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF000000),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF0088FF),
+        backgroundColor: const Color.fromARGB(255, 0, 60, 144),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
@@ -126,7 +126,7 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: isSelected
-                                  ? const Color(0xFF0088FF)
+                                  ? const Color.fromARGB(255, 0, 60, 144)
                                   : Colors.grey.withOpacity(0.3),
                               width: isSelected ? 2 : 1,
                             ),
@@ -175,7 +175,7 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
                                     _selectedBankLogoPath = logoPath;
                                   });
                                 },
-                                activeColor: const Color(0xFF0088FF),
+                                activeColor: const Color.fromARGB(255, 0, 60, 144),
                               ),
                             ],
                           ),
@@ -218,7 +218,7 @@ class _TransferBankScreenState extends State<TransferBankScreen> {
                     : null,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: isContinueEnabled
-                      ? const Color(0xFF0088FF)
+                      ? const Color.fromARGB(255, 0, 60, 144)
                       : const Color(0xFF2D2D2D),
                   disabledBackgroundColor: const Color(0xFF2D2D2D),
                   shape: RoundedRectangleBorder(

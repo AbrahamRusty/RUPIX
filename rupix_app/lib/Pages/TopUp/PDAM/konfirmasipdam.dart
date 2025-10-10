@@ -36,7 +36,7 @@ class KonfirmasipdamPage extends StatelessWidget {
           style: TextStyle(color: Colors.white), // White text
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Tetap biru PDAM
+        backgroundColor: const Color.fromARGB(255, 0, 60, 144), // Tetap biru PDAM
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -182,7 +182,7 @@ class KonfirmasipdamPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Biru PDAM
+                  backgroundColor: const Color.fromARGB(255, 0, 60, 144), // Biru PDAM
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

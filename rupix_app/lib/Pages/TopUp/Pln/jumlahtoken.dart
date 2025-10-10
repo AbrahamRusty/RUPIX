@@ -61,7 +61,7 @@ class _PLNPageState extends State<Jumlahtoken> {
         ),
         title: Text('Pilih Nominal', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 0, 76, 184),
+        backgroundColor: const Color.fromARGB(255, 0, 60, 144),
         elevation: 0,
       ),
       body: Padding(
@@ -203,7 +203,7 @@ class _PLNPageState extends State<Jumlahtoken> {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   backgroundColor: selectedIndex == null
                       ? Colors.grey.shade600
-                      : const Color.fromARGB(255, 0, 76, 184),
+                      : const Color.fromARGB(255, 0, 60, 144),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),

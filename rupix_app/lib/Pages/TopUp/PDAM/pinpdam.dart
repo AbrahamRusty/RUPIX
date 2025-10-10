@@ -56,7 +56,7 @@ class _PinEntryPageState extends State<PinEntryPage> {
       height: 14,
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
-        color: filled ? const Color(0xFF2196F3) : Color(0xFF2D2D2D), // Dark unfilled dot
+        color: filled ? const Color.fromARGB(255, 0, 60, 144) : Color(0xFF2D2D2D), // Dark unfilled dot
         shape: BoxShape.circle,
         border: filled ? null : Border.all(color: Colors.grey[700]!), // Border for unfilled
       ),

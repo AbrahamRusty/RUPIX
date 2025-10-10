@@ -22,6 +22,7 @@ class TransferScreen extends StatefulWidget {
 class _TransferScreenState extends State<TransferScreen> {
   // Colors for Dark Mode
   final Color _backgroundColor = const Color.fromARGB(255, 0, 0, 0);
+  final Color _headerColor = const Color.fromARGB(255, 0, 60, 144); // Warna header baru
   final Color _textColor = Colors.white;
   final Color _cardColor = const Color(0xFF1A1A1A);
   final Color _buttonColor = const Color(0xFF2D2D2D);
@@ -86,7 +87,7 @@ class _TransferScreenState extends State<TransferScreen> {
     return Scaffold(
       backgroundColor: _backgroundColor,
       appBar: AppBar(
-        backgroundColor: _backgroundColor,
+        backgroundColor: _headerColor, // DIUBAH: Sekarang menggunakan warna biru
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios, color: _textColor),
           onPressed: () => Navigator.pop(context),
@@ -101,6 +102,12 @@ class _TransferScreenState extends State<TransferScreen> {
         ),
         centerTitle: true,
         elevation: 0,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
+        ),
       ),
       body: Container(
         color: _backgroundColor,

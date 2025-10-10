@@ -26,7 +26,7 @@ class EwalletMain extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFF121212), // Dark background
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB( 255,0,76,184), // Dark app bar
+        backgroundColor: const Color.fromARGB(255, 0, 60, 144), // Dark app bar
         title: const Text(
           'TOP UP',
           style: TextStyle(

@@ -25,7 +25,7 @@ class _NoVirtualpdamPageState extends State<NoVirtualpdamPage> {
         leading: BackButton(color: Colors.white),
         title: Text('PDAM', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Tetap biru PDAM
+        backgroundColor: const Color.fromARGB(255, 0, 60, 144), // Tetap biru PDAM
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -110,7 +110,7 @@ class _NoVirtualpdamPageState extends State<NoVirtualpdamPage> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Biru PDAM untuk button
+                  backgroundColor: const Color.fromARGB(255, 0, 60, 144), // Biru PDAM untuk button
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

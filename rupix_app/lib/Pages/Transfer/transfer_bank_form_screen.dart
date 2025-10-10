@@ -26,7 +26,7 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF000000),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF0088FF),
+        backgroundColor: const Color.fromARGB(255, 0, 60, 144),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
@@ -138,7 +138,7 @@ class _TransferBankFormScreenState extends State<TransferBankFormScreen> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0088FF),
+                  backgroundColor: const Color.fromARGB(255, 0, 60, 144),
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(

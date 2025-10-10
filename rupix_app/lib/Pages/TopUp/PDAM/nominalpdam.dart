@@ -200,7 +200,7 @@ class _NominalpdamPageState extends State<NominalpdamPage> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Biru PDAM
+                  backgroundColor: const Color.fromARGB(255, 0, 60, 144),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),

@@ -40,7 +40,7 @@ class _notelp extends State<Notelp> {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 0, 76, 184),
+        backgroundColor: const Color.fromARGB(255, 0, 60, 144),
         elevation: 0,
       ),
       body: Padding(
@@ -156,12 +156,7 @@ class _notelp extends State<Notelp> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  backgroundColor: const Color.fromARGB(
-                    255,
-                    0,
-                    76,
-                    184,
-                  ), // Biru konsisten
+                  backgroundColor: const Color.fromARGB(255, 0, 60, 144),// Biru konsisten
                   elevation: 4,
                   shadowColor: Colors.blue.withOpacity(0.3),
                 ),

@@ -202,7 +202,7 @@ class TransaksiBerhasilpulsaPage extends StatelessWidget {
                 height: 52,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 0, 76, 184),
+                    backgroundColor: const Color.fromARGB(255, 0, 60, 144),
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),

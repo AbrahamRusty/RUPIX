@@ -79,7 +79,7 @@ class _TopUpPageState extends State<TopUpPage> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 0, 76, 184),
+        backgroundColor: const Color.fromARGB(255, 0, 60, 144),
         elevation: 0,
         leading: BackButton(
           onPressed: () => Navigator.of(context).pop(),

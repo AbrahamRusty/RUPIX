@@ -56,7 +56,7 @@ class _Nometpln extends State<Nometpln> {
         ),
         title: Text('PLN', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 0, 76, 184),
+        backgroundColor: const Color.fromARGB(255, 0, 60, 144),
         elevation: 0,
       ),
       body: Padding(
@@ -171,12 +171,7 @@ class _Nometpln extends State<Nometpln> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  backgroundColor: const Color.fromARGB(
-                    255,
-                    0,
-                    76,
-                    184,
-                  ), // Biru konsisten
+                  backgroundColor: const Color.fromARGB(255, 0, 60, 144), // Biru konsisten
                   elevation: 4,
                   shadowColor: Colors.blue.withOpacity(0.3),
                 ),

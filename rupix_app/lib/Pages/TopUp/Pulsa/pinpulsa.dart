@@ -56,7 +56,7 @@ class _PinEntryPageState extends State<PinEntryPage> {
       height: 14,
       margin: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
-        color: filled ? Colors.greenAccent : const Color.fromARGB(77, 111, 111, 111),
+        color: filled ? const Color.fromARGB(255, 0, 60, 144) : const Color.fromARGB(77, 111, 111, 111),
         shape: BoxShape.circle,
       ),
     );

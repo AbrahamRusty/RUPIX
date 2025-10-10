@@ -61,7 +61,7 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 0, 76, 184),
+        backgroundColor: const Color.fromARGB(255, 0, 60, 144),
         elevation: 0,
       ),
       body: Padding(
@@ -227,7 +227,7 @@ class KonfirmasiTransaksiplnPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 0, 76, 184),
+                  backgroundColor: const Color.fromARGB(255, 0, 60, 144),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),

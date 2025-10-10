@@ -150,7 +150,7 @@ class TransaksiBerhasilpdamPage extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 0, 76, 184), // Biru PDAM
+                    backgroundColor: const Color.fromARGB(255, 0, 60, 144), // Biru PDAM
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'setup_keamanan_page.dart';
+import 'slide1_pengenalan.dart';
+import 'import_slide1_metode.dart';
+import 'recovery_slide1_context.dart';
 
 class BuatDompetPage extends StatelessWidget {
   const BuatDompetPage({super.key});
@@ -50,11 +52,7 @@ class BuatDompetPage extends StatelessWidget {
             // ===== Deskripsi =====
             const Text(
               "Dompet Anda mendukung jaringan teratas seperti Ethereum, Bitcoin, Rupiah, dan Dogecoin. Jadi, Anda dapat mengelola kripto dan Rupiah Anda di satu tempat.",
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 14,
-                height: 1.5,
-              ),
+              style: TextStyle(color: Colors.grey, fontSize: 14, height: 1.5),
               textAlign: TextAlign.center,
             ),
 
@@ -66,7 +64,7 @@ class BuatDompetPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const SetupKeamananPage(),
+                    builder: (context) => const Slide1Pengenalan(),
                   ),
                 );
               },
@@ -99,7 +97,12 @@ class BuatDompetPage extends StatelessWidget {
             // ===== Opsi: Impor Dompet =====
             InkWell(
               onTap: () {
-                // nanti logic impor wallet bisa diisi
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ImportSlide1Metode(),
+                  ),
+                );
               },
               borderRadius: BorderRadius.circular(50),
               child: Row(
@@ -110,7 +113,11 @@ class BuatDompetPage extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     padding: const EdgeInsets.all(14),
-                    child: const Icon(Icons.download, color: Colors.black, size: 28),
+                    child: const Icon(
+                      Icons.download,
+                      color: Colors.black,
+                      size: 28,
+                    ),
                   ),
                   const SizedBox(width: 16),
                   const Text(
@@ -130,7 +137,12 @@ class BuatDompetPage extends StatelessWidget {
             // ===== Opsi: Pulihkan Dompet =====
             InkWell(
               onTap: () {
-                // nanti logic pulihkan dompet bisa diisi
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RecoverySlide1Context(),
+                  ),
+                );
               },
               borderRadius: BorderRadius.circular(50),
               child: Row(
@@ -141,7 +153,11 @@ class BuatDompetPage extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     padding: const EdgeInsets.all(14),
-                    child: const Icon(Icons.upload, color: Colors.black, size: 28),
+                    child: const Icon(
+                      Icons.upload,
+                      color: Colors.black,
+                      size: 28,
+                    ),
                   ),
                   const SizedBox(width: 16),
                   const Text(
